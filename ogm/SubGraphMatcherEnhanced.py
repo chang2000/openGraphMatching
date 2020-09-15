@@ -26,7 +26,7 @@ class SubGraphMatcher:
         self.G = G
         self.G_nodes = list(G.nodes())
         self.check_result = None
-        self.M = []
+        self.M = {} # M is a dict
 
     def generate_all_subgraphs(self, G_q):
         combs = list(combinations(self.G_nodes, len(list(G_q.nodes))))
@@ -153,7 +153,7 @@ class SubGraphMatcher:
                         # print('candidate is', candidates)
                         candidates = [c for c in candidates if not (c[0] == u and c[1] == v)]
                         # print('candidates after filtering', candidates)
-        print(candidates)
+        # print(candidates)
         return candidates
 
     # Ordering Parts
@@ -167,15 +167,15 @@ class SubGraphMatcher:
             return self.M
 
         # v is a extenable vertex
-        u = self.get_extenable_vertex(order)
+        u = self.get_extenable_vertex(order, i)
         lc = self.computeLC(q, G, C, A, order, u, i)
         print('lc is', lc)
-        for v in lc:
-            print(v)
-            if v not in self.M:
-                self.M.append(v)
+        for c in lc:
+            print(c)
+            if c not in self.M:
+                self.M[c[0]] = c[1]
                 self.enumerate(q, G, C, A, order, i + 1)
-                self.M.pop()
+                del self.M[c[0]]
 
     # ComputeLC of QuickSI and RI
     def computeLC(self, q, G, C, A, order, u, i):
@@ -183,20 +183,37 @@ class SubGraphMatcher:
         # print(u)
         if i == 1: # do not care the edge
             return [c for c in C if c[0] == u]
-        else: # examine the edge
-            # get the parent of current match
-            length = len(self.M)
-            parent_of_u = self.M[length - 2][0]
-            M_u_p = self.M[length - 2][1]
-            print(M_u_p)
-            # for v in G.neighbors()
 
-            # Default
-            return [c for c in C if c[0] == u]
+        lc = []
+        # examine the edge
+        # get the parent of current match
+        length = len(self.M)
+        parent_of_u = order[i - 2]
+        M_u_p = self.M[parent_of_u]
+        print(M_u_p)
+        print('Mup neghs:', list(G[M_u_p]))
+        G_edges = list(self.G.edges())
+        print(G_edges)
+        for v in list(G.neighbors(M_u_p)):
+            flag = True
+            for u_prime in self.backward_neighbors(u, order, q):
+                if u_prime != parent_of_u: 
+                    # if (v, self.M[u_prime]) not in G_edges:
+                        # flag = False
+                        # break
+                    pass
+            if flag == True:
+                # 可能会顺序出错
+                lc.append((u, v))
 
+        # return lc
+        # Default
+        return [c for c in C if c[0] == u]
 
+    def backward_neighbors(self, u, order, q):
+        return order
 
-    def get_extenable_vertex(self, order):
+    def get_extenable_vertex(self, order, i):
         # order is just list on index here
         # I want to know what's the matching going on
         # find the latest match (right or wrong)
@@ -205,11 +222,11 @@ class SubGraphMatcher:
         if length == 0:
             return order[0]
         else:
-            latest_node = self.M[length - 1] 
-            print(latest_node)
-            index = order.index(latest_node[0])
-            print('return order is', index + 1 )
-            return order[index + 1]
+            # latest_node = self.M[length - 1] 
+            # print(latest_node)
+            # index = order.index(latest_node[0])
+            # print('return order is', index + 1 )
+            return order[i - 1]
   
     """
     Rethink: 
@@ -229,6 +246,7 @@ class SubGraphMatcher:
         order = self.gen_ordering_order(q)
         res = self.enumerate(q, self.G, C, A, order, 1)
         print(res)
+        return res
         
 
     # The naive way
