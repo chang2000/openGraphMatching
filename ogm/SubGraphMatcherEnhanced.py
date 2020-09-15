@@ -127,6 +127,56 @@ class SubGraphMatcher:
                         res.append((u,v))
         return res
 
+    def NLF(self, q, G, candidates):
+    # def NLF(self, q, G):
+        """
+        This function takes in a query graph and a target graph
+
+        candidates is a list of tuples, the first element is u, the second element is the 
+        candidate vertex of u
+
+        Returns a list of all the candidate vertex for each node in q filtered by NLF
+
+        NLF: Use N(u) to prune C(u). 
+            if there are l in L(N(u)) such that |N(u, l)| > |N(v, l)| 
+                then remove v from C(u)
+
+            Here L(N(u)) -> {L(u')| u' in N(u)} 
+                 N(u,l) = {u' in N(u) | L(u') = l}
+        """
+        q_degree = q.degree()
+        G_degree = G.degree()
+        q_labels = nx.get_node_attributes(q, 'feat')
+        G_labels = nx.get_node_attributes(G, 'feat')
+        # generate L(N(u)), the whole is a list of sets
+        labels_of_neighbor = []
+        for u in q.nodes():
+            neighbors = q.neighbors(u)
+            s = set()
+            for n in neighbors:
+                s.add(q_labels[n])
+            labels_of_neighbor.append([u, s])
+        # print(labels_of_neighbor)
+        for u in q.nodes():
+            u_neighbors = list(q[u]) # node indexes of all the neighbors 
+            for v in G.nodes():
+                v_neighbors = G[v] # node indexes of all the neighbors
+                for l in labels_of_neighbor[u][1]:
+                    # Compute N(u, l)
+                    q_feats = [q.nodes[n]['feat'] for n in u_neighbors]
+                    nul = q_feats.count(l)
+                    print('nul', nul)
+                    # compute N(v, l)
+                    G_feats = [G.nodes[n]['feat'] for n in v_neighbors]
+                    nvl = G_feats.count(l)
+                    print('nvl', nvl)
+                    if nul > nvl:
+                        # remove v from candidate
+                        # print(v)
+                        # print('candidate is', candidates)
+                        candidates = [c for c in candidates if c[1] != v]
+                        # print('candidates after filtering', candidates)
+        return candidates
 
         
      
