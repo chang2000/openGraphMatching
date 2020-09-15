@@ -2,6 +2,8 @@ import networkx as nx
 from itertools import combinations
 import matplotlib.pyplot as plt
 import sys
+import copy 
+
 
 class SubGraphMatcher:
     def __init__(self, G):
@@ -25,8 +27,8 @@ class SubGraphMatcher:
             exit()
         self.G = G
         self.G_nodes = list(G.nodes())
-        self.check_result = None
         self.M = {} # M is a dict
+        self.MachingList = []
 
     def generate_all_subgraphs(self, G_q):
         combs = list(combinations(self.G_nodes, len(list(G_q.nodes))))
@@ -38,12 +40,12 @@ class SubGraphMatcher:
         return res
 
 
-    def draw_check_result(self):
-        if self.check_result != None:
-            labels = nx.get_node_attributes(self.G, 'feat')
+    def draw_check_result(self, check_result):
+        if check_result != None:
+            # add node id to the label
             pos = nx.spring_layout(self.G)
             options = { 'node_size': 400 }
-            subgraph = self.G.subgraph(list(self.check_result))
+            subgraph = self.G.subgraph(list(check_result))
             nx.draw_networkx_nodes(
                     self.G, 
                     pos, 
@@ -72,7 +74,9 @@ class SubGraphMatcher:
                     width=3, 
                     edge_color='red')
             labels = nx.get_node_attributes(self.G, 'feat') 
-            nx.draw_networkx_labels(self.G, pos, labels, font_size=16)
+            for i in range(len(labels)):
+                labels[i] = str(i) +  ','+ labels[i]
+            nx.draw_networkx_labels(self.G, pos, labels, font_size=10)
             plt.show()
 
     # 如何复用计算方式
@@ -148,11 +152,7 @@ class SubGraphMatcher:
                     G_feats = [G.nodes[n]['feat'] for n in v_neighbors]
                     nvl = G_feats.count(l)
                     if nul > nvl:
-                        # remove v from candidate
-                        # print(v)
-                        # print('candidate is', candidates)
                         candidates = [c for c in candidates if not (c[0] == u and c[1] == v)]
-                        # print('candidates after filtering', candidates)
         # print(candidates)
         return candidates
 
@@ -162,8 +162,15 @@ class SubGraphMatcher:
 
     # Enumeration Methods
     def enumerate(self, q, G, C, A, order, i):
+        # print('enter a new enumerate')
+        # print('current matching', self.M)
         if i == len(order) + 1:
-            print('matching output:', self.M)
+            # print('matching output:', self.M)
+            if  self.M != None:
+                if len(self.M) == len(list(q.nodes())):
+                    print('Yes')
+                    M_copy = copy.deepcopy(self.M)
+                    self.MachingList.append(M_copy)
             return self.M
 
         # v is a extenable vertex
@@ -171,69 +178,62 @@ class SubGraphMatcher:
         lc = self.computeLC(q, G, C, A, order, u, i)
         print('lc is', lc)
         for c in lc:
-            print(c)
             if c not in self.M:
+                # print('c in insection is', c)
                 self.M[c[0]] = c[1]
                 self.enumerate(q, G, C, A, order, i + 1)
                 del self.M[c[0]]
 
     # ComputeLC of QuickSI and RI
     def computeLC(self, q, G, C, A, order, u, i):
-        # print(C)
-        # print(u)
         if i == 1: # do not care the edge
             return [c for c in C if c[0] == u]
-
         lc = []
         # examine the edge
-        # get the parent of current match
-        length = len(self.M)
-        parent_of_u = order[i - 2]
-        M_u_p = self.M[parent_of_u]
-        print(M_u_p)
-        print('Mup neghs:', list(G[M_u_p]))
         G_edges = list(self.G.edges())
-        print(G_edges)
-        for v in list(G.neighbors(M_u_p)):
-            flag = True
-            for u_prime in self.backward_neighbors(u, order, q):
-                if u_prime != parent_of_u: 
-                    # if (v, self.M[u_prime]) not in G_edges:
-                        # flag = False
-                        # break
-                    pass
-            if flag == True:
-                # 可能会顺序出错
-                lc.append((u, v))
-
-        # return lc
-        # Default
-        return [c for c in C if c[0] == u]
+        flag = False
+        bn = self.backward_neighbors(u, order, q)
+        print('bn for', u, self.backward_neighbors(u, order, q))
+        for v in C:
+            if v[0] == u:
+                print('v is', v)
+                flag = True
+                # for u_prime in self.backward_neighbors(u, order, q):
+                for u_prime in bn:
+                    edge = [v[1], self.M[u_prime]]
+                    edge.sort()
+                    if  tuple(edge) not in G_edges:
+                        print('edge is', [v[1], self.M[u_prime]].sort())
+                        print('wrong')
+                        flag = False
+                        break
+                if flag == True: # might have a sequence error
+                    lc.append(v)
+        print('lc for u', u, lc)
+        return lc
+        # return [c for c in C if c[0] == u]
 
     def backward_neighbors(self, u, order, q):
-        return order
+        res = set()
+        index = order.index(u)
+        # print('enter backward_neighbors computation')
+        # print('u is', u)
+        # print('order is', order)
+        neighbors = list(q.neighbors(u))
+        keys = [0,1,2]
+        ns = [n for n in neighbors if n in list(self.M.keys())]
+        # ns = [n for n in neighbors if n in keys]
+        # print('ns is', ns)
+        res.update(ns)
+        return list(res)
 
     def get_extenable_vertex(self, order, i):
-        # order is just list on index here
-        # I want to know what's the matching going on
-        # find the latest match (right or wrong)
         length = len(self.M)
-        print(self.M)
         if length == 0:
             return order[0]
         else:
-            # latest_node = self.M[length - 1] 
-            # print(latest_node)
-            # index = order.index(latest_node[0])
-            # print('return order is', index + 1 )
             return order[i - 1]
   
-    """
-    Rethink: 
-    1. M should be a dict to make it easy to operate
-
-
-    """
     def check_match_subgraph (self, q):
         try:
             assert (isinstance(q, nx.classes.graph.Graph) and nx.is_connected(q))
@@ -244,10 +244,13 @@ class SubGraphMatcher:
         C = self.NLF(q, self.G, self.LDF(q, self.G))
         A = None
         order = self.gen_ordering_order(q)
-        res = self.enumerate(q, self.G, C, A, order, 1)
-        print(res)
-        return res
-        
+        self.enumerate(q, self.G, C, A, order, 1)
+        return self.MachingList
+
+    def draw_multi_results(self):
+        for match in self.MachingList:
+            self.draw_check_result(match.values())
+
 
     # The naive way
     # def check_match_subgraph(self, G_q):
