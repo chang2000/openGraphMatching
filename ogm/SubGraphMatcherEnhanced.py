@@ -1,5 +1,6 @@
 import networkx as nx
 from itertools import combinations
+import matplotlib.pyplot as plt
 
 class SubGraphMatcher:
     def __init__(self, G_t):
@@ -23,15 +24,15 @@ class SubGraphMatcher:
             exit()
         self.G_t = G_t
         self.G_t_nodes = list(G_t.nodes())
+        self.check_result = None
 
     def generate_all_subgraphs(self, G_q):
         combs = list(combinations(self.G_t_nodes, len(list(G_q.nodes))))
-        # print(combs)
         res = []
         for i in range(len(combs)):
             graph = self.G_t.subgraph(list(combs[i]))
             if nx.is_connected(graph): # Only generate connected candidates
-                res.append(graph)
+                res.append([combs[i], graph])
         return res
 
     def check_match_subgraph(self, G_q):
@@ -43,10 +44,56 @@ class SubGraphMatcher:
             exit()
 
         candidates = self.generate_all_subgraphs(G_q)
-        for graph in candidates:
-            if nx.is_isomorphic(graph, G_q):
+        for candidate in candidates:
+            if nx.is_isomorphic(candidate[1], G_q):
+                self.check_result = candidate[0]
+                self.draw_check_result()
+                print('Matched!', candidate[0])
                 return True
         return False
+
+    def draw_check_result(self):
+        if self.check_result != None:
+            labels = nx.get_node_attributes(self.G_t, 'feat')
+            pos = nx.spring_layout(self.G_t)
+            options = {
+                        # 'node_color': 'yellow',
+                        'node_size': 400,
+                        # 'width': 3,
+                        # 'labels': labels,
+                        # 'with_labels': True
+                        }
+            subgraph = self.G_t.subgraph(list(self.check_result))
+            nx.draw_networkx_nodes(
+                    self.G_t, 
+                    pos, 
+                    nodelist=list(self.G_t.nodes()), 
+                    node_color='yellow', 
+                    **options)
+            # Draw the subgraph nodes
+            nx.draw_networkx_nodes(self.G_t, 
+                    pos, 
+                    nodelist=list(subgraph.nodes()), 
+                    node_color='red', 
+                    **options)
+
+            # Draw all the edges
+            nx.draw_networkx_edges(
+                    self.G_t, 
+                    pos, 
+                    edgelist=list(self.G_t.edges()), 
+                    width=3, 
+                    edge_color='black')
+            # Draw the subgraph edges
+            nx.draw_networkx_edges(
+                    self.G_t, 
+                    pos, 
+                    edgelist=list(subgraph.edges()), 
+                    width=3, 
+                    edge_color='red')
+            labels = nx.get_node_attributes(self.G_t, 'feat') 
+            nx.draw_networkx_labels(self.G_t, pos, labels, font_size=16)
+            plt.show()
 
     # 如何复用计算方式
     def check_match_from_subgraphs(self, G_q_list):
@@ -57,7 +104,7 @@ class SubGraphMatcher:
             exit()
         pass
 
-        
+     
         
 
 
