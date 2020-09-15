@@ -103,7 +103,32 @@ class SubGraphMatcher:
             print('Input queries must be a list')
             exit()
         pass
+    
+    # The Enhanced version
 
+    # Basic Methods on filtering
+    def LDF(self, q, G):
+        """
+        This function takes in a query graph and a target graph
+        Returns a list of all the candidate vertex for each node in q filtered by LDF
+
+        LDF: L(v) = L(u) and d(v) > d(u), as v in the candidate vertex
+        """
+        res = []
+        q_degree = q.degree()
+        G_degree = G.degree()
+        q_labels = nx.get_node_attributes(q, 'feat')
+        G_labels = nx.get_node_attributes(G, 'feat')
+
+        for u in q.nodes():
+            for v in G.nodes():
+                if G_degree[v] >= q_degree[u]:
+                    if G_labels[v] == q_labels[u]:
+                        res.append((u,v))
+        return res
+
+
+        
      
         
 
