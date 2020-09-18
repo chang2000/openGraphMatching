@@ -18,7 +18,7 @@ class SubGraphMatcher:
         >>> G_q = nx.path_graph(2)
         >>> SGM = SubGraphMatcher(G)
         >>> SGM.is_subgraph_match(G_q)
-            True
+            A list of matching
         """
         try:
             assert (nx.is_connected(G))
@@ -139,7 +139,6 @@ class SubGraphMatcher:
             for n in neighbors:
                 s.add(q_labels[n])
             labels_of_neighbor.append([u, s])
-        # print(labels_of_neighbor)
         for u in q.nodes():
             u_neighbors = list(q[u]) # node indexes of all the neighbors 
             for v in G.nodes():
@@ -153,7 +152,6 @@ class SubGraphMatcher:
                     nvl = G_feats.count(l)
                     if nul > nvl:
                         candidates = [c for c in candidates if not (c[0] == u and c[1] == v)]
-        # print(candidates)
         return candidates
 
     # Ordering Parts
@@ -162,13 +160,9 @@ class SubGraphMatcher:
 
     # Enumeration Methods
     def enumerate(self, q, G, C, A, order, i):
-        # print('enter a new enumerate')
-        # print('current matching', self.M)
         if i == len(order) + 1:
-            # print('matching output:', self.M)
             if  self.M != None:
                 if len(self.M) == len(list(q.nodes())):
-                    print('Yes')
                     M_copy = copy.deepcopy(self.M)
                     self.MachingList.append(M_copy)
             return self.M
@@ -176,10 +170,8 @@ class SubGraphMatcher:
         # v is a extenable vertex
         u = self.get_extenable_vertex(order, i)
         lc = self.computeLC(q, G, C, A, order, u, i)
-        print('lc is', lc)
         for c in lc:
             if c not in self.M:
-                # print('c in insection is', c)
                 self.M[c[0]] = c[1]
                 self.enumerate(q, G, C, A, order, i + 1)
                 del self.M[c[0]]
@@ -193,37 +185,27 @@ class SubGraphMatcher:
         G_edges = list(self.G.edges())
         flag = False
         bn = self.backward_neighbors(u, order, q)
-        print('bn for', u, self.backward_neighbors(u, order, q))
         for v in C:
             if v[0] == u:
-                print('v is', v)
                 flag = True
                 # for u_prime in self.backward_neighbors(u, order, q):
                 for u_prime in bn:
                     edge = [v[1], self.M[u_prime]]
                     edge.sort()
                     if  tuple(edge) not in G_edges:
-                        print('edge is', [v[1], self.M[u_prime]].sort())
-                        print('wrong')
                         flag = False
                         break
                 if flag == True: # might have a sequence error
                     lc.append(v)
-        print('lc for u', u, lc)
         return lc
         # return [c for c in C if c[0] == u]
 
     def backward_neighbors(self, u, order, q):
         res = set()
         index = order.index(u)
-        # print('enter backward_neighbors computation')
-        # print('u is', u)
-        # print('order is', order)
         neighbors = list(q.neighbors(u))
         keys = [0,1,2]
         ns = [n for n in neighbors if n in list(self.M.keys())]
-        # ns = [n for n in neighbors if n in keys]
-        # print('ns is', ns)
         res.update(ns)
         return list(res)
 
@@ -235,6 +217,9 @@ class SubGraphMatcher:
             return order[i - 1]
   
     def check_match_subgraph (self, q):
+        # init the current matching first
+        self.MachingList = []
+        self.M = {}
         try:
             assert (isinstance(q, nx.classes.graph.Graph) and nx.is_connected(q))
         except:
@@ -250,21 +235,3 @@ class SubGraphMatcher:
     def draw_multi_results(self):
         for match in self.MachingList:
             self.draw_check_result(match.values())
-
-
-    # The naive way
-    # def check_match_subgraph(self, G_q):
-        # try:
-            # assert (isinstance(G_q, nx.classes.graph.Graph) and nx.is_connected(G_q))
-        # except:
-            # print('Input query graph must be a single networkx instance.')
-            # exit()
-
-        # candidates = self.generate_all_subgraphs(G_q)
-        # for candidate in candidates:
-            # if nx.is_isomorphic(candidate[1], G_q):
-                # self.check_result = candidate[0]
-                # self.draw_check_result()
-                # print('Matched!', candidate[0])
-                # return True
-        # return False

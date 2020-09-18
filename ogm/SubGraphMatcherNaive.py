@@ -2,7 +2,7 @@ import networkx as nx
 from itertools import combinations
 import matplotlib.pyplot as plt
 
-class SubGraphMatcher:
+class SubGraphMatcherNaive:
     def __init__(self, G_t):
         """
         G_q: the query graph
