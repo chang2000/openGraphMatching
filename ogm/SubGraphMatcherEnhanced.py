@@ -24,7 +24,6 @@ class SubGraphMatcher:
             assert (nx.is_connected(G))
         except:
             print('Input graphs should be connected')
-            exit()
         self.G = G
         self.G_nodes = list(G.nodes())
         self.M = {} # M is a dict
@@ -85,7 +84,7 @@ class SubGraphMatcher:
             assert (isinstance(G_q_list, list))
         except:
             print('Input queries must be a list')
-            exit()
+            sys.exit()
         pass
     
     # The Enhanced version
