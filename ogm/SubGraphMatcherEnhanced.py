@@ -25,6 +25,7 @@ class SubGraphMatcher:
         self.G_nodes = list(G.nodes())
         self.M = {} # M is a dict
         self.MatchingList = []
+        self.filter_rate = 1
 
     def draw_check_result(self, check_result):
         if check_result != None:
@@ -99,9 +100,10 @@ class SubGraphMatcher:
                     if G_labels[v] == q_labels[u]:
                         res.append((u, v))
                         v_set.add(v)
+        
         print("--- %s seconds ---, LDF Done" % (time.time() - start_time))
-
         print(f"After the filtering, {len(v_set) / len(G.nodes())  * 100}% of the nodes left")
+        self.filter_rate = len(v_set) / len(G.nodes())
         return res
 
     def NLF(self, q, G, candidates):
@@ -138,8 +140,8 @@ class SubGraphMatcher:
         G_after_LDF = set()
         for e in candidates:
             G_after_LDF.add(e[1])
-        print(G_after_LDF)
         # Start the loop check
+        v_set = set()
         for u in q.nodes():
             u_neighbors = list(q[u]) # the nodes' index of u's neighbor
             for v in G_after_LDF:
@@ -153,8 +155,10 @@ class SubGraphMatcher:
                     nvl = G_feats.count(l)
                     if nul > nvl:
                         candidates = [c for c in candidates if not (c[0] == u and c[1] == v)]
+                        v_set.add(v)
         print("--- %s seconds ---, NLF Done" % (time.time() - start_time))
-        print(f"After the filtering, {len(G_after_LDF) / len(G.nodes())  * 100}% of the nodes left")
+        print(f"After the filtering, {len(v_set) / len(G.nodes())  * 100}% of the nodes left")
+        self.filter_rate = len(v_set) / len(G.nodes())
         return candidates
 
     # Ordering Parts
@@ -220,8 +224,8 @@ class SubGraphMatcher:
             return order[i - 1]
   
     def check_match_subgraph (self, q):
-        # init the current matching first
         main_start_time = time.time()
+        # init the current matching first
         self.MatchingList = []
         self.M = {}
         try:
@@ -230,17 +234,22 @@ class SubGraphMatcher:
             print('Input query graph must be a single networkx instance.')
             sys.exit()
         
-        C = self.NLF(q, self.G, self.LDF(q, self.G))
+        # C = self.NLF(q, self.G, self.LDF(q, self.G))
+        C = self.LDF(q, self.G)
         A = None
         order = self.gen_ordering_order(q)
         print('enumerating...')
+        en_time = time.time()
         self.enumerate(q, self.G, C, A, order, 1)
+        print('enumeration done, takes', time.time() - en_time)
         print("--- %s seconds ---, Job done" % (time.time() - main_start_time))
         print(f"Totally find {len(self.MatchingList)} matches.")
         # print(self.MatchingList)
         print(' ')
         print(' ')
-        return self.MatchingList
+        # return self.MatchingList
+        output_data = [self.filter_rate]
+        return output_data
 
     def draw_multi_results(self):
         for match in self.MatchingList:
