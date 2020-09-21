@@ -23,7 +23,7 @@ for e in queries:
     print(f'Running query {counter}...')
     SGM.check_match_subgraph(q)
 
-print("All queries done, average time is")
-print(f'--- {(time.time() - master_time) / len(queries)} ---')
+print("All queries done, average query time is")
+print(f'--- {(time.time() - master_time) / len(queries)}s ---')
 
 

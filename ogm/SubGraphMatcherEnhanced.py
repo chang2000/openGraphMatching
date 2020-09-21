@@ -92,14 +92,16 @@ class SubGraphMatcher:
         G_degree = G.degree()
         q_labels = nx.get_node_attributes(q, 'feat')
         G_labels = nx.get_node_attributes(G, 'feat')
-
+        v_set = set()
         for u in q.nodes():
             for v in G.nodes():
                 if G_degree[v] >= q_degree[u]:
                     if G_labels[v] == q_labels[u]:
                         res.append((u, v))
+                        v_set.add(v)
         print("--- %s seconds ---, LDF Done" % (time.time() - start_time))
-        print(f"After the filtering, {len(res) / len(G.nodes())  * 100}% of the nodes left")
+
+        print(f"After the filtering, {len(v_set) / len(G.nodes())  * 100}% of the nodes left")
         return res
 
     def NLF(self, q, G, candidates):
@@ -132,8 +134,11 @@ class SubGraphMatcher:
             for n in neighbors:
                 s.add(q_labels[n])
             labels_of_neighbor.append([u, s])
-        # Filter out the LDF 
-        G_after_LDF = [e[1] for e in candidates]
+        # Filter out the LDF, use set
+        G_after_LDF = set()
+        for e in candidates:
+            G_after_LDF.add(e[1])
+        print(G_after_LDF)
         # Start the loop check
         for u in q.nodes():
             u_neighbors = list(q[u]) # the nodes' index of u's neighbor
@@ -149,7 +154,7 @@ class SubGraphMatcher:
                     if nul > nvl:
                         candidates = [c for c in candidates if not (c[0] == u and c[1] == v)]
         print("--- %s seconds ---, NLF Done" % (time.time() - start_time))
-        print(f"After the filtering, {len(candidates) / len(G.nodes())  * 100}% of the nodes left")
+        print(f"After the filtering, {len(G_after_LDF) / len(G.nodes())  * 100}% of the nodes left")
         return candidates
 
     # Ordering Parts
