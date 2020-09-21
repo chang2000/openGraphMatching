@@ -85,6 +85,7 @@ class SubGraphMatcher:
         LDF: L(v) = L(u) and d(v) > d(u), as v in the candidate vertex
         """
         # Add Time Stamp
+        print('Running LDF...')
         start_time = time.time()
         res = []
         q_degree = q.degree()
@@ -117,6 +118,7 @@ class SubGraphMatcher:
             Here L(N(u)) -> {L(u')| u' in N(u)} 
                  N(u,l) = {u' in N(u) | L(u') = l}
         """
+        print('running NLF...')
         start_time = time.time()
         q_degree = q.degree()
         G_degree = G.degree()
@@ -130,7 +132,6 @@ class SubGraphMatcher:
             for n in neighbors:
                 s.add(q_labels[n])
             labels_of_neighbor.append([u, s])
-        print("--- %s seconds ---, NLF, neighbor's label generated" % (time.time() - start_time))
         # Filter out the LDF 
         G_after_LDF = [e[1] for e in candidates]
         # Start the loop check
@@ -157,13 +158,11 @@ class SubGraphMatcher:
 
     # Enumeration Methods
     def enumerate(self, q, G, C, A, order, i):
-        start_time = time.time()
         if i == len(order) + 1:
             if  self.M != None:
                 if len(self.M) == len(list(q.nodes())):
                     M_copy = copy.deepcopy(self.M)
                     self.MatchingList.append(M_copy)
-            print("--- %s seconds ---, Find one match" % (time.time() - start_time))
             return self.M
 
         # v is a extenable vertex
@@ -225,12 +224,17 @@ class SubGraphMatcher:
         except:
             print('Input query graph must be a single networkx instance.')
             sys.exit()
-
+        
         C = self.NLF(q, self.G, self.LDF(q, self.G))
         A = None
         order = self.gen_ordering_order(q)
+        print('enumerating...')
         self.enumerate(q, self.G, C, A, order, 1)
         print("--- %s seconds ---, Job done" % (time.time() - main_start_time))
+        print(f"Totally find {len(self.MatchingList)} matches.")
+        # print(self.MatchingList)
+        print(' ')
+        print(' ')
         return self.MatchingList
 
     def draw_multi_results(self):
