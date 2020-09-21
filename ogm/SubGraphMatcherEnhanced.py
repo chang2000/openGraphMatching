@@ -2,7 +2,8 @@ import networkx as nx
 from itertools import combinations
 import matplotlib.pyplot as plt
 import sys
-import copy 
+import copy
+import time
 
 
 class SubGraphMatcher:
@@ -20,24 +21,10 @@ class SubGraphMatcher:
         >>> SGM.is_subgraph_match(G_q)
             A list of matching
         """
-        try:
-            assert (nx.is_connected(G))
-        except:
-            print('Input graphs should be connected')
         self.G = G
         self.G_nodes = list(G.nodes())
         self.M = {} # M is a dict
-        self.MachingList = []
-
-    def generate_all_subgraphs(self, G_q):
-        combs = list(combinations(self.G_nodes, len(list(G_q.nodes))))
-        res = []
-        for i in range(len(combs)):
-            graph = self.G.subgraph(list(combs[i]))
-            if nx.is_connected(graph): # Only generate connected candidates
-                res.append([combs[i], graph])
-        return res
-
+        self.MatchingList = []
 
     def draw_check_result(self, check_result):
         if check_result != None:
@@ -97,6 +84,8 @@ class SubGraphMatcher:
 
         LDF: L(v) = L(u) and d(v) > d(u), as v in the candidate vertex
         """
+        # Add Time Stamp
+        start_time = time.time()
         res = []
         q_degree = q.degree()
         G_degree = G.degree()
@@ -108,6 +97,7 @@ class SubGraphMatcher:
                 if G_degree[v] >= q_degree[u]:
                     if G_labels[v] == q_labels[u]:
                         res.append((u,v))
+        print("--- %s seconds ---, LDF Done" % (time.time() - start_time))
         return res
 
     def NLF(self, q, G, candidates):
@@ -126,6 +116,7 @@ class SubGraphMatcher:
             Here L(N(u)) -> {L(u')| u' in N(u)} 
                  N(u,l) = {u' in N(u) | L(u') = l}
         """
+        start_time = time.time()
         q_degree = q.degree()
         G_degree = G.degree()
         q_labels = nx.get_node_attributes(q, 'feat')
@@ -151,6 +142,9 @@ class SubGraphMatcher:
                     nvl = G_feats.count(l)
                     if nul > nvl:
                         candidates = [c for c in candidates if not (c[0] == u and c[1] == v)]
+        print("--- %s seconds ---, NLF Done" % (time.time() - start_time))
+        print(f"After the filtering, {len(candidates) / len(G.nodes())  * 100}% of the nodes left")
+
         return candidates
 
     # Ordering Parts
@@ -159,11 +153,13 @@ class SubGraphMatcher:
 
     # Enumeration Methods
     def enumerate(self, q, G, C, A, order, i):
+        start_time = time.time()
         if i == len(order) + 1:
             if  self.M != None:
                 if len(self.M) == len(list(q.nodes())):
                     M_copy = copy.deepcopy(self.M)
-                    self.MachingList.append(M_copy)
+                    self.MatchingList.append(M_copy)
+            print("--- %s seconds ---, Find one match" % (time.time() - start_time))
             return self.M
 
         # v is a extenable vertex
@@ -217,7 +213,8 @@ class SubGraphMatcher:
   
     def check_match_subgraph (self, q):
         # init the current matching first
-        self.MachingList = []
+        main_start_time = time.time()
+        self.MatchingList = []
         self.M = {}
         try:
             assert (isinstance(q, nx.classes.graph.Graph) and nx.is_connected(q))
@@ -229,8 +226,9 @@ class SubGraphMatcher:
         A = None
         order = self.gen_ordering_order(q)
         self.enumerate(q, self.G, C, A, order, 1)
-        return self.MachingList
+        print("--- %s seconds ---, Job done" % (time.time() - main_start_time))
+        return self.MatchingList
 
     def draw_multi_results(self):
-        for match in self.MachingList:
+        for match in self.MatchingList:
             self.draw_check_result(match.values())
