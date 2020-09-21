@@ -96,8 +96,9 @@ class SubGraphMatcher:
             for v in G.nodes():
                 if G_degree[v] >= q_degree[u]:
                     if G_labels[v] == q_labels[u]:
-                        res.append((u,v))
+                        res.append((u, v))
         print("--- %s seconds ---, LDF Done" % (time.time() - start_time))
+        print(f"After the filtering, {len(res) / len(G.nodes())  * 100}% of the nodes left")
         return res
 
     def NLF(self, q, G, candidates):
@@ -129,10 +130,14 @@ class SubGraphMatcher:
             for n in neighbors:
                 s.add(q_labels[n])
             labels_of_neighbor.append([u, s])
+        print("--- %s seconds ---, NLF, neighbor's label generated" % (time.time() - start_time))
+        # Filter out the LDF 
+        G_after_LDF = [e[1] for e in candidates]
+        # Start the loop check
         for u in q.nodes():
-            u_neighbors = list(q[u]) # node indexes of all the neighbors 
-            for v in G.nodes():
-                v_neighbors = G[v] # node indexes of all the neighbors
+            u_neighbors = list(q[u]) # the nodes' index of u's neighbor
+            for v in G_after_LDF:
+                v_neighbors = list(G[v]) # the nodes' index of v's neighbor
                 for l in labels_of_neighbor[u][1]:
                     # Compute N(u, l)
                     q_feats = [q.nodes[n]['feat'] for n in u_neighbors]
@@ -144,7 +149,6 @@ class SubGraphMatcher:
                         candidates = [c for c in candidates if not (c[0] == u and c[1] == v)]
         print("--- %s seconds ---, NLF Done" % (time.time() - start_time))
         print(f"After the filtering, {len(candidates) / len(G.nodes())  * 100}% of the nodes left")
-
         return candidates
 
     # Ordering Parts
