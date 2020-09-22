@@ -5,7 +5,6 @@ import sys
 import copy
 import time
 
-
 class SubGraphMatcher:
     def __init__(self, G):
         """
@@ -27,57 +26,7 @@ class SubGraphMatcher:
         self.MatchingList = []
         self.filter_rate = 1
 
-    def draw_check_result(self, check_result):
-        if check_result != None:
-            # add node id to the label
-            pos = nx.spring_layout(self.G)
-            options = { 'node_size': 400 }
-            subgraph = self.G.subgraph(list(check_result))
-            nx.draw_networkx_nodes(
-                    self.G, 
-                    pos, 
-                    nodelist=list(self.G.nodes()), 
-                    node_color='yellow', 
-                    **options)
-            # Draw the subgraph nodes
-            nx.draw_networkx_nodes(self.G, 
-                    pos, 
-                    nodelist=list(subgraph.nodes()), 
-                    node_color='red', 
-                    **options)
-
-            # Draw all the edges
-            nx.draw_networkx_edges(
-                    self.G, 
-                    pos, 
-                    edgelist=list(self.G.edges()), 
-                    width=3, 
-                    edge_color='black')
-            # Draw the subgraph edges
-            nx.draw_networkx_edges(
-                    self.G, 
-                    pos, 
-                    edgelist=list(subgraph.edges()), 
-                    width=3, 
-                    edge_color='red')
-            labels = nx.get_node_attributes(self.G, 'feat') 
-            for i in range(len(labels)):
-                labels[i] = str(i) +  ','+ labels[i]
-            nx.draw_networkx_labels(self.G, pos, labels, font_size=10)
-            plt.show()
-
-    # 如何复用计算方式
-    def check_match_from_subgraphs(self, G_q_list):
-        try:
-            assert (isinstance(G_q_list, list))
-        except:
-            print('Input queries must be a list')
-            sys.exit()
-        pass
-    
-    # The Enhanced version
-
-    # Basic Methods on filtering
+    # Filtering
     def LDF(self, q, G):
         """
         This function takes in a query graph and a target graph
@@ -165,11 +114,11 @@ class SubGraphMatcher:
         self.filter_rate = len(v_set) / len(G.nodes())
         return candidates
 
-    # Ordering Parts
+    # Ordering
     def gen_ordering_order(self, q):
         return list(q.nodes())
 
-    # Enumeration Methods
+    # Enumeration
     def enumerate(self, q, G, C, A, order, i):
         if i == len(order) + 1:
             if  self.M != None:
@@ -253,6 +202,45 @@ class SubGraphMatcher:
         output_data = [self.filter_rate, self.MatchingList]
         return output_data
 
+    # Visualize related
+    def draw_check_result(self, check_result):
+        if check_result != None:
+            # add node id to the label
+            pos = nx.spring_layout(self.G)
+            options = { 'node_size': 400 }
+            subgraph = self.G.subgraph(list(check_result))
+            nx.draw_networkx_nodes(
+                    self.G, 
+                    pos, 
+                    nodelist=list(self.G.nodes()), 
+                    node_color='yellow', 
+                    **options)
+            # Draw the subgraph nodes
+            nx.draw_networkx_nodes(self.G, 
+                    pos, 
+                    nodelist=list(subgraph.nodes()), 
+                    node_color='red', 
+                    **options)
+
+            # Draw all the edges
+            nx.draw_networkx_edges(
+                    self.G, 
+                    pos, 
+                    edgelist=list(self.G.edges()), 
+                    width=3, 
+                    edge_color='black')
+            # Draw the subgraph edges
+            nx.draw_networkx_edges(
+                    self.G, 
+                    pos, 
+                    edgelist=list(subgraph.edges()), 
+                    width=3, 
+                    edge_color='red')
+            labels = nx.get_node_attributes(self.G, 'feat') 
+            for i in range(len(labels)):
+                labels[i] = str(i) +  ','+ labels[i]
+            nx.draw_networkx_labels(self.G, pos, labels, font_size=10)
+            plt.show()
     def draw_multi_results(self):
         for match in self.MatchingList:
             self.draw_check_result(match.values())
