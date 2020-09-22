@@ -15,7 +15,9 @@ queries = os.listdir(f'./dataset/{dataset_name}/query_graph')
 counter = 0
 avg_filter_rate = 1
 # for e in queries:
+query_times = 0
 for i in range(5):
+    query_times += 1
     e = queries[i]
     counter += 1
     q = convert_graph(f'./dataset/{dataset_name}/query_graph/' + e)
@@ -25,6 +27,6 @@ for i in range(5):
     avg_filter_rate = (avg_filter_rate * (counter - 1) + data[0]) / counter
 
 print("All queries done, average query time is")
-print(f'--- {(time.time() - master_time) / len(queries)}s ---')
+print(f'--- {(time.time() - master_time) / query_times}s ---')
 print('Some other data:')
 print(f'Average filtering rate is {avg_filter_rate * 100}%')

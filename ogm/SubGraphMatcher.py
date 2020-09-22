@@ -26,6 +26,7 @@ class SubGraphMatcher:
         self.MatchingList = []
         self.filter_rate = 1
         self.en_counter = 0 
+        self.G_labels = nx.get_node_attributes(G, 'feat')
 
     # Filtering
     def LDF(self, q, G):
@@ -42,16 +43,16 @@ class SubGraphMatcher:
         q_degree = q.degree()
         G_degree = G.degree()
         q_labels = nx.get_node_attributes(q, 'feat')
-        G_labels = nx.get_node_attributes(G, 'feat')
+        # G_labels = nx.get_node_attributes(G, 'feat')
         v_set = set()
         for u in q.nodes():
-            for v in G.nodes():
+            for v in self.G_nodes:
                 if G_degree[v] >= q_degree[u]:
-                    if G_labels[v] == q_labels[u]:
+                    if self.G_labels[v] == q_labels[u]:
                         res.append((u, v))
         for c in res:
             v_set.add(c[1]) 
-        self.filter_rate = len(v_set) / len(G.nodes())
+        self.filter_rate = len(v_set) / len(self.G_nodes)
         print("--- %s seconds ---, LDF Done" % (time.time() - start_time))
         print(f"After the filtering, { self.filter_rate  * 100}% of the nodes left")
         return res
@@ -113,14 +114,15 @@ class SubGraphMatcher:
 
     def GQL_local_pruning(self, q, G, candidates):
         # deep copy candidates
-        can_copy = copy.deepcopy(candidates)
-        for c in can_copy:
+        # can_copy = copy.deepcopy(candidates)
+        for c in candidates:
             u, v = c[0], c[1]
-            u_profile = self.profile_of_node(u, q)
-            v_profile = self.profile_of_node(v, G)
+            u_profile = self.profile_of_query_node(u, q)
+            v_profile = self.profile_of_data_node(v)
             if not u_profile.issubset(v_profile):
                 # print(f'{(u, v)} is removed by gql local pruning')
-                candidates = [c for c in candidates if not (c[1] == v and c[0] == u)]
+                # candidates = [c for c in candidates if not (c[1] == v and c[0] == u)]
+                candidates.remove((u, v))
         vset = set()
         for c in candidates:
             vset.add(c[1]) 
@@ -306,7 +308,7 @@ class SubGraphMatcher:
 
 
     # Utility functions
-    def profile_of_node(self, node_index, graph):
+    def profile_of_query_node(self, node_index, graph):
         """
         Return a set that contains all the labels of the given
         node's 1-hop neighbors.
@@ -319,6 +321,14 @@ class SubGraphMatcher:
         for n in neighbors:
             profile.add(graph_labels[n])
         return profile
+
+    def profile_of_data_node(self, node_index):
+        neighbors = list(self.G.neighbors(node_index))
+        profile = set()
+        for n in neighbors:
+            profile.add(self.G_labels[n])
+        return profile
+
 
     def plain_candidates(self, q):
         res = []
