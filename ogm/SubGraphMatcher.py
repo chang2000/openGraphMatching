@@ -158,9 +158,24 @@ class SubGraphMatcher:
         return candidates
 
     # Ordering
-    def gen_ordering_order(self, q):
+    def plain_ordering(self, q):
+        print('Using plain ordering...')
         return list(q.nodes())
 
+    def GQL_ordering(self, q, candidates):
+        print('Using GQL ordering...')
+        q_nodes = list(q.nodes())
+        res = [[i, 0] for i in q_nodes]
+        # Count C(u)
+        for c in candidates:
+            res[c[0]][1] += 1
+        res.sort(key = lambda x: x[1])
+        res.reverse()
+        # print(res)
+        res = [i[0] for i in res]
+        # print(res)
+        return res
+        
     # Enumeration
     def enumerate(self, q, G, C, A, order, i):
         self.en_counter += 1
@@ -234,14 +249,14 @@ class SubGraphMatcher:
         
         C = self.NLF(q, self.G, self.LDF(q, self.G))
         A = None
-        order = self.gen_ordering_order(q)
+        order = self.plain_ordering(q)
+        # order = self.GQL_ordering(q, C)
         print('enumerating...')
         en_time = time.time()
 
         self.enumerate(q, self.G, C, A, order, 1)
 
-
-        print('enumeration done, takes', time.time() - en_time)
+        print(f'enumeration done, takes {time.time() - en_time}s')
         print(f'enumeration runs {self.en_counter} times')
         print("--- %s seconds ---, Job done" % (time.time() - main_start_time))
         print(f"Totally find {len(self.MatchingList)} matches.")
@@ -271,18 +286,16 @@ class SubGraphMatcher:
         imd = self.GQL_global_refinement(q, self.G, imd)
         time_4 = time.time()
         print(f'--- {time_4 - time_3} seconds ---, global refinement done')
-
         C = imd
-
         A = None
-        order = self.gen_ordering_order(q)
+        order = self.GQL_ordering(q, C)
         print('enumerating...')
         en_time = time.time()
 
         self.enumerate(q, self.G, C, A, order, 1)
 
 
-        print('enumeration done, takes', time.time() - en_time)
+        print(f'enumeration done, takes {time.time() - en_time}s')
         print(f'enumeration runs {self.en_counter} times')
         print("--- %s seconds ---, Job done" % (time.time() - main_start_time))
         print(f"Totally find {len(self.MatchingList)} matches.")
