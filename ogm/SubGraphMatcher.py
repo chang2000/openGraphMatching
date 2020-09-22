@@ -25,6 +25,7 @@ class SubGraphMatcher:
         self.M = {} # M is a dict
         self.MatchingList = []
         self.filter_rate = 1
+        self.en_counter = 0 
 
     # Filtering
     def LDF(self, q, G):
@@ -48,12 +49,11 @@ class SubGraphMatcher:
                 if G_degree[v] >= q_degree[u]:
                     if G_labels[v] == q_labels[u]:
                         res.append((u, v))
-                        v_set.add(v)
-        
-        print("--- %s seconds ---, LDF Done" % (time.time() - start_time))
-        print(f"After the filtering, {len(v_set) / len(G.nodes())  * 100}% of the nodes left")
+        for c in res:
+            v_set.add(c[1]) 
         self.filter_rate = len(v_set) / len(G.nodes())
-        print("LDF output", res[0], len(res))
+        print("--- %s seconds ---, LDF Done" % (time.time() - start_time))
+        print(f"After the filtering, { self.filter_rate  * 100}% of the nodes left")
         return res
 
     def NLF(self, q, G, candidates):
@@ -114,12 +114,19 @@ class SubGraphMatcher:
         self.filter_rate = len(v_set) / len(G.nodes())
         return candidates
 
+    def GQL_local_pruning(self, q, G, candidates):
+        # generate all v from candidates
+        return candidates
+
+    def GQL_global_refinement(self, q, G, candidates):
+        return candidates
     # Ordering
     def gen_ordering_order(self, q):
         return list(q.nodes())
 
     # Enumeration
     def enumerate(self, q, G, C, A, order, i):
+        self.en_counter += 1
         if i == len(order) + 1:
             if  self.M != None:
                 if len(self.M) == len(list(q.nodes())):
@@ -193,14 +200,70 @@ class SubGraphMatcher:
         order = self.gen_ordering_order(q)
         print('enumerating...')
         en_time = time.time()
+
         self.enumerate(q, self.G, C, A, order, 1)
+
+
         print('enumeration done, takes', time.time() - en_time)
+        print(f'enumeration runs {self.en_counter} times')
         print("--- %s seconds ---, Job done" % (time.time() - main_start_time))
         print(f"Totally find {len(self.MatchingList)} matches.")
         print(' ')
         print(' ')
         output_data = [self.filter_rate, self.MatchingList]
         return output_data
+
+    def gql_check_match_subgraph (self, q):
+        main_start_time = time.time()
+        # init the current matching first
+        self.filter_rate = 1
+        self.MatchingList = []
+        self.M = {}
+        try:
+            assert (isinstance(q, nx.classes.graph.Graph) and nx.is_connected(q))
+        except:
+            print('Input query graph must be a single networkx instance.')
+            sys.exit()
+        
+        imd = self.LDF(q, self.G)
+        imd =  self.GQL_local_pruning(q, self.G, imd)
+        C = imd
+
+    
+
+        A = None
+        order = self.gen_ordering_order(q)
+        print('enumerating...')
+        en_time = time.time()
+
+        self.enumerate(q, self.G, C, A, order, 1)
+
+
+        print('enumeration done, takes', time.time() - en_time)
+        print(f'enumeration runs {self.en_counter} times')
+        print("--- %s seconds ---, Job done" % (time.time() - main_start_time))
+        print(f"Totally find {len(self.MatchingList)} matches.")
+        print(' ')
+        print(' ')
+        output_data = [self.filter_rate, self.MatchingList]
+        return output_data
+
+
+    # Utility functions
+    def profile_of_node(self, node_index, graph):
+        """
+        Return a set that contains all the labels of the given
+        node's 1-hop neighbors.
+        """
+        graph_labels = nx.get_node_attributes(graph, 'feat')
+        # print(graph_labels)
+        neighbors = list(graph.neighbors(node_index))
+        # print(neighbors)
+        profile = set()
+        for n in neighbors:
+            profile.add(graph_labels[n])
+        print(profile)
+        return profile
 
     # Visualize related
     def draw_check_result(self, check_result):
@@ -244,3 +307,5 @@ class SubGraphMatcher:
     def draw_multi_results(self):
         for match in self.MatchingList:
             self.draw_check_result(match.values())
+        
+     
