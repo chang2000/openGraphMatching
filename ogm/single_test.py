@@ -82,5 +82,6 @@ G.add_edges_from([
 ])
 SGM = SubGraphMatcher(G)
 # print(SGM.profile_of_node(1,G))
-data = SGM.gql_check_match_subgraph(q)
+# data = SGM.gql_check_match_subgraph(q)
+data = SGM.check_match_subgraph(q)
 # print(data[1])

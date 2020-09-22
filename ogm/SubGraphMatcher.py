@@ -86,26 +86,23 @@ class SubGraphMatcher:
             for n in neighbors:
                 s.add(q_labels[n])
             labels_of_neighbor.append([u, s])
-        # Filter out the LDF, use set
-        G_after_LDF = set()
-        for e in candidates:
-            G_after_LDF.add(e[1])
-        # Start the loop check
         v_set = set()
-        for u in q.nodes():
+        for c in candidates: 
+            u, v = c[0], c[1]
             u_neighbors = list(q[u]) # the nodes' index of u's neighbor
-            for v in G_after_LDF:
-                v_neighbors = list(G[v]) # the nodes' index of v's neighbor
-                for l in labels_of_neighbor[u][1]:
-                    # Compute N(u, l)
-                    q_feats = [q.nodes[n]['feat'] for n in u_neighbors]
-                    nul = q_feats.count(l)
-                    # Compute N(v, l)
-                    G_feats = [G.nodes[n]['feat'] for n in v_neighbors]
-                    nvl = G_feats.count(l)
-                    if nul > nvl:
-                        # validate this one
-                        candidates = [c for c in candidates if not (c[0] == u and c[1] == v)]
+            v_neighbors = list(G[v]) # the nodes' index of v's neighbor
+            for l in labels_of_neighbor[u][1]:
+                # Compute N(u, l)
+                q_feats = [q.nodes[n]['feat'] for n in u_neighbors]
+                nul = q_feats.count(l)
+                # Compute N(v, l)
+                G_feats = [G.nodes[n]['feat'] for n in v_neighbors]
+                nvl = G_feats.count(l)
+                if nul > nvl:
+                    match = tuple((u, v))
+                    print(f'{match} is removed in LDF')
+                    candidates.remove(match)
+
         for c in candidates:
             v_set.add(c[1])
         # print("NLF output", candidates[0], len(candidates))
@@ -116,7 +113,7 @@ class SubGraphMatcher:
 
     def GQL_local_pruning(self, q, G, candidates):
         # generate all v from candidates
-        print(candidates)
+        # print(candidates)
         v_can_set = set()
         for e in candidates:
             v_can_set.add(e[1])
@@ -134,6 +131,27 @@ class SubGraphMatcher:
         return candidates
 
     def GQL_global_refinement(self, q, G, candidates):
+        # v_can_set = set()
+        # for e in candidates:
+        #     v_can_set.add(e[1])
+
+        for c in candidates:
+            u, v = c[0], c[1]
+            n_u = list(q.neighbors(u))
+            v_u = list(v.neighbors(v))
+            for u_prime in n_u: # we want all the u_prime to be matched
+                u_prime_matched = False
+                for v_prime in v_u:
+                    # check if v_prime is u_prime's candidate
+                    # -> check (u_prime, v_prime) exists in candidates
+                    # if not, than it will not be a fully match
+                    # remove (u, v) from candidates
+                    pass
+                
+                    
+
+
+
         return candidates
     # Ordering
     def gen_ordering_order(self, q):
@@ -242,6 +260,7 @@ class SubGraphMatcher:
         
         imd = self.LDF(q, self.G)
         imd =  self.GQL_local_pruning(q, self.G, imd)
+        imd = self.GQL_global_refinement(q, self.G, imd)
         C = imd
 
         A = None
