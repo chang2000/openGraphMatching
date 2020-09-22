@@ -269,7 +269,7 @@ class SubGraphMatcher:
             print('Input query graph must be a single networkx instance.')
             sys.exit()
         
-        imd = self.LDF(q, self.G)
+        imd = self.LDF(q)
         time_2 = time.time()
         print('Running GQL local pruning...')
         imd =  self.GQL_local_pruning(q, imd)
