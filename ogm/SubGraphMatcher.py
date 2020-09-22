@@ -116,6 +116,21 @@ class SubGraphMatcher:
 
     def GQL_local_pruning(self, q, G, candidates):
         # generate all v from candidates
+        print(candidates)
+        v_can_set = set()
+        for e in candidates:
+            v_can_set.add(e[1])
+        for u in q.nodes():
+            u_profile = self.profile_of_node(u, q)
+            # print(f'profile for {u} is {u_profile}')
+            for v in v_can_set:
+                v_profile = self.profile_of_node(v, G)
+                # print(f'profile for {v} is {v_profile}')
+                if u_profile.issubset(v_profile):
+                    pass
+                else: # remove
+                    candidates = [c for c in candidates if (c[1] != v or c[0] != u)]
+        # print(f'candidates after local pruning {candidates}')        
         return candidates
 
     def GQL_global_refinement(self, q, G, candidates):
@@ -143,7 +158,7 @@ class SubGraphMatcher:
                 self.enumerate(q, G, C, A, order, i + 1)
                 del self.M[c[0]]
 
-    # ComputeLC of QuickSI and RI
+    # ComputeLC of GraphQL
     def computeLC(self, q, G, C, A, order, u, i):
         if i == 1: # do not care the edge
             return [c for c in C if c[0] == u]
@@ -229,8 +244,6 @@ class SubGraphMatcher:
         imd =  self.GQL_local_pruning(q, self.G, imd)
         C = imd
 
-    
-
         A = None
         order = self.gen_ordering_order(q)
         print('enumerating...')
@@ -262,10 +275,16 @@ class SubGraphMatcher:
         profile = set()
         for n in neighbors:
             profile.add(graph_labels[n])
-        print(profile)
         return profile
 
-    # Visualize related
+    def plain_candidates(self, q):
+        res = []
+        for u in q.nodes():
+            for v in self.G_nodes:
+                res.append((u, v))
+        return res
+
+    #  Visualize related
     def draw_check_result(self, check_result):
         if check_result != None:
             # add node id to the label
