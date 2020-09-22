@@ -99,9 +99,8 @@ class SubGraphMatcher:
                 G_feats = [G.nodes[n]['feat'] for n in v_neighbors]
                 nvl = G_feats.count(l)
                 if nul > nvl:
-                    match = tuple((u, v))
-                    print(f'{match} is removed in LDF')
-                    candidates.remove(match)
+                    # candidates = [c for c in candidates if  (c[1] != v or c[0] != u)]
+                    candidates = [c for c in candidates if not (c[1] == v and c[0] == u)]
 
         for c in candidates:
             v_set.add(c[1])
