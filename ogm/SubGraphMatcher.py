@@ -87,7 +87,8 @@ class SubGraphMatcher:
                 s.add(q_labels[n])
             labels_of_neighbor.append([u, s])
         v_set = set()
-        for c in candidates: 
+        can_copy = copy.deepcopy(candidates)
+        for c in can_copy: 
             u, v = c[0], c[1]
             u_neighbors = list(q[u]) # the nodes' index of u's neighbor
             v_neighbors = list(G[v]) # the nodes' index of v's neighbor
@@ -111,33 +112,27 @@ class SubGraphMatcher:
         return candidates
 
     def GQL_local_pruning(self, q, G, candidates):
-        # generate all v from candidates
-        # print(candidates)
-        v_can_set = set()
-        for e in candidates:
-            v_can_set.add(e[1])
-        for u in q.nodes():
+        # deep copy candidates
+        can_copy = copy.deepcopy(candidates)
+        for c in can_copy:
+            u, v = c[0], c[1]
             u_profile = self.profile_of_node(u, q)
-            # print(f'profile for {u} is {u_profile}')
-            for v in v_can_set:
-                v_profile = self.profile_of_node(v, G)
-                # print(f'profile for {v} is {v_profile}')
-                if u_profile.issubset(v_profile):
-                    pass
-                else: # remove
-                    candidates = [c for c in candidates if (c[1] != v or c[0] != u)]
-        # print(f'candidates after local pruning {candidates}')        
+            v_profile = self.profile_of_node(v, G)
+            if not u_profile.issubset(v_profile):
+                # print(f'{(u, v)} is removed by gql local pruning')
+                candidates = [c for c in candidates if not (c[1] == v and c[0] == u)]
+        vset = set()
+        for c in candidates:
+            vset.add(c[1]) 
+        self.filter_rate = len(vset) / len(self.G_nodes)
+        print(f"After the filtering, { self.filter_rate  * 100}% of the nodes left")
         return candidates
 
     def GQL_global_refinement(self, q, G, candidates):
-        # v_can_set = set()
-        # for e in candidates:
-        #     v_can_set.add(e[1])
-
         for c in candidates:
             u, v = c[0], c[1]
             n_u = list(q.neighbors(u))
-            v_u = list(v.neighbors(v))
+            v_u = list(G.neighbors(v))
             for u_prime in n_u: # we want all the u_prime to be matched
                 u_prime_matched = False
                 for v_prime in v_u:
@@ -145,13 +140,23 @@ class SubGraphMatcher:
                     # -> check (u_prime, v_prime) exists in candidates
                     # if not, than it will not be a fully match
                     # remove (u, v) from candidates
-                    pass
-                
+                    match = (u_prime, v_prime)
+                    if match in candidates:
+                        u_prime_matched = True
+                        break
+                if u_prime_matched == False:
+                    # remove (u, v) from candidates
+                    candidates = [c for c in candidates if not (c[1] == v and c[0] == u)]
+                    # print(f'{(u, v)} is removed by gql global refinement')
+                    break
+        vset = set()
+        for c in candidates:
+            vset.add(c[1]) 
+        self.filter_rate = len(vset) / len(self.G_nodes)
+        print(f"After the filtering, { self.filter_rate  * 100}% of the nodes left")
                     
-
-
-
         return candidates
+
     # Ordering
     def gen_ordering_order(self, q):
         return list(q.nodes())
@@ -258,8 +263,15 @@ class SubGraphMatcher:
             sys.exit()
         
         imd = self.LDF(q, self.G)
+        time_2 = time.time()
+        print('Running GQL local pruning...')
         imd =  self.GQL_local_pruning(q, self.G, imd)
+        time_3 = time.time()
+        print(f'--- {time_3 - time_2} seconds ---, local pruning done')
         imd = self.GQL_global_refinement(q, self.G, imd)
+        time_4 = time.time()
+        print(f'--- {time_4 - time_3} seconds ---, global refinement done')
+
         C = imd
 
         A = None

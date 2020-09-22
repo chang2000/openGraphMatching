@@ -14,14 +14,16 @@ def check_edges_exist(num_nodes, match_dict, G, q):
                     return False
     return True 
 
-G = convert_graph('./dataset/hprd/data_graph/hprd.graph')
-q = convert_graph('./dataset/hprd/query_graph/query_dense_16_5.graph')
+# G = convert_graph('./dataset/hprd/data_graph/hprd.graph')
+# q = convert_graph('./dataset/hprd/query_graph/query_dense_16_5.graph')
 # q = convert_graph('./dataset/hprd/query_graph/query_dense_8_4.graph')
 # q = convert_graph('./dataset/hprd/query_graph/query_sparse_8_4.graph')
 # G = convert_graph('./dataset/sample_dataset_copy/target.graph')
 # q = convert_graph('./dataset/sample_dataset_copy/query_graph/query-1.graph')
 
-
+# YouTube Dataset
+G = convert_graph('./dataset/youtube/data_graph/youtube.graph')
+q = convert_graph('./dataset/youtube/query_graph/query_dense_4_5.graph')
 """
 # Classic Dataset
 q = nx.Graph()
