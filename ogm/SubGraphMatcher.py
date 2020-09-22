@@ -22,11 +22,13 @@ class SubGraphMatcher:
         """
         self.G = G
         self.G_nodes = list(G.nodes())
+        self.G_edges = list(G.edges())
         self.M = {} # M is a dict
         self.MatchingList = []
         self.filter_rate = 1
         self.en_counter = 0 
         self.G_labels = nx.get_node_attributes(G, 'feat')
+        self.G_degree = G.degree()
 
     # Filtering
     def LDF(self, q, G):
@@ -41,13 +43,11 @@ class SubGraphMatcher:
         start_time = time.time()
         res = []
         q_degree = q.degree()
-        G_degree = G.degree()
         q_labels = nx.get_node_attributes(q, 'feat')
-        # G_labels = nx.get_node_attributes(G, 'feat')
         v_set = set()
         for u in q.nodes():
             for v in self.G_nodes:
-                if G_degree[v] >= q_degree[u]:
+                if self.G_degree[v] >= q_degree[u]:
                     if self.G_labels[v] == q_labels[u]:
                         res.append((u, v))
         for c in res:
@@ -113,22 +113,19 @@ class SubGraphMatcher:
         return candidates
 
     def GQL_local_pruning(self, q, G, candidates):
-        # deep copy candidates
-        # can_copy = copy.deepcopy(candidates)
+        res = []
         for c in candidates:
             u, v = c[0], c[1]
             u_profile = self.profile_of_query_node(u, q)
             v_profile = self.profile_of_data_node(v)
-            if not u_profile.issubset(v_profile):
-                # print(f'{(u, v)} is removed by gql local pruning')
-                # candidates = [c for c in candidates if not (c[1] == v and c[0] == u)]
-                candidates.remove((u, v))
+            if u_profile.issubset(v_profile):
+                res.append((u, v))
         vset = set()
-        for c in candidates:
+        for c in res:
             vset.add(c[1]) 
         self.filter_rate = len(vset) / len(self.G_nodes)
         print(f"After the filtering, { self.filter_rate  * 100}% of the nodes left")
-        return candidates
+        return res
 
     def GQL_global_refinement(self, q, G, candidates):
         for c in candidates:
@@ -179,7 +176,7 @@ class SubGraphMatcher:
         return res
         
     # Enumeration
-    def enumerate(self, q, G, C, A, order, i):
+    def enumerate(self, q, C, A, order, i):
         self.en_counter += 1
         if i == len(order) + 1:
             if  self.M != None:
@@ -190,20 +187,19 @@ class SubGraphMatcher:
 
         # v is a extenable vertex
         u = self.get_extenable_vertex(order, i)
-        lc = self.computeLC(q, G, C, A, order, u, i)
+        lc = self.computeLC(q, C, A, order, u, i)
         for c in lc:
             if c not in self.M:
                 self.M[c[0]] = c[1]
-                self.enumerate(q, G, C, A, order, i + 1)
+                self.enumerate(q, C, A, order, i + 1)
                 del self.M[c[0]]
 
     # ComputeLC of GraphQL
-    def computeLC(self, q, G, C, A, order, u, i):
+    def computeLC(self, q, C, A, order, u, i):
         if i == 1: # do not care the edge
             return [c for c in C if c[0] == u]
         lc = []
         # examine the edge
-        G_edges = list(self.G.edges())
         flag = False
         bn = self.backward_neighbors(u, order, q)
         for v in C:
@@ -213,7 +209,7 @@ class SubGraphMatcher:
                 for u_prime in bn:
                     edge = [v[1], self.M[u_prime]]
                     edge.sort()
-                    if  tuple(edge) not in G_edges:
+                    if  tuple(edge) not in self.G_edges:
                         flag = False
                         break
                 if flag == True: # might have a sequence error
@@ -294,7 +290,7 @@ class SubGraphMatcher:
         print('enumerating...')
         en_time = time.time()
 
-        self.enumerate(q, self.G, C, A, order, 1)
+        self.enumerate(q, C, A, order, 1)
 
 
         print(f'enumeration done, takes {time.time() - en_time}s')
@@ -361,7 +357,7 @@ class SubGraphMatcher:
             nx.draw_networkx_edges(
                     self.G, 
                     pos, 
-                    edgelist=list(self.G.edges()), 
+                    edgelist=self.G_edges, 
                     width=3, 
                     edge_color='black')
             # Draw the subgraph edges
