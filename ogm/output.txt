@@ -1,328 +1,256 @@
-True
-Running query 1...
+Running query 1, query file is query_dense_16_1.graph
 Running LDF...
---- 5.602836608886719e-05 seconds ---, LDF Done
-After the filtering, 80.0% of the nodes left
+--- 0.10523819923400879 seconds ---, LDF Done
+After the filtering, 25.095137420718817% of the nodes left
+LDF output (0, 10) 2851
 running NLF...
-{1, 2, 3, 4}
---- 0.00015997886657714844 seconds ---, NLF Done
-After the filtering, 80.0% of the nodes left
+--- 12.81715726852417 seconds ---, NLF Done
+After the filtering, 3.0866807610993656% of the nodes left
 enumerating...
---- 0.0004489421844482422 seconds ---, Job done
+enumeration done, takes 1.274872064590454
+--- 14.19789719581604 seconds ---, Job done
+Totally find 3 matches.
+ 
+ 
+Running query 2, query file is query_dense_16_10.graph
+Running LDF...
+--- 0.10634708404541016 seconds ---, LDF Done
+After the filtering, 20.866807610993657% of the nodes left
+LDF output (0, 50) 2721
+running NLF...
+--- 8.34621548652649 seconds ---, NLF Done
+After the filtering, 1.014799154334038% of the nodes left
+enumerating...
+enumeration done, takes 8.66581678390503
+--- 17.119075298309326 seconds ---, Job done
+Totally find 268 matches.
+ 
+ 
+Running query 3, query file is query_dense_16_100.graph
+Running LDF...
+--- 0.10529351234436035 seconds ---, LDF Done
+After the filtering, 18.49894291754757% of the nodes left
+LDF output (0, 10) 2376
+running NLF...
+--- 5.668530464172363 seconds ---, NLF Done
+After the filtering, 1.4693446088794926% of the nodes left
+enumerating...
+enumeration done, takes 2.354811429977417
+--- 8.129263639450073 seconds ---, Job done
+Totally find 24 matches.
+ 
+ 
+Running query 4, query file is query_dense_16_101.graph
+Running LDF...
+--- 0.10561609268188477 seconds ---, LDF Done
+After the filtering, 29.45031712473573% of the nodes left
+LDF output (0, 25) 3583
+running NLF...
+--- 15.607793807983398 seconds ---, NLF Done
+After the filtering, 1.437632135306554% of the nodes left
+enumerating...
+enumeration done, takes 7.812633037567139
+--- 23.526673793792725 seconds ---, Job done
 Totally find 2 matches.
  
  
-Running query 2...
+Running query 5, query file is query_dense_16_102.graph
 Running LDF...
---- 4.8160552978515625e-05 seconds ---, LDF Done
-After the filtering, 80.0% of the nodes left
+--- 0.11681103706359863 seconds ---, LDF Done
+After the filtering, 7.367864693446088% of the nodes left
+LDF output (0, 0) 880
 running NLF...
-{1, 2, 3, 4}
---- 0.0001590251922607422 seconds ---, NLF Done
-After the filtering, 80.0% of the nodes left
+--- 1.3246610164642334 seconds ---, NLF Done
+After the filtering, 0.3488372093023256% of the nodes left
 enumerating...
---- 0.0003998279571533203 seconds ---, Job done
+enumeration done, takes 0.7464268207550049
+--- 2.188265800476074 seconds ---, Job done
+Totally find 8 matches.
+ 
+ 
+Running query 6, query file is query_dense_16_103.graph
+Running LDF...
+--- 0.10784530639648438 seconds ---, LDF Done
+After the filtering, 21.78646934460888% of the nodes left
+LDF output (0, 10) 3340
+running NLF...
+--- 13.137632131576538 seconds ---, NLF Done
+After the filtering, 0.613107822410148% of the nodes left
+enumerating...
+enumeration done, takes 23.1820809841156
+--- 36.428130865097046 seconds ---, Job done
+Totally find 56 matches.
+ 
+ 
+Running query 7, query file is query_dense_16_104.graph
+Running LDF...
+--- 0.10684847831726074 seconds ---, LDF Done
+After the filtering, 17.642706131078224% of the nodes left
+LDF output (0, 136) 2265
+running NLF...
+--- 7.348690509796143 seconds ---, NLF Done
+After the filtering, 1.1416490486257929% of the nodes left
+enumerating...
+enumeration done, takes 8.314997911453247
+--- 15.770978689193726 seconds ---, Job done
+Totally find 40 matches.
+ 
+ 
+Running query 8, query file is query_dense_16_105.graph
+Running LDF...
+--- 0.10613560676574707 seconds ---, LDF Done
+After the filtering, 16.82875264270613% of the nodes left
+LDF output (0, 9) 3052
+running NLF...
+--- 5.591285705566406 seconds ---, NLF Done
+After the filtering, 0.45454545454545453% of the nodes left
+enumerating...
+enumeration done, takes 1.2057178020477295
+--- 6.903718709945679 seconds ---, Job done
+Totally find 4 matches.
+ 
+ 
+Running query 9, query file is query_dense_16_106.graph
+Running LDF...
+--- 0.10667848587036133 seconds ---, LDF Done
+After the filtering, 22.832980972515855% of the nodes left
+LDF output (0, 69) 3465
+running NLF...
+--- 11.225126266479492 seconds ---, NLF Done
+After the filtering, 0.7822410147991543% of the nodes left
+enumerating...
+enumeration done, takes 0.5017757415771484
+--- 11.83406400680542 seconds ---, Job done
 Totally find 2 matches.
  
  
-Running query 3...
+Running query 10, query file is query_dense_16_107.graph
 Running LDF...
---- 4.696846008300781e-05 seconds ---, LDF Done
-After the filtering, 100.0% of the nodes left
+--- 0.11737918853759766 seconds ---, LDF Done
+After the filtering, 24.249471458773783% of the nodes left
+LDF output (0, 11) 5052
 running NLF...
-{0, 1, 2, 3, 4}
---- 0.00012683868408203125 seconds ---, NLF Done
-After the filtering, 100.0% of the nodes left
+--- 17.481956958770752 seconds ---, NLF Done
+After the filtering, 3.3192389006342493% of the nodes left
 enumerating...
---- 0.0003046989440917969 seconds ---, Job done
-Totally find 1 matches.
+enumeration done, takes 175.9871962070465
+--- 193.58703136444092 seconds ---, Job done
+Totally find 21 matches.
  
  
-Running query 4...
+Running query 11, query file is query_dense_16_108.graph
 Running LDF...
---- 4.315376281738281e-05 seconds ---, LDF Done
-After the filtering, 100.0% of the nodes left
+--- 0.10580682754516602 seconds ---, LDF Done
+After the filtering, 23.879492600422832% of the nodes left
+LDF output (0, 10) 3055
 running NLF...
-{0, 1, 2, 3, 4}
---- 0.00011801719665527344 seconds ---, NLF Done
-After the filtering, 100.0% of the nodes left
+--- 11.849671363830566 seconds ---, NLF Done
+After the filtering, 1.0993657505285412% of the nodes left
 enumerating...
---- 0.0002837181091308594 seconds ---, Job done
-Totally find 1 matches.
+enumeration done, takes 0.9114298820495605
+--- 12.86732816696167 seconds ---, Job done
+Totally find 48 matches.
  
  
-Running query 5...
+Running query 12, query file is query_dense_16_109.graph
 Running LDF...
---- 4.8160552978515625e-05 seconds ---, LDF Done
-After the filtering, 80.0% of the nodes left
+--- 0.10622859001159668 seconds ---, LDF Done
+After the filtering, 22.811839323467233% of the nodes left
+LDF output (0, 70) 3616
 running NLF...
-{1, 2, 3, 4}
---- 0.00015783309936523438 seconds ---, NLF Done
-After the filtering, 80.0% of the nodes left
+--- 9.76939845085144 seconds ---, NLF Done
+After the filtering, 3.7315010570824523% of the nodes left
 enumerating...
---- 0.0004010200500488281 seconds ---, Job done
+enumeration done, takes 5.154474973678589
+--- 15.030539751052856 seconds ---, Job done
+Totally find 68 matches.
+ 
+ 
+Running query 13, query file is query_dense_16_11.graph
+Running LDF...
+--- 0.10659503936767578 seconds ---, LDF Done
+After the filtering, 25.137420718816067% of the nodes left
+LDF output (0, 48) 3276
+running NLF...
+--- 8.799350261688232 seconds ---, NLF Done
+After the filtering, 1.3002114164904863% of the nodes left
+enumerating...
+enumeration done, takes 4143.496457576752
+--- 4152.402848243713 seconds ---, Job done
+Totally find 818 matches.
+ 
+ 
+Running query 14, query file is query_dense_16_110.graph
+Running LDF...
+--- 0.10589313507080078 seconds ---, LDF Done
+After the filtering, 16.50105708245243% of the nodes left
+LDF output (0, 9) 1990
+running NLF...
+--- 5.13356876373291 seconds ---, NLF Done
+After the filtering, 1.014799154334038% of the nodes left
+enumerating...
+enumeration done, takes 0.7199716567993164
+--- 5.960275173187256 seconds ---, Job done
 Totally find 2 matches.
  
  
-Running query 6...
+Running query 15, query file is query_dense_16_111.graph
 Running LDF...
---- 4.291534423828125e-05 seconds ---, LDF Done
-After the filtering, 100.0% of the nodes left
+--- 0.10576319694519043 seconds ---, LDF Done
+After the filtering, 22.758985200845665% of the nodes left
+LDF output (0, 124) 2474
 running NLF...
-{0, 1, 2, 3, 4}
---- 0.00011801719665527344 seconds ---, NLF Done
-After the filtering, 100.0% of the nodes left
+--- 8.779682159423828 seconds ---, NLF Done
+After the filtering, 0.48625792811839325% of the nodes left
 enumerating...
---- 0.0002810955047607422 seconds ---, Job done
-Totally find 1 matches.
+enumeration done, takes 0.9061279296875
+--- 9.79196834564209 seconds ---, Job done
+Totally find 4 matches.
  
  
-Running query 7...
+Running query 16, query file is query_dense_16_112.graph
 Running LDF...
---- 4.887580871582031e-05 seconds ---, LDF Done
-After the filtering, 80.0% of the nodes left
+--- 0.10373806953430176 seconds ---, LDF Done
+After the filtering, 11.89217758985201% of the nodes left
+LDF output (0, 139) 1858
 running NLF...
-{1, 2, 3, 4}
---- 0.00015592575073242188 seconds ---, NLF Done
-After the filtering, 80.0% of the nodes left
+--- 4.018015146255493 seconds ---, NLF Done
+After the filtering, 1.0993657505285412% of the nodes left
 enumerating...
---- 0.0004012584686279297 seconds ---, Job done
+enumeration done, takes 0.8576717376708984
+--- 4.979758262634277 seconds ---, Job done
 Totally find 2 matches.
  
  
-Running query 8...
+Running query 17, query file is query_dense_16_113.graph
 Running LDF...
---- 4.6253204345703125e-05 seconds ---, LDF Done
-After the filtering, 80.0% of the nodes left
+--- 0.10549211502075195 seconds ---, LDF Done
+After the filtering, 18.06553911205074% of the nodes left
+LDF output (0, 70) 2370
 running NLF...
-{1, 2, 3, 4}
---- 0.0001590251922607422 seconds ---, NLF Done
-After the filtering, 80.0% of the nodes left
+--- 8.929181098937988 seconds ---, NLF Done
+After the filtering, 0.813953488372093% of the nodes left
 enumerating...
---- 0.00039005279541015625 seconds ---, Job done
-Totally find 2 matches.
+enumeration done, takes 2.5437397956848145
+--- 11.578805923461914 seconds ---, Job done
+Totally find 8 matches.
  
  
-Running query 9...
+Running query 18, query file is query_dense_16_114.graph
 Running LDF...
---- 5.0067901611328125e-05 seconds ---, LDF Done
-After the filtering, 80.0% of the nodes left
+--- 0.10649776458740234 seconds ---, LDF Done
+After the filtering, 13.150105708245244% of the nodes left
+LDF output (0, 70) 2213
 running NLF...
-{1, 2, 3, 4}
---- 0.00017309188842773438 seconds ---, NLF Done
-After the filtering, 80.0% of the nodes left
+--- 3.886327028274536 seconds ---, NLF Done
+After the filtering, 0.7716701902748414% of the nodes left
 enumerating...
---- 0.0004489421844482422 seconds ---, Job done
-Totally find 2 matches.
+enumeration done, takes 2.2724101543426514
+--- 6.265635013580322 seconds ---, Job done
+Totally find 4 matches.
  
  
-Running query 10...
+Running query 19, query file is query_dense_16_115.graph
 Running LDF...
---- 6.771087646484375e-05 seconds ---, LDF Done
-After the filtering, 100.0% of the nodes left
-running NLF...
-{0, 1, 2, 3, 4}
---- 0.00012731552124023438 seconds ---, NLF Done
-After the filtering, 100.0% of the nodes left
-enumerating...
---- 0.0003561973571777344 seconds ---, Job done
-Totally find 1 matches.
- 
- 
-Running query 11...
-Running LDF...
---- 4.1961669921875e-05 seconds ---, LDF Done
-After the filtering, 100.0% of the nodes left
-running NLF...
-{0, 1, 2, 3, 4}
---- 0.0001270771026611328 seconds ---, NLF Done
-After the filtering, 100.0% of the nodes left
-enumerating...
---- 0.0002930164337158203 seconds ---, Job done
-Totally find 1 matches.
- 
- 
-Running query 12...
-Running LDF...
---- 4.7206878662109375e-05 seconds ---, LDF Done
-After the filtering, 80.0% of the nodes left
-running NLF...
-{1, 2, 3, 4}
---- 0.00015616416931152344 seconds ---, NLF Done
-After the filtering, 80.0% of the nodes left
-enumerating...
---- 0.00039768218994140625 seconds ---, Job done
-Totally find 2 matches.
- 
- 
-Running query 13...
-Running LDF...
---- 4.482269287109375e-05 seconds ---, LDF Done
-After the filtering, 80.0% of the nodes left
-running NLF...
-{1, 2, 3, 4}
---- 0.00015425682067871094 seconds ---, NLF Done
-After the filtering, 80.0% of the nodes left
-enumerating...
---- 0.0005450248718261719 seconds ---, Job done
-Totally find 2 matches.
- 
- 
-Running query 14...
-Running LDF...
---- 4.291534423828125e-05 seconds ---, LDF Done
-After the filtering, 100.0% of the nodes left
-running NLF...
-{0, 1, 2, 3, 4}
---- 0.00011610984802246094 seconds ---, NLF Done
-After the filtering, 100.0% of the nodes left
-enumerating...
---- 0.00027680397033691406 seconds ---, Job done
-Totally find 1 matches.
- 
- 
-Running query 15...
-Running LDF...
---- 4.291534423828125e-05 seconds ---, LDF Done
-After the filtering, 100.0% of the nodes left
-running NLF...
-{0, 1, 2, 3, 4}
---- 0.00011491775512695312 seconds ---, NLF Done
-After the filtering, 100.0% of the nodes left
-enumerating...
---- 0.0002789497375488281 seconds ---, Job done
-Totally find 1 matches.
- 
- 
-Running query 16...
-Running LDF...
---- 4.1961669921875e-05 seconds ---, LDF Done
-After the filtering, 100.0% of the nodes left
-running NLF...
-{0, 1, 2, 3, 4}
---- 0.00011610984802246094 seconds ---, NLF Done
-After the filtering, 100.0% of the nodes left
-enumerating...
---- 0.0002789497375488281 seconds ---, Job done
-Totally find 1 matches.
- 
- 
-Running query 17...
-Running LDF...
---- 4.291534423828125e-05 seconds ---, LDF Done
-After the filtering, 100.0% of the nodes left
-running NLF...
-{0, 1, 2, 3, 4}
---- 0.00011515617370605469 seconds ---, NLF Done
-After the filtering, 100.0% of the nodes left
-enumerating...
---- 0.00027680397033691406 seconds ---, Job done
-Totally find 1 matches.
- 
- 
-Running query 18...
-Running LDF...
---- 4.76837158203125e-05 seconds ---, LDF Done
-After the filtering, 80.0% of the nodes left
-running NLF...
-{1, 2, 3, 4}
---- 0.00015473365783691406 seconds ---, NLF Done
-After the filtering, 80.0% of the nodes left
-enumerating...
---- 0.00039386749267578125 seconds ---, Job done
-Totally find 2 matches.
- 
- 
-Running query 19...
-Running LDF...
---- 4.291534423828125e-05 seconds ---, LDF Done
-After the filtering, 100.0% of the nodes left
-running NLF...
-{0, 1, 2, 3, 4}
---- 0.0001163482666015625 seconds ---, NLF Done
-After the filtering, 100.0% of the nodes left
-enumerating...
---- 0.0002791881561279297 seconds ---, Job done
-Totally find 1 matches.
- 
- 
-Running query 20...
-Running LDF...
---- 7.915496826171875e-05 seconds ---, LDF Done
-After the filtering, 80.0% of the nodes left
-running NLF...
-{1, 2, 3, 4}
---- 0.0003268718719482422 seconds ---, NLF Done
-After the filtering, 80.0% of the nodes left
-enumerating...
---- 0.0008749961853027344 seconds ---, Job done
-Totally find 2 matches.
- 
- 
-Running query 21...
-Running LDF...
---- 4.506111145019531e-05 seconds ---, LDF Done
-After the filtering, 80.0% of the nodes left
-running NLF...
-{1, 2, 3, 4}
---- 0.00015997886657714844 seconds ---, NLF Done
-After the filtering, 80.0% of the nodes left
-enumerating...
---- 0.00048613548278808594 seconds ---, Job done
-Totally find 2 matches.
- 
- 
-Running query 22...
-Running LDF...
---- 6.341934204101562e-05 seconds ---, LDF Done
-After the filtering, 100.0% of the nodes left
-running NLF...
-{0, 1, 2, 3, 4}
---- 0.00027489662170410156 seconds ---, NLF Done
-After the filtering, 100.0% of the nodes left
-enumerating...
---- 0.0005261898040771484 seconds ---, Job done
-Totally find 1 matches.
- 
- 
-Running query 23...
-Running LDF...
---- 4.1961669921875e-05 seconds ---, LDF Done
-After the filtering, 80.0% of the nodes left
-running NLF...
-{1, 2, 3, 4}
---- 0.00015401840209960938 seconds ---, NLF Done
-After the filtering, 80.0% of the nodes left
-enumerating...
---- 0.00037407875061035156 seconds ---, Job done
-Totally find 2 matches.
- 
- 
-Running query 24...
-Running LDF...
---- 4.1961669921875e-05 seconds ---, LDF Done
-After the filtering, 100.0% of the nodes left
-running NLF...
-{0, 1, 2, 3, 4}
---- 0.00011730194091796875 seconds ---, NLF Done
-After the filtering, 100.0% of the nodes left
-enumerating...
---- 0.00028014183044433594 seconds ---, Job done
-Totally find 1 matches.
- 
- 
-Running query 25...
-Running LDF...
---- 4.8160552978515625e-05 seconds ---, LDF Done
-After the filtering, 100.0% of the nodes left
-running NLF...
-{0, 1, 2, 3, 4}
---- 0.00011992454528808594 seconds ---, NLF Done
-After the filtering, 100.0% of the nodes left
-enumerating...
---- 0.0002989768981933594 seconds ---, Job done
-Totally find 1 matches.
- 
- 
-All queries done, average query time is
---- 0.001024799346923828s ---
+--- 0.11614584922790527 seconds ---, LDF Done
+After the filtering, 23.012684989429175% of the nodes left

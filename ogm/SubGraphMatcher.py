@@ -104,6 +104,7 @@ class SubGraphMatcher:
         print("--- %s seconds ---, LDF Done" % (time.time() - start_time))
         print(f"After the filtering, {len(v_set) / len(G.nodes())  * 100}% of the nodes left")
         self.filter_rate = len(v_set) / len(G.nodes())
+        print("LDF output", res[0], len(res))
         return res
 
     def NLF(self, q, G, candidates):
@@ -154,8 +155,11 @@ class SubGraphMatcher:
                     G_feats = [G.nodes[n]['feat'] for n in v_neighbors]
                     nvl = G_feats.count(l)
                     if nul > nvl:
+                        # validate this one
                         candidates = [c for c in candidates if not (c[0] == u and c[1] == v)]
-                        v_set.add(v)
+        for c in candidates:
+            v_set.add(c[1])
+        # print("NLF output", candidates[0], len(candidates))
         print("--- %s seconds ---, NLF Done" % (time.time() - start_time))
         print(f"After the filtering, {len(v_set) / len(G.nodes())  * 100}% of the nodes left")
         self.filter_rate = len(v_set) / len(G.nodes())
@@ -226,6 +230,7 @@ class SubGraphMatcher:
     def check_match_subgraph (self, q):
         main_start_time = time.time()
         # init the current matching first
+        self.filter_rate = 1
         self.MatchingList = []
         self.M = {}
         try:
@@ -234,8 +239,8 @@ class SubGraphMatcher:
             print('Input query graph must be a single networkx instance.')
             sys.exit()
         
-        # C = self.NLF(q, self.G, self.LDF(q, self.G))
-        C = self.LDF(q, self.G)
+        # C = self.LDF(q, self.G)
+        C = self.NLF(q, self.G, self.LDF(q, self.G))
         A = None
         order = self.gen_ordering_order(q)
         print('enumerating...')
@@ -244,10 +249,8 @@ class SubGraphMatcher:
         print('enumeration done, takes', time.time() - en_time)
         print("--- %s seconds ---, Job done" % (time.time() - main_start_time))
         print(f"Totally find {len(self.MatchingList)} matches.")
-        # print(self.MatchingList)
         print(' ')
         print(' ')
-        # return self.MatchingList
         output_data = [self.filter_rate]
         return output_data
 
