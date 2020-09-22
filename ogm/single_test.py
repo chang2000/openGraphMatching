@@ -16,6 +16,8 @@ def check_edges_exist(num_nodes, match_dict, G, q):
 
 G = convert_graph('./dataset/hprd/data_graph/hprd.graph')
 q = convert_graph('./dataset/hprd/query_graph/query_dense_8_4.graph')
+# q = convert_graph('./dataset/hprd/query_sparse_32_181.graph.graph')
+
 # q = convert_graph('./dataset/hprd/query_graph/query_dense_16_5.graph')
 # q = convert_graph('./dataset/hprd/query_graph/query_sparse_8_4.graph')
 # G = convert_graph('./dataset/sample_dataset_copy/target.graph')
@@ -89,7 +91,5 @@ G.add_edges_from([
 ])
 #"""
 SGM = SubGraphMatcher(G)
-# print(SGM.profile_of_node(1,G))
 # data = SGM.gql_check_match_subgraph(q)
 data = SGM.check_match_subgraph(q)
-# print(data[1])

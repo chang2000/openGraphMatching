@@ -31,7 +31,7 @@ class SubGraphMatcher:
         self.G_degree = G.degree()
 
     # Filtering
-    def LDF(self, q, G):
+    def LDF(self, q):
         """
         This function takes in a query graph and a target graph
         Returns a list of all the candidate vertex for each node in q filtered by LDF
@@ -57,7 +57,7 @@ class SubGraphMatcher:
         print(f"After the filtering, { self.filter_rate  * 100}% of the nodes left")
         return res
 
-    def NLF(self, q, G, candidates):
+    def NLF(self, q, candidates):
         """
         This function takes in a query graph and a target graph
 
@@ -76,9 +76,9 @@ class SubGraphMatcher:
         print('running NLF...')
         start_time = time.time()
         q_degree = q.degree()
-        G_degree = G.degree()
+        # G_degree = G.degree()
         q_labels = nx.get_node_attributes(q, 'feat')
-        G_labels = nx.get_node_attributes(G, 'feat')
+        # G_labels = nx.get_node_attributes(G, 'feat')
         # generate L(N(u)), the whole is a list of sets
         labels_of_neighbor = []
         for u in q.nodes():
@@ -92,13 +92,13 @@ class SubGraphMatcher:
         for c in can_copy: 
             u, v = c[0], c[1]
             u_neighbors = list(q[u]) # the nodes' index of u's neighbor
-            v_neighbors = list(G[v]) # the nodes' index of v's neighbor
+            v_neighbors = list(self.G[v]) # the nodes' index of v's neighbor
             for l in labels_of_neighbor[u][1]:
                 # Compute N(u, l)
                 q_feats = [q.nodes[n]['feat'] for n in u_neighbors]
                 nul = q_feats.count(l)
                 # Compute N(v, l)
-                G_feats = [G.nodes[n]['feat'] for n in v_neighbors]
+                G_feats = [self.G.nodes[n]['feat'] for n in v_neighbors]
                 nvl = G_feats.count(l)
                 if nul > nvl:
                     # candidates = [c for c in candidates if  (c[1] != v or c[0] != u)]
@@ -106,13 +106,12 @@ class SubGraphMatcher:
 
         for c in candidates:
             v_set.add(c[1])
-        # print("NLF output", candidates[0], len(candidates))
         print("--- %s seconds ---, NLF Done" % (time.time() - start_time))
-        print(f"After the filtering, {len(v_set) / len(G.nodes())  * 100}% of the nodes left")
-        self.filter_rate = len(v_set) / len(G.nodes())
+        print(f"After the filtering, {len(v_set) / len(self.G_nodes)  * 100}% of the nodes left")
+        self.filter_rate = len(v_set) / len(self.G_nodes)
         return candidates
 
-    def GQL_local_pruning(self, q, G, candidates):
+    def GQL_local_pruning(self, q, candidates):
         res = []
         for c in candidates:
             u, v = c[0], c[1]
@@ -127,7 +126,7 @@ class SubGraphMatcher:
         print(f"After the filtering, { self.filter_rate  * 100}% of the nodes left")
         return res
 
-    def GQL_global_refinement(self, q, G, candidates):
+    def GQL_global_refinement(self, q, candidates):
         for c in candidates:
             u, v = c[0], c[1]
             n_u = list(q.neighbors(u))
@@ -215,7 +214,6 @@ class SubGraphMatcher:
                 if flag == True: # might have a sequence error
                     lc.append(v)
         return lc
-        # return [c for c in C if c[0] == u]
 
     def backward_neighbors(self, u, order, q):
         res = set()
@@ -227,11 +225,7 @@ class SubGraphMatcher:
         return list(res)
 
     def get_extenable_vertex(self, order, i):
-        length = len(self.M)
-        if length == 0:
-            return order[0]
-        else:
-            return order[i - 1]
+        return order[i - 1]
   
     def check_match_subgraph (self, q):
         main_start_time = time.time()
@@ -245,14 +239,14 @@ class SubGraphMatcher:
             print('Input query graph must be a single networkx instance.')
             sys.exit()
         
-        C = self.NLF(q, self.G, self.LDF(q, self.G))
+        C = self.NLF(q, self.LDF(q))
         A = None
         order = self.plain_ordering(q)
         # order = self.GQL_ordering(q, C)
         print('enumerating...')
         en_time = time.time()
 
-        self.enumerate(q, self.G, C, A, order, 1)
+        self.enumerate(q, C, A, order, 1)
 
         print(f'enumeration done, takes {time.time() - en_time}s')
         print(f'enumeration runs {self.en_counter} times')
@@ -278,10 +272,10 @@ class SubGraphMatcher:
         imd = self.LDF(q, self.G)
         time_2 = time.time()
         print('Running GQL local pruning...')
-        imd =  self.GQL_local_pruning(q, self.G, imd)
+        imd =  self.GQL_local_pruning(q, imd)
         time_3 = time.time()
         print(f'--- {time_3 - time_2} seconds ---, local pruning done')
-        imd = self.GQL_global_refinement(q, self.G, imd)
+        imd = self.GQL_global_refinement(q, imd)
         time_4 = time.time()
         print(f'--- {time_4 - time_3} seconds ---, global refinement done')
         C = imd
@@ -324,7 +318,6 @@ class SubGraphMatcher:
         for n in neighbors:
             profile.add(self.G_labels[n])
         return profile
-
 
     def plain_candidates(self, q):
         res = []
