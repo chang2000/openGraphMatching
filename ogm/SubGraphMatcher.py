@@ -130,7 +130,7 @@ class SubGraphMatcher:
         for c in candidates:
             u, v = c[0], c[1]
             n_u = list(q.neighbors(u))
-            v_u = list(G.neighbors(v))
+            v_u = list(self.G.neighbors(v))
             for u_prime in n_u: # we want all the u_prime to be matched
                 u_prime_matched = False
                 for v_prime in v_u:

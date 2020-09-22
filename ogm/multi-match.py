@@ -5,6 +5,7 @@ import sys
 import os
 import time
 import re
+import random
 master_time = time.time()
 dataset_name = 'hprd'
 G = convert_graph(f'./dataset/{dataset_name}/data_graph/{dataset_name}.graph')
@@ -12,11 +13,12 @@ G = convert_graph(f'./dataset/{dataset_name}/data_graph/{dataset_name}.graph')
 SGM = SubGraphMatcher(G)
 queries = os.listdir(f'./dataset/{dataset_name}/query_graph')
 # queries.sort(key=lambda f: int(re.sub('\D', '', f)))
+random.shuffle(queries)
 counter = 0
 avg_filter_rate = 1
 # for e in queries:
 query_times = 0
-for i in range(10):
+for i in range(5):
     query_times += 1
     e = queries[i]
     counter += 1
