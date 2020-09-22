@@ -239,7 +239,6 @@ class SubGraphMatcher:
             print('Input query graph must be a single networkx instance.')
             sys.exit()
         
-        # C = self.LDF(q, self.G)
         C = self.NLF(q, self.G, self.LDF(q, self.G))
         A = None
         order = self.gen_ordering_order(q)
@@ -251,7 +250,7 @@ class SubGraphMatcher:
         print(f"Totally find {len(self.MatchingList)} matches.")
         print(' ')
         print(' ')
-        output_data = [self.filter_rate]
+        output_data = [self.filter_rate, self.MatchingList]
         return output_data
 
     def draw_multi_results(self):
