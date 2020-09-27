@@ -275,6 +275,7 @@ class SubGraphMatcher:
         imd =  self.GQL_local_pruning(q, imd)
         time_3 = time.time()
         print(f'--- {time_3 - time_2} seconds ---, local pruning done')
+        print('Running Global Refinement...')
         imd = self.GQL_global_refinement(q, imd)
         time_4 = time.time()
         print(f'--- {time_4 - time_3} seconds ---, global refinement done')

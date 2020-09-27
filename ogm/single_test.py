@@ -14,8 +14,8 @@ def check_edges_exist(num_nodes, match_dict, G, q):
                     return False
     return True 
 
-G = convert_graph('./dataset/hprd/data_graph/hprd.graph')
-q = convert_graph('./dataset/hprd/query_graph/query_dense_8_4.graph')
+# G = convert_graph('./dataset/hprd/data_graph/hprd.graph')
+# q = convert_graph('./dataset/hprd/query_graph/query_dense_8_4.graph')
 # q = convert_graph('./dataset/hprd/query_sparse_32_181.graph.graph')
 
 # q = convert_graph('./dataset/hprd/query_graph/query_dense_16_5.graph')
@@ -28,8 +28,8 @@ q = convert_graph('./dataset/hprd/query_graph/query_dense_8_4.graph')
 # q = convert_graph('./dataset/youtube/query_graph/query_dense_4_5.graph')
 
 # Wordnet Dataset
-# G = convert_graph('./dataset/wordnet/data_graph/wordnet.graph')
-# q = convert_graph('./dataset/wordnet/query_graph/query_dense_4_5.graph')
+G = convert_graph('./dataset/wordnet/data_graph/wordnet.graph')
+q = convert_graph('./dataset/wordnet/query_graph/query_dense_16_5.graph')
 
 """
 # Classic Dataset
@@ -91,5 +91,5 @@ G.add_edges_from([
 ])
 #"""
 SGM = SubGraphMatcher(G)
-# data = SGM.gql_check_match_subgraph(q)
-data = SGM.check_match_subgraph(q)
+data = SGM.gql_check_match_subgraph(q)
+# data = SGM.check_match_subgraph(q)
