@@ -19,7 +19,7 @@ counter = 0
 avg_filter_rate = 1
 # for e in queries:
 query_times = 0
-for i in range(10):
+for i in range(15):
     query_times += 1
     e = queries[i]
     counter += 1
