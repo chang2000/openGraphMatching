@@ -76,9 +76,7 @@ class SubGraphMatcher:
         print('running NLF...')
         start_time = time.time()
         q_degree = q.degree()
-        # G_degree = G.degree()
         q_labels = nx.get_node_attributes(q, 'feat')
-        # G_labels = nx.get_node_attributes(G, 'feat')
         # generate L(N(u)), the whole is a list of sets
         labels_of_neighbor = []
         for u in q.nodes():
@@ -155,6 +153,9 @@ class SubGraphMatcher:
                     
         return candidates
 
+    # Filtering in CECI
+
+
     # Ordering
     def plain_ordering(self, q):
         print('Using plain ordering...')
@@ -169,12 +170,23 @@ class SubGraphMatcher:
             res[c[0]][1] += 1
         res.sort(key = lambda x: x[1])
         res.reverse()
-        # print(res)
         res = [i[0] for i in res]
-        # print(res)
         return res
-        
+
+    def CECI_ordering(self, q, candidates):
+        print('Using GQL ordering...')
+        q_nodes = list(q.nodes())
+        res = [[i, 0] for i in q_nodes]
+        # Count C(u)
+        for c in candidates:
+            res[c[0]][1] += 1
+        res.sort(key = lambda x: x[1])
+        res.reverse()
+        res = [i[0] for i in res]
+        return res
+
     # Enumeration
+    # > Enumeration for Plain Method and GQL
     def enumerate(self, q, C, A, order, i):
         self.en_counter += 1
         if i == len(order) + 1:
@@ -183,7 +195,6 @@ class SubGraphMatcher:
                     M_copy = copy.deepcopy(self.M)
                     self.MatchingList.append(M_copy)
             return self.M
-
         # v is a extenable vertex
         u = self.get_extenable_vertex(order, i)
         lc = self.computeLC(q, C, A, order, u, i)
@@ -192,6 +203,25 @@ class SubGraphMatcher:
                 self.M[c[0]] = c[1]
                 self.enumerate(q, C, A, order, i + 1)
                 del self.M[c[0]]
+
+    # > Enumeration for CECI 
+    def ceci_enumerate(self, q, C, A, order, i):
+        self.en_counter += 1
+        if i == len(order) + 1:
+            if  self.M != None:
+                if len(self.M) == len(list(q.nodes())):
+                    M_copy = copy.deepcopy(self.M)
+                    self.MatchingList.append(M_copy)
+            return self.M
+        # v is a extenable vertex
+        u = self.get_extenable_vertex(order, i)
+        lc = self.computeLC(q, C, A, order, u, i)
+        for c in lc:
+            if c not in self.M:
+                self.M[c[0]] = c[1]
+                self.enumerate(q, C, A, order, i + 1)
+                del self.M[c[0]]
+
 
     # ComputeLC of GraphQL
     def computeLC(self, q, C, A, order, u, i):
@@ -226,7 +256,8 @@ class SubGraphMatcher:
 
     def get_extenable_vertex(self, order, i):
         return order[i - 1]
-  
+
+    # How to design for the different ALGOS?
     def check_match_subgraph (self, q):
         main_start_time = time.time()
         # init the current matching first
@@ -297,6 +328,35 @@ class SubGraphMatcher:
         output_data = [self.filter_rate, self.MatchingList]
         return output_data
 
+    def ceci_check_match_subgraph(self, q):
+        print("Running CECI...")
+        main_start_time = time.time()
+        # init the current matching first
+        self.filter_rate = 1
+        self.MatchingList = []
+        self.M = {}
+        try:
+            assert (isinstance(q, nx.classes.graph.Graph) and nx.is_connected(q))
+        except:
+            print('Input query graph must be a single networkx instance.')
+            sys.exit()
+        
+        C = self.NLF(q, self.LDF(q))
+        A = None
+        order = self.CECI_ordering(q, C)
+        print('enumerating...')
+        en_time = time.time()
+
+        self.ceci_enumerate(q, C, A, order, 1)
+
+        print(f'enumeration done, takes {time.time() - en_time}s')
+        print(f'enumeration runs {self.en_counter} times')
+        print("--- %s seconds ---, Job done" % (time.time() - main_start_time))
+        # print(f"Totally find {len(self.MatchingList)} matches.")
+        print(' ')
+        print(' ')
+        output_data = [self.filter_rate, self.MatchingList]
+        return output_data
 
     # Utility functions
     def profile_of_query_node(self, node_index, graph):
