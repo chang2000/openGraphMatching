@@ -351,9 +351,6 @@ class SubGraphMatcher:
 
     # > Enumeration for CECI 
     def ceci_enumerate(self, q, C, A, order, i):
-        # print('The auxiliary data structure')
-        # for a in A:
-            # print(A[a])
         self.en_counter += 1
         if i == len(order) + 1:
             if  self.M != None:
@@ -364,7 +361,6 @@ class SubGraphMatcher:
         # v is a extenable vertex
         u = self.get_extenable_vertex(order, i)
         lc = self.ceci_compute_LC(q, C, A, order, u, i)
-        print(f'the local candidates for {u} is {lc}')
         for c in lc:
             if c not in self.M:
                 self.M[c[0]] = c[1]
@@ -403,11 +399,8 @@ class SubGraphMatcher:
             return res
 
         bn = self.backward_neighbors(u, order, q)
-        # print(f'bn for {u} is {bn}')
         lc = []
         if len(bn) == 1:
-            # print('-----')
-            # print(f'M is {self.M}')
             up = A[u][2][0]
             # find all edges, and all point out from up
             up_edges = A[up][1]
@@ -415,10 +408,7 @@ class SubGraphMatcher:
             for e in up_edges:
                 if e[0] == M_u_p and e[1] in A[u][0]:
                     lc.append((u, e[1]))
-            # print(f'the lc for {u} is {lc}') 
-            # print(f'-----------\n')
             return lc 
-
         else: 
             set_list = []
             for u_prime in bn:
@@ -435,8 +425,6 @@ class SubGraphMatcher:
         
 
     def backward_neighbors(self, u, order, q):
-        # print(order)
-        # print(u)
         res = set()
         index = order.index(u)
         neighbors = list(q.neighbors(u))
