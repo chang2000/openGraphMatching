@@ -26,8 +26,8 @@ for i in range(5):
     q = convert_graph(f'./dataset/{dataset_name}/query_graph/' + e)
     print(f'Running query {counter}, query file is {e}')
     # data = SGM.check_match_subgraph(q)
-    data = SGM.gql_check_match_subgraph(q)
-    # data = SGM.ceci_check_match_subgraph(q)
+    # data = SGM.gql_check_match_subgraph(q)
+    data = SGM.ceci_check_match_subgraph(q)
     avg_filter_rate = (avg_filter_rate * (counter - 1) + data[0]) / counter
 
 print("All queries done, average query time is")
