@@ -423,7 +423,6 @@ class SubGraphMatcher:
             lc = list(inct)
         return lc
         
-
     def backward_neighbors(self, u, order, q):
         res = set()
         index = order.index(u)
