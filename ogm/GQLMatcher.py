@@ -15,6 +15,7 @@ class GQLMatcher(SubGraphMatcher):
 
     def filtering(self, q):
         imd = self.LDF(q)
+        imd = self.NLF(q, imd)
         print(imd)
 
 
