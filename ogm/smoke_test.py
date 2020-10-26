@@ -60,5 +60,6 @@ G2.add_edges_from([
     (9, 10),
 ])
 
+
 SGM = GQLMatcher(G2)
-SGM.filtering(G1)
+SGM.is_subgraph_match(G1)

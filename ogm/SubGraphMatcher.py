@@ -23,8 +23,8 @@ class SubGraphMatcher(abc.ABC):
                 res.append((u, v))
         return res
 
-    def ordering(self, q, order):
-        return order
+    def ordering(self, q, imd):
+        return list(q.nodes())
     
     # @abc.abstractclassmethod
     def find_subgraph_match(self, q, imd, order):
@@ -126,3 +126,42 @@ class SubGraphMatcher(abc.ABC):
 
 
 
+    def profile_of_query_node(self, node_index, graph):
+        """
+        Return a set that contains all the labels of the given
+        node's 1-hop neighbors.
+        """
+        graph_labels = nx.get_node_attributes(graph, 'feat')
+        # print(graph_labels)
+        neighbors = list(graph.neighbors(node_index))
+        # print(neighbors)
+        profile = set()
+        for n in neighbors:
+            profile.add(graph_labels[n])
+        return profile
+
+    def profile_of_data_node(self, node_index):
+        G_labels = nx.get_node_attributes(self.G, 'feat')
+        neighbors = list(self.G.neighbors(node_index))
+        profile = set()
+        for n in neighbors:
+            profile.add(G_labels[n])
+        return profile
+
+    def plain_candidates(self, q):
+        res = []
+        for u in q.nodes():
+            for v in self.G_nodes:
+                res.append((u, v))
+        return res
+
+    # Methods used in the enumration part
+    def backward_neighbors(self, u, order, q):
+        res = set()
+        neighbors = list(q.neighbors(u))
+        ns = [n for n in neighbors if n in list(self.M.keys())]
+        res.update(ns)
+        return list(res)
+
+    def get_extenable_vertex(self, order, i):
+        return order[i - 1]

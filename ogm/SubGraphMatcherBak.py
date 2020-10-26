@@ -424,9 +424,7 @@ class SubGraphMatcher:
         
     def backward_neighbors(self, u, order, q):
         res = set()
-        index = order.index(u)
         neighbors = list(q.neighbors(u))
-        keys = [0,1,2]
         ns = [n for n in neighbors if n in list(self.M.keys())]
         res.update(ns)
         return list(res)
