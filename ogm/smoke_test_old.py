@@ -1,6 +1,8 @@
 import networkx as nx
 import matplotlib.pyplot as plt
-from GQLMatcher import GQLMatcher
+# from SubGraphMatcher import SubGraphMatcher 
+# from GQLMatcher import GQLMatcher
+from SubGraphMatcherBak import SubGraphMatcher
 # Construct the query graph
 G1 = nx.Graph()
 G1.add_nodes_from([
@@ -60,5 +62,5 @@ G2.add_edges_from([
     (9, 10),
 ])
 
-SGM = GQLMatcher(G2)
-SGM.filtering(G1)
+SGM = SubGraphMatcher(G2)
+SGM.ceci_check_match_subgraph(G1)
