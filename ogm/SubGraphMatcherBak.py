@@ -5,13 +5,6 @@ import sys
 import copy
 import time
 
-from networkx.algorithms.assortativity.pairs import node_attribute_xy
-from networkx.algorithms.dag import transitive_closure_dag
-from networkx.algorithms.link_prediction import adamic_adar_index
-from networkx.algorithms.operators.unary import reverse
-from networkx.generators.intersection import general_random_intersection_graph
-from networkx.generators.joint_degree_seq import _neighbor_switch
-from numpy.core.einsumfunc import _can_dot
 
 class SubGraphMatcher:
     def __init__(self, G):
