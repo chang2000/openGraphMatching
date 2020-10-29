@@ -1,7 +1,11 @@
 import networkx as nx
-from SubGraphMatcher import SubGraphMatcher
-from utils.convert_graph import convert_graph
+# from SubGraphMatcher import SubGraphMatcher
+from CECIMatcher import CECIMatcher
+from GQLMatcher import GQLMatcher
+
+from dbutils.convert_graph import convert_graph
 import sys
+
 # Smoke Test
 def check_edges_exist(num_nodes, match_dict, G, q):
     edges = list(G.edges())
@@ -14,8 +18,8 @@ def check_edges_exist(num_nodes, match_dict, G, q):
                     return False
     return True 
 
-# G = convert_graph('./dataset/hprd/data_graph/hprd.graph')
-# q = convert_graph('./dataset/hprd/query_graph/query_dense_8_4.graph')
+G = convert_graph('./dataset/hprd/data_graph/hprd.graph')
+q = convert_graph('./dataset/hprd/query_graph/query_dense_8_4.graph')
 # q = convert_graph('./dataset/hprd/query_sparse_32_181.graph.graph')
 
 # q = convert_graph('./dataset/hprd/query_graph/query_dense_16_5.graph')
@@ -28,8 +32,8 @@ def check_edges_exist(num_nodes, match_dict, G, q):
 # q = convert_graph('./dataset/youtube/query_graph/query_dense_4_5.graph')
 
 # Wordnet Dataset
-G = convert_graph('./dataset/wordnet/data_graph/wordnet.graph')
-q = convert_graph('./dataset/wordnet/query_graph/query_dense_4_5.graph')
+# G = convert_graph('./dataset/wordnet/data_graph/wordnet.graph')
+# q = convert_graph('./dataset/wordnet/query_graph/query_dense_4_5.graph')
 
 """
 # Classic Dataset
@@ -90,7 +94,7 @@ G.add_edges_from([
     (9, 10),
 ])
 #"""
-SGM = SubGraphMatcher(G)
-data = SGM.ceci_check_match_subgraph(q)
+gqlmatch = GQLMatcher(G)
+data = gqlmatch.is_subgraph_match(q)
 # data = SGM.gql_check_match_subgraph(q)
 # data = SGM.check_match_subgraph(q)
