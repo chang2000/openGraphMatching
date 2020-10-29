@@ -1,15 +1,10 @@
 # openGraphMatching
 
-
-
-## Develop Roadmap
-
-1. Basic struture of the graph (refer to networkx)
-2. Basic Graph Exact Macthing (isomorphism)
+A graph/subgraph matching library.
 
 
 
-## Basic Structure of the Graph
+# Introduction
 
-1. store node in a array
-2. store 
+# Usage/Demo
+
