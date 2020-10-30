@@ -1,5 +1,6 @@
 import networkx as nx
 import sys
+import random
 
 # from SubGraphMatcher import SubGraphMatcher
 from CECIMatcher import CECIMatcher
@@ -14,7 +15,9 @@ query_prefix = 'query_dense_16_'
 
 # f = open('validate_ouput.txt', "w")
 
-for i in range(5, 11):
+sample = random.sample(range(1,201), 20)
+print(sample)
+for i in sample:
     query_name = query_prefix + str(i)
     query_path = query_name + '.graph'
     print(query_path)
@@ -31,6 +34,6 @@ for i in range(5, 11):
     else:
         print('Fxxx, i got something wrong\n')
         break
-
+print('All validations passed')
     # f.write(f"{query_name}:{len(data[1])}\n")
 # f.close()
