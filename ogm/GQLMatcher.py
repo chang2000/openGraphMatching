@@ -9,8 +9,7 @@ class GQLMatcher(SubGraphMatcher):
         super().__init__(G)
         self.M = {}
         self.filter_rate = 1
-        self.en_counter = 1 # What is the en_counter BTW
-
+        self.en_counter = 1
 
     def filtering(self, q):
         imd = self.LDF(q)

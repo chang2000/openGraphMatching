@@ -1,26 +1,40 @@
 import networkx as nx
-import matplotlib.pyplot as plt
-# from SubGraphMatcher import SubGraphMatcher 
-# from GQLMatcher import GQLMatcher
-from SubGraphMatcherBak import SubGraphMatcher
-# Construct the query graph
-G1 = nx.Graph()
-G1.add_nodes_from([
+from dbutils.convert_graph import convert_graph
+import sys
+from SubGraphMatcher import SubGraphMatcher
+from NaiveMatcher import NaiveMatcher
+
+class Test(SubGraphMatcher):
+    def __init__(self, G):
+        super().__init__(G);
+        self.M = {};
+        self.filter_rate = 1
+        self.enumerate_counter = 1
+
+    def printInfo(self):
+        # print('The G nodes is', self.G_nodes)
+        # print('The G edges is', self.G_edges)
+        # print('The G degree is', self.G_degree)
+        print('The G labels is', self.G_labels)
+        # print('After regeneration, The G labels is', G_labels)
+
+
+q = nx.Graph()
+q.add_nodes_from([
     (0, {'feat': 'A'}),
     (1, {'feat': 'B'}),
     (2, {'feat': 'C'}),
     (3, {'feat': 'D'}),
 ])
-G1.add_edges_from([
+q.add_edges_from([
     (0, 1),
     (0, 2),
     (1, 2),
     (1, 3),
     (2, 3)])
 
-# Construct the target graph
-G2 = nx.Graph()
-G2.add_nodes_from([
+G = nx.Graph()
+G.add_nodes_from([
     (0, {'feat': 'A'}),
     (1, {'feat': 'C'}),
     (2, {'feat': 'B'}),
@@ -37,7 +51,8 @@ G2.add_nodes_from([
     (13, {'feat': 'C'}),
     (14, {'feat': 'D'}),
 ])
-G2.add_edges_from([
+
+G.add_edges_from([
     (0, 1),
     (0, 2),
     (0, 3),
@@ -62,5 +77,5 @@ G2.add_edges_from([
     (9, 10),
 ])
 
-SGM = SubGraphMatcher(G2)
-SGM.ceci_check_match_subgraph(G1)
+sgm = NaiveMatcher(G)
+sgm.is_subgraph_match(q)

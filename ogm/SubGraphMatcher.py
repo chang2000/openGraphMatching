@@ -10,7 +10,7 @@ class SubGraphMatcher(abc.ABC):
         self.G = G
         self.G_nodes = list(G.nodes())
         self.G_edges = list(G.edges())
-        # self.G_labels = nx.get_edge_attributes(G, 'feat')
+        self.G_labels = nx.get_node_attributes(G, 'feat')
         self.G_degree = G.degree()
         self.MatchingList = []
 
@@ -23,7 +23,7 @@ class SubGraphMatcher(abc.ABC):
                 res.append((u, v))
         return res
 
-    def ordering(self, q, imd):
+    def ordering(self, q, candidates):
         return list(q.nodes())
     
     # @abc.abstractclassmethod
@@ -53,24 +53,26 @@ class SubGraphMatcher(abc.ABC):
 
         LDF: L(v) = L(u) and d(v) > d(u), as v in the candidate vertex
         """
-        # Add Time Stamp
         print('Running LDF...')
+        # Add Time Stamp
         start_time = time.time()
         res = []
         q_degree = q.degree()
         q_labels = nx.get_node_attributes(q, 'feat')
-        G_labels = nx.get_node_attributes(self.G, 'feat')
+
+        # For monitering the filtering outcome
         v_set = set()
-        for u in q.nodes():
-            for v in self.G_nodes:
-                if self.G_degree[v] >= q_degree[u]:
-                    if G_labels[v] == q_labels[u]:
-                        res.append((u, v))
+
+        for v in self.G_nodes:
+            for u in q.nodes():
+                if  self.G_labels[v] == q_labels[u] and self.G_degree[v] >= q_degree[u]:
+                    res.append((u, v))
+
         for c in res:
             v_set.add(c[1]) 
         self.filter_rate = len(v_set) / len(self.G_nodes)
         print("--- %s seconds ---, LDF Done" % (time.time() - start_time))
-        print(f"After the filtering, { self.filter_rate  * 100}% of the nodes left")
+        print(f"After LDF, { self.filter_rate  * 100}% of the nodes left")
         return res
 
     def NLF(self, q, candidates):
@@ -141,11 +143,10 @@ class SubGraphMatcher(abc.ABC):
         return profile
 
     def profile_of_data_node(self, node_index):
-        G_labels = nx.get_node_attributes(self.G, 'feat')
         neighbors = list(self.G.neighbors(node_index))
         profile = set()
         for n in neighbors:
-            profile.add(G_labels[n])
+            profile.add(self.G_labels[n])
         return profile
 
     def plain_candidates(self, q):

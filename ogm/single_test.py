@@ -1,7 +1,7 @@
 import networkx as nx
-# from SubGraphMatcher import SubGraphMatcher
 from CECIMatcher import CECIMatcher
 from GQLMatcher import GQLMatcher
+from NaiveMatcher import NaiveMatcher
 
 from dbutils.convert_graph import convert_graph
 import sys
@@ -19,28 +19,20 @@ def check_edges_exist(num_nodes, match_dict, G, q):
     return True 
 
 # G = convert_graph('./dataset/hprd/data_graph/hprd.graph')
-# q = convert_graph('./dataset/hprd/query_graph/query_dense_16_1.graph')
-# q = convert_graph('./dataset/hprd/query_graph/query_dense_8_4.graph')
-# q = convert_graph('./dataset/hprd/query_graph/query_sparse_32_1.graph')
-# q = convert_graph('./dataset/hprd/query_graph/query_dense_32_11.graph')
-# q = convert_graph('./dataset/hprd/query_graph/query_sparse_16_8.graph')
+# q = convert_graph('./dataset/hprd/query_graph/query_sparse_32_9.graph')
 
-# q = convert_graph('./dataset/hprd/query_graph/query_dense_16_5.graph')
-# q = convert_graph('./dataset/hprd/query_graph/query_sparse_8_4.graph')
-# G = convert_graph('./dataset/sample_dataset_copy/target.graph')
-# q = convert_graph('./dataset/sample_dataset_copy/query_graph/query-1.graph')
 
 # YouTube Dataset
 # G = convert_graph('./dataset/youtube/data_graph/youtube.graph')
 # q = convert_graph('./dataset/youtube/query_graph/query_dense_4_5.graph')
 
 # Wordnet Dataset
-# G = convert_graph('./dataset/wordnet/data_graph/wordnet.graph')
-# q = convert_graph('./dataset/wordnet/query_graph/query_dense_4_5.graph')
+G = convert_graph('./dataset/wordnet/data_graph/wordnet.graph')
+q = convert_graph('./dataset/wordnet/query_graph/query_dense_20_9.graph')
 
-G = convert_graph('./dataset/validate/data_graph/HPRD.graph')
+# G = convert_graph('./dataset/validate/data_graph/HPRD.graph')
 # q = convert_graph('./dataset/validate/query_graph/query_dense_16_1.graph')
-q = convert_graph('./dataset/validate/query_graph/query_dense_16_2.graph')
+# q = convert_graph('./dataset/validate/query_graph/')
 """
 # Classic Dataset
 q = nx.Graph()
@@ -103,6 +95,9 @@ G.add_edges_from([
 # cecimatch = CECIMatcher(G)
 # data = cecimatch.is_subgraph_match(q)
 
-gqlmatch = GQLMatcher(G)
-data = gqlmatch.is_subgraph_match(q)
+# gqlmatch = GQLMatcher(G)
+# data = gqlmatch.is_subgraph_match(q)
+
+naivematch = NaiveMatcher(G)
+naivematch.LDF(q)
 
