@@ -18,9 +18,12 @@ def check_edges_exist(num_nodes, match_dict, G, q):
                     return False
     return True 
 
-G = convert_graph('./dataset/hprd/data_graph/hprd.graph')
-q = convert_graph('./dataset/hprd/query_graph/query_dense_8_4.graph')
-# q = convert_graph('./dataset/hprd/query_sparse_32_181.graph.graph')
+# G = convert_graph('./dataset/hprd/data_graph/hprd.graph')
+# q = convert_graph('./dataset/hprd/query_graph/query_dense_16_1.graph')
+# q = convert_graph('./dataset/hprd/query_graph/query_dense_8_4.graph')
+# q = convert_graph('./dataset/hprd/query_graph/query_sparse_32_1.graph')
+# q = convert_graph('./dataset/hprd/query_graph/query_dense_32_11.graph')
+# q = convert_graph('./dataset/hprd/query_graph/query_sparse_16_8.graph')
 
 # q = convert_graph('./dataset/hprd/query_graph/query_dense_16_5.graph')
 # q = convert_graph('./dataset/hprd/query_graph/query_sparse_8_4.graph')
@@ -35,6 +38,9 @@ q = convert_graph('./dataset/hprd/query_graph/query_dense_8_4.graph')
 # G = convert_graph('./dataset/wordnet/data_graph/wordnet.graph')
 # q = convert_graph('./dataset/wordnet/query_graph/query_dense_4_5.graph')
 
+G = convert_graph('./dataset/validate/data_graph/HPRD.graph')
+# q = convert_graph('./dataset/validate/query_graph/query_dense_16_1.graph')
+q = convert_graph('./dataset/validate/query_graph/query_dense_16_2.graph')
 """
 # Classic Dataset
 q = nx.Graph()
@@ -94,7 +100,9 @@ G.add_edges_from([
     (9, 10),
 ])
 #"""
+# cecimatch = CECIMatcher(G)
+# data = cecimatch.is_subgraph_match(q)
+
 gqlmatch = GQLMatcher(G)
 data = gqlmatch.is_subgraph_match(q)
-# data = SGM.gql_check_match_subgraph(q)
-# data = SGM.check_match_subgraph(q)
+

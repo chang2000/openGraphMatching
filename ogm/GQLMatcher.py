@@ -34,7 +34,7 @@ class GQLMatcher(SubGraphMatcher):
     def enumerate(self, q, imd, order, i):
         self.en_counter += 1
         if i == len(order) + 1:
-            if  self.M != None:
+            if self.M != None:
                 if len(self.M) == len(list(q.nodes())):
                     M_copy = copy.deepcopy(self.M)
                     self.MatchingList.append(M_copy)
@@ -50,6 +50,7 @@ class GQLMatcher(SubGraphMatcher):
                 del self.M[c[0]]
 
     def is_subgraph_match(self, q):
+        print("GQL is used...")
         main_start_time = time.time()
         # init the current matching first
         self.filter_rate = 1
@@ -63,12 +64,19 @@ class GQLMatcher(SubGraphMatcher):
         # Turn on / off the time
         candidates = self.filtering(q)
         order = self.ordering(q, candidates)
+
+        print('enumerating...')
+        en_time = time.time() 
         self.enumerate(q, candidates, order, 1)
+        print(f'enumeration done, takes {time.time() - en_time}s')
+        print(f'enumeration runs {self.en_counter} times')
+        print("--- %s seconds ---, Job done" % (time.time() - main_start_time))
+        print(f"Totally find {len(self.MatchingList)} matches.")
+        print(' ')
+        print(' ')
         output_data = [self.filter_rate, self.MatchingList]
-        print(output_data)
+        # print(output_data)
         return output_data
-
-
 
     def GQL_local_pruning(self, q, candidates):
         res = []
@@ -82,7 +90,7 @@ class GQLMatcher(SubGraphMatcher):
         for c in res:
             vset.add(c[1]) 
         self.filter_rate = len(vset) / len(self.G_nodes)
-        print(f"After the filtering, { self.filter_rate  * 100}% of the nodes left")
+        print(f"After the GQL local pruning,  { self.filter_rate  * 100}% of the nodes left")
         return res 
 
     def GQL_global_refinement(self, q, candidates):
@@ -110,7 +118,7 @@ class GQLMatcher(SubGraphMatcher):
         for c in candidates:
             vset.add(c[1]) 
         self.filter_rate = len(vset) / len(self.G_nodes)
-        print(f"After the filtering, { self.filter_rate  * 100}% of the nodes left")
+        print(f"After GQL global refinement, { self.filter_rate  * 100}% of the nodes left")
         return candidates
 
     # GQL Compute LC

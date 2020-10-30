@@ -1,0 +1,194 @@
+Running query 1, query file is query_dense_16_1.graph
+CECI is used...
+Running LDF...
+--- 0.13654303550720215 seconds ---, LDF Done
+After the filtering, 13.953488372093023% of the nodes left
+running NLF...
+--- 0.3399951457977295 seconds ---, NLF Done
+After the filtering, 0.24312896405919662% of the nodes left
+ceci filtering is running...
+After ceci filtering, 0.16913319238900634% of the nodes left
+--- 0.02254319190979004 seconds ---, ceci ordering done
+
+enumerating...
+enumeration done, takes 3.910064697265625e-05s
+enumeration runs 5 times
+--- 0.49959707260131836 seconds ---, Job done
+Totally find 0 matches.
+ 
+ 
+Running query 2, query file is query_dense_16_10.graph
+CECI is used...
+Running LDF...
+--- 0.13723421096801758 seconds ---, LDF Done
+After the filtering, 24.52431289640592% of the nodes left
+running NLF...
+--- 0.9556539058685303 seconds ---, NLF Done
+After the filtering, 0.718816067653277% of the nodes left
+ceci filtering is running...
+After ceci filtering, 0.19027484143763213% of the nodes left
+--- 0.08040499687194824 seconds ---, ceci ordering done
+
+enumerating...
+enumeration done, takes 0.00044417381286621094s
+enumeration runs 63 times
+--- 1.1743009090423584 seconds ---, Job done
+Totally find 6 matches.
+ 
+ 
+Running query 3, query file is query_dense_16_100.graph
+CECI is used...
+Running LDF...
+--- 0.13272619247436523 seconds ---, LDF Done
+After the filtering, 19.640591966173364% of the nodes left
+running NLF...
+--- 1.0304632186889648 seconds ---, NLF Done
+After the filtering, 1.4164904862579282% of the nodes left
+ceci filtering is running...
+After ceci filtering, 0.2642706131078224% of the nodes left
+--- 0.9673519134521484 seconds ---, ceci ordering done
+
+enumerating...
+enumeration done, takes 1.71661376953125e-05s
+enumeration runs 65 times
+--- 2.131387948989868 seconds ---, Job done
+Totally find 0 matches.
+ 
+ 
+Running query 4, query file is query_dense_16_101.graph
+CECI is used...
+Running LDF...
+--- 0.13517999649047852 seconds ---, LDF Done
+After the filtering, 13.826638477801268% of the nodes left
+running NLF...
+--- 0.7950220108032227 seconds ---, NLF Done
+After the filtering, 0.6765327695560254% of the nodes left
+ceci filtering is running...
+After ceci filtering, 0.39112050739957716% of the nodes left
+--- 0.09577798843383789 seconds ---, ceci ordering done
+
+enumerating...
+enumeration done, takes 2.5987625122070312e-05s
+enumeration runs 68 times
+--- 1.0265817642211914 seconds ---, Job done
+Totally find 0 matches.
+ 
+ 
+Running query 5, query file is query_dense_16_102.graph
+CECI is used...
+Running LDF...
+--- 0.12566184997558594 seconds ---, LDF Done
+After the filtering, 18.044397463002117% of the nodes left
+running NLF...
+--- 0.6500968933105469 seconds ---, NLF Done
+After the filtering, 1.0570824524312896% of the nodes left
+ceci filtering is running...
+After ceci filtering, 0.16913319238900634% of the nodes left
+--- 0.2803490161895752 seconds ---, ceci ordering done
+
+enumerating...
+enumeration done, takes 9.822845458984375e-05s
+enumeration runs 81 times
+--- 1.0569908618927002 seconds ---, Job done
+Totally find 0 matches.
+ 
+ 
+Running query 6, query file is query_dense_16_103.graph
+CECI is used...
+Running LDF...
+--- 0.13370704650878906 seconds ---, LDF Done
+After the filtering, 12.674418604651164% of the nodes left
+running NLF...
+--- 0.2860438823699951 seconds ---, NLF Done
+After the filtering, 0.5813953488372093% of the nodes left
+ceci filtering is running...
+After ceci filtering, 0.19027484143763213% of the nodes left
+--- 0.06901717185974121 seconds ---, ceci ordering done
+
+enumerating...
+enumeration done, takes 2.574920654296875e-05s
+enumeration runs 84 times
+--- 0.4892842769622803 seconds ---, Job done
+Totally find 0 matches.
+ 
+ 
+Running query 7, query file is query_dense_16_104.graph
+CECI is used...
+Running LDF...
+--- 0.13069367408752441 seconds ---, LDF Done
+After the filtering, 13.900634249471459% of the nodes left
+running NLF...
+--- 0.43943190574645996 seconds ---, NLF Done
+After the filtering, 0.40169133192389006% of the nodes left
+ceci filtering is running...
+After ceci filtering, 0.17970401691331925% of the nodes left
+--- 0.05203723907470703 seconds ---, ceci ordering done
+
+enumerating...
+enumeration done, takes 0.0002281665802001953s
+enumeration runs 106 times
+--- 0.6228790283203125 seconds ---, Job done
+Totally find 2 matches.
+ 
+ 
+Running query 8, query file is query_dense_16_105.graph
+CECI is used...
+Running LDF...
+--- 0.12082886695861816 seconds ---, LDF Done
+After the filtering, 15.602536997885835% of the nodes left
+running NLF...
+--- 0.41700029373168945 seconds ---, NLF Done
+After the filtering, 0.7293868921775899% of the nodes left
+ceci filtering is running...
+After ceci filtering, 0.2959830866807611% of the nodes left
+--- 0.21740007400512695 seconds ---, ceci ordering done
+
+enumerating...
+enumeration done, takes 2.193450927734375e-05s
+enumeration runs 108 times
+--- 0.7558231353759766 seconds ---, Job done
+Totally find 0 matches.
+ 
+ 
+Running query 9, query file is query_dense_16_106.graph
+CECI is used...
+Running LDF...
+--- 0.13924288749694824 seconds ---, LDF Done
+After the filtering, 15.940803382663848% of the nodes left
+running NLF...
+--- 0.5826821327209473 seconds ---, NLF Done
+After the filtering, 1.1945031712473573% of the nodes left
+ceci filtering is running...
+After ceci filtering, 0.2854122621564482% of the nodes left
+--- 0.19315791130065918 seconds ---, ceci ordering done
+
+enumerating...
+enumeration done, takes 5.0067901611328125e-05s
+enumeration runs 113 times
+--- 0.9158883094787598 seconds ---, Job done
+Totally find 0 matches.
+ 
+ 
+Running query 10, query file is query_dense_16_107.graph
+CECI is used...
+Running LDF...
+--- 0.11622500419616699 seconds ---, LDF Done
+After the filtering, 28.350951374207188% of the nodes left
+running NLF...
+--- 1.1916358470916748 seconds ---, NLF Done
+After the filtering, 1.5750528541226216% of the nodes left
+ceci filtering is running...
+After ceci filtering, 0.3594080338266385% of the nodes left
+--- 0.5350260734558105 seconds ---, ceci ordering done
+
+enumerating...
+enumeration done, takes 0.0077702999114990234s
+enumeration runs 816 times
+--- 1.8515188694000244 seconds ---, Job done
+Totally find 248 matches.
+ 
+ 
+All queries done, average query time is
+--- 1.0675503730773925s ---
+Some other data:
+Average filtering rate is 0.2494714587737844%

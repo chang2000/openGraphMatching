@@ -1,0 +1,10 @@
+query_dense_16_1:3
+query_dense_16_2:163
+query_dense_16_3:171
+query_dense_16_4:179
+query_dense_16_5:185
+query_dense_16_6:317
+query_dense_16_7:321
+query_dense_16_8:1021
+query_dense_16_9:1105
+query_dense_16_10:1373
