@@ -1,4 +1,3 @@
-# Use this file to generate the networkx instance.
 import networkx as nx
 
 def convert_graph(filepath):
@@ -11,12 +10,12 @@ def convert_graph(filepath):
     graph_nodes = []
     graph_edges = []
     # read nodes
-    # ['e', $node_id, $node_label, $node_degree]
+    # ['n', $node_id, $node_label, $node_degree]
     for _ in range(num_nodes):
         line = f.readline()
         node_data = line.split(' ')
         graph_nodes.append((int(node_data[1]), {'feat' : node_data[2]}))
-        
+
     # read edges
     for _ in range(num_edge):
         line = f.readline()
@@ -25,4 +24,6 @@ def convert_graph(filepath):
     g = nx.Graph()
     g.add_nodes_from(graph_nodes)
     g.add_edges_from(graph_edges)
+    f.close()
     return g
+

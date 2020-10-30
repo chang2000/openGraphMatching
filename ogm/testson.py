@@ -1,5 +1,7 @@
 import networkx as nx
 from dbutils.convert_graph import convert_graph
+from dbutils.check_subgraph_correctness import check_subgraph_correctness
+
 import sys
 from SubGraphMatcher import SubGraphMatcher
 from NaiveMatcher import NaiveMatcher
@@ -77,5 +79,10 @@ G.add_edges_from([
     (9, 10),
 ])
 
-sgm = NaiveMatcher(G)
-sgm.is_subgraph_match(q)
+matcher = NaiveMatcher(G)
+data = matcher.is_subgraph_match(q)
+ml = data[1]
+print(ml)
+
+for m in ml:
+    print(check_subgraph_correctness(q, G, m))

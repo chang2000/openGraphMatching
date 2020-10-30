@@ -10,6 +10,12 @@ class GQLMatcher(SubGraphMatcher):
         self.M = {}
         self.filter_rate = 1
         self.en_counter = 1
+    
+    def clear(self):
+        self.MatchingList = []
+        self.M = {} 
+        self.filter_rate = 1
+        self.en_counter = 1
 
     def filtering(self, q):
         imd = self.LDF(q)
@@ -49,6 +55,7 @@ class GQLMatcher(SubGraphMatcher):
                 del self.M[c[0]]
 
     def is_subgraph_match(self, q):
+        self.clear()
         print("GQL is used...")
         main_start_time = time.time()
         # init the current matching first

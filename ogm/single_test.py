@@ -3,21 +3,13 @@ from CECIMatcher import CECIMatcher
 from GQLMatcher import GQLMatcher
 from NaiveMatcher import NaiveMatcher
 
-from dbutils.convert_graph import convert_graph
+# from dbutils.convert_graph import convert_graph
+from utils import convert_graph
+from utils import check_match_correctness
+
 import sys
 
 # Smoke Test
-def check_edges_exist(num_nodes, match_dict, G, q):
-    edges = list(G.edges())
-    for i in range(num_nodes):
-        for j in range(i + 1, num_nodes):
-            if (i, j) in list(q.edges()):
-                edge = tuple(sorted((e[i], e[j])))
-                if edge not in edges:
-                    print(f'{edge} not in graph edges')
-                    return False
-    return True 
-
 # G = convert_graph('./dataset/hprd/data_graph/hprd.graph')
 # q = convert_graph('./dataset/hprd/query_graph/query_sparse_32_200.graph')
 
@@ -32,7 +24,10 @@ def check_edges_exist(num_nodes, match_dict, G, q):
 
 G = convert_graph('./dataset/validate/data_graph/HPRD.graph')
 # q = convert_graph('./dataset/validate/query_graph/query_dense_16_1.graph')
-q = convert_graph('./dataset/validate/query_graph/query_dense_16_2.graph')
+# q = convert_graph('./dataset/validate/query_graph/query_dense_16_2.graph')
+# q = convert_graph('./dataset/validate/query_graph/query_dense_16_3.graph')
+# q = convert_graph('./dataset/validate/query_graph/query_dense_16_4.graph')
+q = convert_graph('./dataset/validate/query_graph/query_dense_16_6.graph')
 """
 # Classic Dataset
 q = nx.Graph()
@@ -95,9 +90,38 @@ G.add_edges_from([
 # cecimatch = CECIMatcher(G)
 # data = cecimatch.is_subgraph_match(q)
 
-# gqlmatch = GQLMatcher(G)
-# data = gqlmatch.is_subgraph_match(q)
+gqlmatch = GQLMatcher(G)
+data = gqlmatch.is_subgraph_match(q)
 
-naivematch = NaiveMatcher(G)
-naivematch.is_subgraph_match(q)
+# naivematch = NaiveMatcher(G)
+# data = naivematch.is_subgraph_match(q)
+matchlist = data[1]
+f = open("matchlist.data", "w")
+for i in matchlist:
+    f.write(str(i))
+    f.write('\n')
+f.close()
+
+# print(matchlist)
+# print(G.edges())
+flag = True
+for m in matchlist:
+    if check_match_correctness(q, G, m) == False:
+        flag = False
+if flag:
+    print('OK! It seems that every match is right')
+else:
+    print('Fxxx, i got something wrong')
+
+# Check duplicates
+# print('Checking if there are any duplicates in the matching list...')
+# unique_list = []
+# for m in matchlist:
+    # if m not in unique_list:
+        # unique_list.append(m)
+# if len(matchlist) == len(unique_list):
+    # print('Yes, NO DUPLICATEs are found')
+# else:
+    # print('NONONONO, DUPLICATEs found')
+
 
