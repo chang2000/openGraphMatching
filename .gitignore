@@ -137,3 +137,7 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 output.txt
+
+# System files
+.DS_Store
+desktop.ini
