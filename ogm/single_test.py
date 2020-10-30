@@ -19,7 +19,7 @@ def check_edges_exist(num_nodes, match_dict, G, q):
     return True 
 
 # G = convert_graph('./dataset/hprd/data_graph/hprd.graph')
-# q = convert_graph('./dataset/hprd/query_graph/query_sparse_32_9.graph')
+# q = convert_graph('./dataset/hprd/query_graph/query_sparse_32_200.graph')
 
 
 # YouTube Dataset
@@ -27,12 +27,12 @@ def check_edges_exist(num_nodes, match_dict, G, q):
 # q = convert_graph('./dataset/youtube/query_graph/query_dense_4_5.graph')
 
 # Wordnet Dataset
-G = convert_graph('./dataset/wordnet/data_graph/wordnet.graph')
-q = convert_graph('./dataset/wordnet/query_graph/query_dense_20_9.graph')
+# G = convert_graph('./dataset/wordnet/data_graph/wordnet.graph')
+# q = convert_graph('./dataset/wordnet/query_graph/query_dense_20_9.graph')
 
-# G = convert_graph('./dataset/validate/data_graph/HPRD.graph')
+G = convert_graph('./dataset/validate/data_graph/HPRD.graph')
 # q = convert_graph('./dataset/validate/query_graph/query_dense_16_1.graph')
-# q = convert_graph('./dataset/validate/query_graph/')
+q = convert_graph('./dataset/validate/query_graph/query_dense_16_2.graph')
 """
 # Classic Dataset
 q = nx.Graph()
@@ -99,5 +99,5 @@ G.add_edges_from([
 # data = gqlmatch.is_subgraph_match(q)
 
 naivematch = NaiveMatcher(G)
-naivematch.LDF(q)
+naivematch.is_subgraph_match(q)
 

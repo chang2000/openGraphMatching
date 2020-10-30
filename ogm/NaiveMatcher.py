@@ -15,8 +15,6 @@ class NaiveMatcher(SubGraphMatcher):
         print('Using naive filtering...')
         imd = self.LDF(q)
         imd = self.NLF(q, imd)
-        print(imd)
-        print(type(imd))
         return imd
 
     # For ordering, no need to implement ordering here
