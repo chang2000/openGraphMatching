@@ -104,7 +104,6 @@ class SubGraphMatcher(abc.ABC):
             labels_of_neighbor.append([u, s])
         v_set = set()
         can_copy = copy.deepcopy(candidates)
-        print('lengh of cancopy is', len(can_copy))
         # How about generate them before
         # ALERT! SLOWNESS
         u_neighbors_list = [list(q.neighbors(u)) for u in q.nodes()]
