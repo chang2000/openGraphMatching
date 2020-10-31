@@ -150,3 +150,4 @@ class FeatureAugment(nn.Module):
             dataset = dataset.apply_transform(self.node_feature_funs[key], 
                 feature_dim=dim)
         return dataset
+

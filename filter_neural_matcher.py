@@ -220,3 +220,4 @@ class FilterNeuralMatcher(SubGraphMatcher):
             profile.add(self.G_labels[n])
         return profile
 
+
