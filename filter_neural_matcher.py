@@ -184,21 +184,6 @@ class FilterNeuralMatcher(SubGraphMatcher):
         model = self.build_model(args)
         mat = self.gen_alignment_matrix(G_q, model, imd,
             method_type=args.method_type)
-        print("imd", imd)
-        print("mat sum", mat.sum())
-        for (u, v) in imd:
-            print(u, v, mat[u][v])
-
-        u=0
-        v=0
-        batch = utils.batch_nx_graphs([G_q, self.G], anchors=[u, v])
-        embs = model.emb_model(batch)
-        pred = model(embs[0].unsqueeze(0), embs[1].unsqueeze(0))
-        raw_pred = model.predict(pred)
-        raw_pred = torch.log(raw_pred)
-        mat[u][v] = raw_pred.item()
-        print(mat[u][v])
-        exit()
 
         np.save("results/alignment.npy", mat)
         print("Saved alignment matrix in results/alignment.npy")
