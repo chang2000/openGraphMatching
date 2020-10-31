@@ -1,6 +1,7 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 from CECIMatcher import CECIMatcher
+from GQLMatcher import CECIMatcher
 # Construct the query graph
 G1 = nx.Graph()
 G1.add_nodes_from([
@@ -61,5 +62,7 @@ G2.add_edges_from([
 ])
 
 
-SGM = CECIMatcher(G2)
-SGM.is_subgraph_match(G1)
+matcher = GQLMatcher(G2)
+# matcher = CECIMatcher(G2)
+
+matcher.is_subgraph_match(G1)

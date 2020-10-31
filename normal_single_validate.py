@@ -2,9 +2,7 @@ import networkx as nx
 from CECIMatcher import CECIMatcher
 from GQLMatcher import GQLMatcher
 from NaiveMatcher import NaiveMatcher
-from filter_neural_matcher import FilterNeuralMatcher
 
-# from dbutils.convert_graph import convert_graph
 from utils import convert_graph
 from utils import check_match_correctness
 
@@ -14,7 +12,6 @@ import sys
 # G = convert_graph('./dataset/hprd/data_graph/hprd.graph')
 # q = convert_graph('./dataset/hprd/query_graph/query_sparse_32_200.graph')
 
-
 # YouTube Dataset
 # G = convert_graph('./dataset/youtube/data_graph/youtube.graph')
 # q = convert_graph('./dataset/youtube/query_graph/query_dense_4_5.graph')
@@ -23,12 +20,10 @@ import sys
 # G = convert_graph('./dataset/wordnet/data_graph/wordnet.graph')
 # q = convert_graph('./dataset/wordnet/query_graph/query_dense_20_9.graph')
 
+# Validation
 G = convert_graph('./dataset/validate/data_graph/HPRD.graph')
-# q = convert_graph('./dataset/validate/query_graph/query_dense_16_1.graph')
-# q = convert_graph('./dataset/validate/query_graph/query_dense_16_2.graph')
-# q = convert_graph('./dataset/validate/query_graph/query_dense_16_3.graph')
-# q = convert_graph('./dataset/validate/query_graph/query_dense_16_4.graph')
 q = convert_graph('./dataset/validate/query_graph/query_dense_16_6.graph')
+
 """
 # Classic Dataset
 q = nx.Graph()
@@ -88,17 +83,16 @@ G.add_edges_from([
     (9, 10),
 ])
 #"""
-# cecimatch = CECIMatcher(G)
-# data = cecimatch.is_subgraph_match(q)
-
-# gqlmatch = GQLMatcher(G)
-# data = gqlmatch.is_subgraph_match(q)
-
 # naivematch = NaiveMatcher(G)
 # data = naivematch.is_subgraph_match(q)
 
-neuralmatch = FilterNeuralMatcher(G)
-data = neuralmatch.is_subgraph_match(q)
+gqlmatch = GQLMatcher(G)
+data = gqlmatch.is_subgraph_match(q)
+
+# cecimatch = CECIMatcher(G)
+# data = cecimatch.is_subgraph_match(q)
+
+
 
 matchlist = data[1]
 f = open("matchlist.data", "w")
@@ -107,8 +101,6 @@ for i in matchlist:
     f.write('\n')
 f.close()
 
-# print(matchlist)
-# print(G.edges())
 flag = True
 for m in matchlist:
     if check_match_correctness(q, G, m) == False:
@@ -116,7 +108,7 @@ for m in matchlist:
 if flag:
     print('OK! It seems that every match is right')
 else:
-    print('Fxxx, i got something wrong')
+    print('No!, i got something wrong')
 
 # Check duplicates
 # print('Checking if there are any duplicates in the matching list...')

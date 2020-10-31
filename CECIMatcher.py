@@ -100,7 +100,7 @@ class CECIMatcher(SubGraphMatcher):
         print(f'enumeration done, takes {time.time() - en_time}s')
         print(f'enumeration runs {self.en_counter} times')
         print("--- %s seconds ---, Job done" % (time.time() - main_start_time))
-        print(f"Totally find {len(self.MatchingList)} matches.")
+        # print(f"Totally find {len(self.MatchingList)} matches.")
         print(' ')
         print(' ')
         output_data = [self.filter_rate, self.MatchingList]
