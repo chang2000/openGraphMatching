@@ -91,14 +91,14 @@ G.add_edges_from([
 # cecimatch = CECIMatcher(G)
 # data = cecimatch.is_subgraph_match(q)
 
-gqlmatch = GQLMatcher(G)
-data = gqlmatch.is_subgraph_match(q)
+# gqlmatch = GQLMatcher(G)
+# data = gqlmatch.is_subgraph_match(q)
 
 # naivematch = NaiveMatcher(G)
 # data = naivematch.is_subgraph_match(q)
 
-# neuralmatch = FilterNeuralMatcher(G)
-# data = neuralmatch.is_subgraph_match(q)
+neuralmatch = FilterNeuralMatcher(G)
+data = neuralmatch.is_subgraph_match(q)
 
 matchlist = data[1]
 f = open("matchlist.data", "w")

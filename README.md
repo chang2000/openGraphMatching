@@ -10,6 +10,32 @@ A graph/subgraph matching library.
 
 # Usage/Demo
 
+The NaiveMatch is the minium implementation of subgraph matching algorithm.
+
+Here is the demo code for running GQL: 
+
+```python
+import GQLMatcher from GQLMatcher
+
+# Prepare query graph q and target graph G in advance.
+
+matcherObj = GQLMatcher(G) # Initialize the object with targer graph G
+matcherObj.is_subgraph_match(q) # Run the check match process
+```
+
+The usage of our improved neural subgraph matching:
+
+```python
+
+from filter_neural_matcher import FilterNeuralMatcher
+
+
+# Prepare query graph q and target graph G in advance.
+
+matcherObj = FilterNeuralMatcher(G) # Initialize the object with targer graph G
+matcherObj.is_subgraph_match(q) # Run the check match process
+```
+
 
 
 # Details on the implmentation
@@ -24,7 +50,7 @@ Considering the complex operation on candidates in *CFL-like* algorithms, store 
 >
 > Can we have a better idea?
 
-## 2. 
+
 
 # Misc
 
@@ -32,7 +58,7 @@ Considering the complex operation on candidates in *CFL-like* algorithms, store 
 
    - Use HPRD (9460 nodes, 34998 edges) to validate the correctness.
    - Provides 200 quries(dense, 16 nodes)
-   - a `expected_output.res` is provided with the file name and correct answer
+   - A correctness checker is implemented in `utils.py`.
 
 2. The data format of the datasets
 
@@ -43,4 +69,4 @@ Considering the complex operation on candidates in *CFL-like* algorithms, store 
    2. Vertex data  `v v_id v_label v_degree`
    3. Edge data `e v_id v_id`
 
-3. 
+   
