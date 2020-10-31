@@ -141,3 +141,8 @@ output.txt
 # System files
 .DS_Store
 desktop.ini
+
+# Some file 
+matchlist.data
+plots/
+results/
