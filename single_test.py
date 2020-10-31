@@ -2,6 +2,7 @@ import networkx as nx
 from CECIMatcher import CECIMatcher
 from GQLMatcher import GQLMatcher
 from NaiveMatcher import NaiveMatcher
+from filter_neural_matcher import FilterNeuralMatcher
 
 # from dbutils.convert_graph import convert_graph
 from utils import convert_graph
@@ -95,6 +96,10 @@ data = gqlmatch.is_subgraph_match(q)
 
 # naivematch = NaiveMatcher(G)
 # data = naivematch.is_subgraph_match(q)
+
+# neuralmatch = FilterNeuralMatcher(G)
+# data = neuralmatch.is_subgraph_match(q)
+
 matchlist = data[1]
 f = open("matchlist.data", "w")
 for i in matchlist:
