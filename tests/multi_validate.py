@@ -4,18 +4,25 @@ import random
 
 from CECIMatcher import CECIMatcher
 from GQLMatcher import GQLMatcher
+from filter_neural_matcher import FilterNeuralMatcher
+
 from utils import convert_graph, check_match_correctness
 
 datasetpath = './dataset/validate/query_graph/' 
 G = convert_graph('./dataset/validate/data_graph/HPRD.graph')
+
+
 matcher = GQLMatcher(G)
+# matcher = CECIMatcher(G)
+# matcher = FilterNeuralMatcher(G)
 
 query_prefix = 'query_dense_16_'
 
-sample = random.sample(range(1,201), 20) 
+# sample = random.sample(range(1,201), 20) 
 
-print(sample)
-for i in sample:
+# print(sample)
+# for i in sample:
+for i in range(1,201):
     query_name = query_prefix + str(i)
     query_path = query_name + '.graph'
     print(query_path)

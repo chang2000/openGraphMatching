@@ -7,7 +7,8 @@ from utils import check_match_correctness
 import sys
 
 G = convert_graph('./dataset/validate/data_graph/HPRD.graph')
-q = convert_graph('./dataset/validate/query_graph/query_dense_16_6.graph')
+# q = convert_graph('./dataset/validate/query_graph/query_dense_16_6.graph')
+q = convert_graph('./dataset/validate/query_graph/query_dense_16_1.graph')
 
 neuralmatch = FilterNeuralMatcher(G)
 data = neuralmatch.is_subgraph_match(q)

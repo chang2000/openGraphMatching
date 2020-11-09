@@ -22,7 +22,7 @@ import sys
 
 # Validation
 G = convert_graph('./dataset/validate/data_graph/HPRD.graph')
-q = convert_graph('./dataset/validate/query_graph/query_dense_16_6.graph')
+q = convert_graph('./dataset/validate/query_graph/query_dense_16_183.graph')
 
 """
 # Classic Dataset
@@ -86,23 +86,23 @@ G.add_edges_from([
 # naivematch = NaiveMatcher(G)
 # data = naivematch.is_subgraph_match(q)
 
-gqlmatch = GQLMatcher(G)
-data = gqlmatch.is_subgraph_match(q)
+# matcher = GQLMatcher(G)
+matcher = CECIMatcher(G)
+data = matcher.is_subgraph_match(q)
 
-# cecimatch = CECIMatcher(G)
 # data = cecimatch.is_subgraph_match(q)
 
 
 
 matchlist = data[1]
-f = open("matchlist.data", "w")
-for i in matchlist:
-    f.write(str(i))
-    f.write('\n')
-f.close()
+# f = open("matchlist.data", "w")
+# for i in matchlist:
+    # f.write(str(i))
+    # f.write('\n')
+# f.close()
 
 flag = True
-for m in matchlist:
+for m in matchlist: 
     if check_match_correctness(q, G, m) == False:
         flag = False
 if flag:

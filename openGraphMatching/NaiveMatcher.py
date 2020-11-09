@@ -2,7 +2,7 @@ import time
 import sys
 import copy
 import networkx as nx
-from SubGraphMatcher import SubGraphMatcher
+from . import SubGraphMatcher
 
 class NaiveMatcher(SubGraphMatcher):
     def __init__(self, G):

@@ -2,7 +2,7 @@ import torch
 from deepsnap.batch import Batch
 from deepsnap.dataset import GraphDataset
 import networkx as nx
-import feature_preprocess
+from . import feature_preprocess
 
 device_cache = None
 def get_device():

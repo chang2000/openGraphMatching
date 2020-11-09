@@ -127,7 +127,6 @@ class SubGraphMatcher(abc.ABC):
         self.filter_rate = len(v_set) / len(self.G_nodes)
         return candidates
 
-
     def profile_of_query_node(self, node_index, graph):
         """
         Return a set that contains all the labels of the given

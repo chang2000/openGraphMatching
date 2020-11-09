@@ -11,7 +11,7 @@ def parse_optimizer(parser):
     opt_parser.add_argument('--opt-decay-step', dest='opt_decay_step', type=int,
             help='Number of epochs before decay')
     opt_parser.add_argument('--opt-decay-rate', dest='opt_decay_rate', type=float,
-            help='Learning rate decay ratio)
+            help='Learning rate decay ratio')
     opt_parser.add_argument('--lr', dest='lr', type=float,
             help='Learning rate.')
     opt_parser.add_argument('--clip', dest='clip', type=float,
