@@ -6,10 +6,10 @@ import argparse
 import numpy as np
 import networkx as nx
 
-import utils
-import models
-from SubGraphMatcher import SubGraphMatcher
-from config import parse_optimizer, parse_encoder
+from .config import parse_optimizer, parse_encoder
+from . import utils
+from . import models
+from . import SubGraphMatcher
 
 class FilterNeuralMatcher(SubGraphMatcher):
     def __init__(self, G):

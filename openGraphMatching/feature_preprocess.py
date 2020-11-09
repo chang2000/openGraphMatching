@@ -101,7 +101,7 @@ class FeatureAugment(nn.Module):
             "motif_counts": motif_counts_fun,
             "identity": identity_fun}
 
-    def register_feature_fun(name, feature_fun):
+    def register_feature_fun(self, name, feature_fun):
         self.node_feature_funs[name] = feature_fun
 
     @staticmethod
