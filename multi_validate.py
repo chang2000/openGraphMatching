@@ -14,7 +14,7 @@ import openGraphMatching as ogm
 datasetpath = './dataset/validate/query_graph/' 
 G = convert_graph('./dataset/validate/data_graph/HPRD.graph')
 
-
+of = open('output.txt', 'w')
 matcher = ogm.GQLMatcher(G)
 # matcher = CECIMatcher(G)
 # matcher = FilterNeuralMatcher(G)
@@ -31,15 +31,18 @@ for i in range(1,201):
     print(query_path)
     q = convert_graph(datasetpath + query_path)
     data = matcher.is_subgraph_match(q)
-    matchlist = data[1]
-    flag = True
-    for m in matchlist:
-        if check_match_correctness(q, G, m) == False:
-            flag = False
-            break
-    if flag:
-        print('OK! It seems that every match is right\n')
-    else:
-        print('No!, i got something wrong\n')
-        break
-print('All validations passed')
+    of.write(f'{query_path}:{len(data[1])}\n')
+    
+    # Test wether each match is correct.
+    # matchlist = data[1]
+    # flag = True
+    # for m in matchlist:
+        # if check_match_correctness(q, G, m) == False:
+            # flag = False
+            # break
+    # if flag:
+        # print('OK! It seems that every match is right\n')
+    # else:
+        # print('No!, i got something wrong\n')
+        # break
+# print('All validations passed')

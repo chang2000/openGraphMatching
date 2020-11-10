@@ -115,9 +115,9 @@ G.add_edges_from([
     (1, 6),
     (4, 6),
     ])
-# matcher = ogm.NaiveMatcher(G)
+matcher = ogm.NaiveMatcher(G)
 # matcher = ogm.GQLMatcher(G)
-matcher = ogm.CECIMatcher(G)
+# matcher = ogm.CECIMatcher(G)
 data = matcher.is_subgraph_match(q)
 for m in data[1]:
     print(m)
