@@ -49,7 +49,7 @@ class GQLMatcher(SubGraphMatcher):
         lc = self.computeLC(q, imd, order, u, i)
         # print(f'the local candidates for {u} is {lc}')
         for c in lc:
-            if c not in self.M:
+            if c not in self.M and c[1] not in self.M.values():
                 self.M[c[0]] = c[1]
                 self.enumerate(q, imd, order, i + 1)
                 del self.M[c[0]]

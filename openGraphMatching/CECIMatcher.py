@@ -29,7 +29,7 @@ class CECIMatcher(SubGraphMatcher):
         u = self.get_extenable_vertex(order, i)
         lc = self.ceci_compute_LC(q, C, A, order, u, i)
         for c in lc:
-            if c not in self.M:
+            if c not in self.M and c[1] not in self.M.values():
                 self.M[c[0]] = c[1]
                 self.enumerate(q, C, A, order, i + 1)
                 del self.M[c[0]]
