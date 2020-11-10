@@ -2,17 +2,20 @@ import networkx as nx
 import sys
 import random
 
-from openGraphMatcher import CECIMatcher
-from openGraphMatcher import GQLMatcher
-from openGraphMatcher import FilterNeuralMatcher
+# from openGraphMatching import CECIMatcher
+# from openGraphMatching import GQLMatcher
+# from openGraphMatching import FilterNeuralMatcher
 
-from openGraphMatcher import convert_graph, check_match_correctness
+from openGraphMatching.utils import convert_graph, check_match_correctness
+import openGraphMatching as ogm
+
+
 
 datasetpath = './dataset/validate/query_graph/' 
 G = convert_graph('./dataset/validate/data_graph/HPRD.graph')
 
 
-matcher = GQLMatcher(G)
+matcher = ogm.GQLMatcher(G)
 # matcher = CECIMatcher(G)
 # matcher = FilterNeuralMatcher(G)
 
