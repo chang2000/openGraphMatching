@@ -16,7 +16,7 @@ import openGraphMatching as ogm
 
 # Prepare query graph q and target graph G in advance.
 
-matcherObj = GQLMatcher(G) # Initialize the object with targer graph G
+matcherObj = ogm.GQLMatcher(G) # Initialize the object with targer graph G
 matcherObj.is_subgraph_match(q) # Run the check match process
 ```
 
