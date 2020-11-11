@@ -29,7 +29,7 @@ for i in range(1,201):
     query_name = query_prefix + str(i)
     query_path = query_name + '.graph'
     print(query_path)
-    q = convert_graph(datasetpath + query_path)
+    q = convert_graph(datasetpath + query_name)
     data = matcher.is_subgraph_match(q)
     of.write(f'{query_path}:{len(data[1])}\n')
     
