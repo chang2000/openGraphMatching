@@ -6,7 +6,7 @@ import random
 # from openGraphMatching import GQLMatcher
 # from openGraphMatching import FilterNeuralMatcher
 
-from openGraphMatching.utils import convert_graph, check_match_correctness
+from openGraphMatching.utils import convert_graph, check_match_correctness, draw_graph
 import openGraphMatching as ogm
 
 
@@ -16,8 +16,6 @@ G = convert_graph('./dataset/validate/data_graph/HPRD.graph')
 
 of = open('output.txt', 'w')
 matcher = ogm.GQLMatcher(G)
-# matcher = CECIMatcher(G)
-# matcher = FilterNeuralMatcher(G)
 
 query_prefix = 'query_dense_16_'
 
@@ -25,14 +23,15 @@ query_prefix = 'query_dense_16_'
 
 # print(sample)
 # for i in sample:
-for i in range(1,201):
+for i in range(1, 201):
     query_name = query_prefix + str(i)
     query_path = query_name + '.graph'
     print(query_path)
-    q = convert_graph(datasetpath + query_name)
+    q = convert_graph(datasetpath + query_path)
+    draw_graph(q)
     data = matcher.is_subgraph_match(q)
     of.write(f'{query_path}:{len(data[1])}\n')
-    
+
     # Test wether each match is correct.
     # matchlist = data[1]
     # flag = True

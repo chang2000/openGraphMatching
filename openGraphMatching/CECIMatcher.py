@@ -82,6 +82,7 @@ class CECIMatcher(SubGraphMatcher):
         
         imd = self.LDF(q)
         imd = self.NLF(q, imd)
+        # print("imd is", imd)
         NLF_candidates = copy.deepcopy(imd)
         time1 = time.time()
         print('ceci filtering is running...')
@@ -100,7 +101,7 @@ class CECIMatcher(SubGraphMatcher):
         print(f'enumeration done, takes {time.time() - en_time}s')
         print(f'enumeration runs {self.en_counter} times')
         print("--- %s seconds ---, Job done" % (time.time() - main_start_time))
-        # print(f"Totally find {len(self.MatchingList)} matches.")
+        print(f"Totally find {len(self.MatchingList)} matches.")
         print(' ')
         print(' ')
         output_data = [self.filter_rate, self.MatchingList]
@@ -108,7 +109,6 @@ class CECIMatcher(SubGraphMatcher):
 
     def ceci_ordering(self, q, candidates):
         # The candidates is NLF candidates
-        # Find the sourc for the bfs
         source = self.generate_bfs_source(q, candidates)
         tree = self.generate_bfs_tree(q, source)
         return list(tree.nodes())
@@ -128,13 +128,14 @@ class CECIMatcher(SubGraphMatcher):
             if value < minimum:
                 minimum = value
                 minimum_node = n
-        return  minimum_node
+        return minimum_node
 
     def ceci_filtering(self, q, candidates):
         source = self.generate_bfs_source(q, candidates)
         bfs_tree = self.generate_bfs_tree(q, source)
-        can_dict = self.can_to_dict(candidates) 
-        traversal_order = self.ceci_ordering(q, candidates)
+        can_dict = self.can_to_dict(candidates)
+        # traversal_order = self.ceci_ordering(q, candidates)
+        traversal_order = list(bfs_tree.nodes())
         """
         Build the auxiliary data structure
         """
@@ -150,26 +151,21 @@ class CECIMatcher(SubGraphMatcher):
             for up in successors:
                 for v in can_dict[u]:                       
                     for vp in can_dict[up]:
-                        # print(sorted((v,vp)))
                         tup = tuple(sorted((v, vp)))
                         if tup in self.G_edges:
-                            # print(f'Caught! Add {(v, vp)} to edges')
-                            edges.add((v, vp))                        
+                            edges.add((v, vp))
             A[u].append(edges)
             # Also need to find the node u's tree parent
             A[u].append(predecessors)
-            
 
-        # monitor the A
-        # for a in A.keys():
-        #     print(a, A[a])
-
-        # Do the filtering
-        # reverse_traversal_order = traversal_order.reverse()
-        reverse_traversal_order = traversal_order
-        for u in reverse_traversal_order: 
-            # print('checking', u)
-            # print('-----------')
+        """
+        The pruning after the basic generation.
+        Use non-tree edge to prune
+        """
+        non_tree_edges = [e for e in list(q.edges) if e not in list(bfs_tree.edges)]
+        non_tree_edges_nodes = set(sum([list(e) for e in non_tree_edges], []))
+        for u in traversal_order:
+            if u not in non_tree_edges_nodes: continue
             # Get N(u)
             neigh_of_u = list(q.neighbors(u))
             # iterate v, the data node
@@ -190,7 +186,7 @@ class CECIMatcher(SubGraphMatcher):
                             edge = [v, vp]
                             edge.sort()
                             edge = tuple(edge)
-                            if edge in self.G_edges and reverse_traversal_order.index(u_prime) > traversal_order.index(u):
+                            if edge in self.G_edges and traversal_order.index(u_prime) > traversal_order.index(u):
                                 A[u][1].add((v, vp))
                     else:
                         flag = False
@@ -217,6 +213,8 @@ class CECIMatcher(SubGraphMatcher):
             v_set.add(c[1]) 
         self.filter_rate = len(v_set) / len(self.G_nodes)
         print(f"After ceci filtering, { self.filter_rate  * 100}% of the nodes left")
+        # for a in sorted(A.keys()):
+            # print(a, A[a])
         return [res, A]
 
     def can_to_dict(self, candidates):

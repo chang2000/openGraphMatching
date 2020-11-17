@@ -3,6 +3,7 @@ from deepsnap.batch import Batch
 from deepsnap.dataset import GraphDataset
 import networkx as nx
 from . import feature_preprocess
+import matplotlib.pyplot as plt
 
 device_cache = None
 def get_device():
@@ -88,3 +89,15 @@ def check_match_correctness(q, G, match):
                     return False
     return True
 
+
+def draw_graph(G):
+    labels = nx.get_node_attributes(G, 'feat')
+    options = {
+        'node_color': 'yellow',
+        'node_size': 400,
+        'width': 3,
+        'labels': labels,
+        'with_labels': True
+    }
+    nx.draw(G, **options)
+    plt.show()
