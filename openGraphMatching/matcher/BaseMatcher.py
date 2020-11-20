@@ -5,7 +5,7 @@ import time
 import copy
 import networkx as nx
 
-class SubGraphMatcher(abc.ABC):
+class BaseMatcher(abc.ABC):
     def __init__(self, G):
         self.G = G
         self.G_nodes = list(G.nodes())

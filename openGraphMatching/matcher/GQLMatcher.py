@@ -2,9 +2,9 @@ import time
 import sys
 import copy
 import networkx as nx
-from . import SubGraphMatcher
+from . import BaseMatcher
 
-class GQLMatcher(SubGraphMatcher):
+class GQLMatcher(BaseMatcher):
     def __init__(self, G):
         super().__init__(G)
         self.M = {}

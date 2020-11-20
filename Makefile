@@ -9,4 +9,4 @@ uploadtest:
 	twine upload --repository testpypi dist/*
 
 clean:
-	rm -rf *.egg-info, dist
+	rm -rf *.egg-info dist build 
