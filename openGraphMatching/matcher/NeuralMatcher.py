@@ -7,11 +7,11 @@ import numpy as np
 import networkx as nx
 
 from .config import parse_optimizer, parse_encoder
-from . import utils
+from .. import utils
 from . import models
-from . import SubGraphMatcher
+from . import BaseMatcher
 
-class FilterNeuralMatcher(SubGraphMatcher):
+class NeuralMatcher(BaseMatcher):
     def __init__(self, G):
         super().__init__(G)
         self.M = {}

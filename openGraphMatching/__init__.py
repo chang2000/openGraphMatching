@@ -4,8 +4,8 @@
 # from openGraphMatching.CECIMatcher import CECIMatcher
 # from openGraphMatching.filter_neural_matcher import FilterNeuralMatcher
 
-import openGraphMatching.utils
-import openGraphMatching.matcher
+from openGraphMatching.utils import *
+from openGraphMatching.matcher import *
 
 __all__ = [
     'openGraphMatching',
