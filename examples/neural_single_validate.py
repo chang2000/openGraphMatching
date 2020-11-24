@@ -1,8 +1,8 @@
 import networkx as nx
-from filter_neural_matcher import FilterNeuralMatcher
+from openGraphMatching import NeuralMatcher
 
-from utils import convert_graph
-from utils import check_match_correctness
+from openGraphMatching.utils import convert_graph
+from openGraphMatching.utils import check_match_correctness
 
 import sys
 
@@ -10,7 +10,7 @@ G = convert_graph('./dataset/validate/data_graph/HPRD.graph')
 # q = convert_graph('./dataset/validate/query_graph/query_dense_16_6.graph')
 q = convert_graph('./dataset/validate/query_graph/query_dense_16_1.graph')
 
-neuralmatch = FilterNeuralMatcher(G)
+neuralmatch = NeuralMatcher(G)
 data = neuralmatch.is_subgraph_match(q)
 
 matchlist = data[1]

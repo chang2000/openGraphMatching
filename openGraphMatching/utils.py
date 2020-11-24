@@ -2,8 +2,9 @@ import torch
 from deepsnap.batch import Batch
 from deepsnap.dataset import GraphDataset
 import networkx as nx
-from . import feature_preprocess
 import matplotlib.pyplot as plt
+
+from . import feature_preprocess
 
 device_cache = None
 def get_device():
