@@ -7,9 +7,6 @@ from . import BaseMatcher
 class GQLMatcher(BaseMatcher):
     def __init__(self, G):
         super().__init__(G)
-        self.M = {}
-        self.filter_rate = 1
-        self.en_counter = 1
     
     def clear(self):
         self.MatchingList = []
@@ -23,6 +20,7 @@ class GQLMatcher(BaseMatcher):
         imd = self.GQL_local_pruning(q, imd)
         imd = self.GQL_global_refinement(q, imd)
         return imd
+
 
     def ordering(self, q, candidates):
         print('Using GQL ordering...')

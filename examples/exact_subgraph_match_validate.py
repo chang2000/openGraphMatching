@@ -24,4 +24,5 @@ for i in range(1, 201):
     q = convert_graph(datasetpath + query_path)
     data = matcher.is_subgraph_match(q)
     of.write(f'{query_path}:{len(data[1])}\n')
+    print('Filtering rate is', data[0])
 

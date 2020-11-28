@@ -4,13 +4,13 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="openGraphMatching",
-    version="0.1.1",
-    author="",
-    author_email="",
-    description="A subgraph matching programming framework.",
-    long_description=long_description,
+    version="0.1.3",
+    author="WANG Tianchang, LI Yuxiang",
+    author_email="tianchang.wang.00@gmail.com",
+    description="A subgraph matching programming library.",
+    long_description="Developing, waiting to be public",
     long_description_content_type="text/markdown",
-    url="",
+    url="https://github.com/chang2000/openGraphMatching",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
