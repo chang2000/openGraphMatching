@@ -1,0 +1,800 @@
+query_dense_16_1.graph
+Running LDF...
+--- 1.0705599784851074 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_2.graph
+Running LDF...
+--- 1.0942673683166504 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_3.graph
+Running LDF...
+--- 1.1090748310089111 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_4.graph
+Running LDF...
+--- 1.1303129196166992 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_5.graph
+Running LDF...
+--- 1.130599021911621 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_6.graph
+Running LDF...
+--- 1.1035499572753906 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_7.graph
+Running LDF...
+--- 1.1015219688415527 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_8.graph
+Running LDF...
+--- 1.1652090549468994 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_9.graph
+Running LDF...
+--- 1.078974962234497 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_10.graph
+Running LDF...
+--- 1.1229360103607178 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_11.graph
+Running LDF...
+--- 1.1514217853546143 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_12.graph
+Running LDF...
+--- 1.07853102684021 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_13.graph
+Running LDF...
+--- 1.0543181896209717 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_14.graph
+Running LDF...
+--- 1.0872278213500977 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_15.graph
+Running LDF...
+--- 1.0734107494354248 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_16.graph
+Running LDF...
+--- 1.0820810794830322 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_17.graph
+Running LDF...
+--- 1.101593017578125 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_18.graph
+Running LDF...
+--- 1.0735127925872803 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_19.graph
+Running LDF...
+--- 1.0913329124450684 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_20.graph
+Running LDF...
+--- 0.5487208366394043 seconds ---, LDF Done
+LDF, 84.74880616241396% of the nodes left
+query_dense_16_21.graph
+Running LDF...
+--- 1.0435950756072998 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_22.graph
+Running LDF...
+--- 1.0502989292144775 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_23.graph
+Running LDF...
+--- 1.0723798274993896 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_24.graph
+Running LDF...
+--- 1.0910980701446533 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_25.graph
+Running LDF...
+--- 1.0665950775146484 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_26.graph
+Running LDF...
+--- 0.8757579326629639 seconds ---, LDF Done
+LDF, 50.36107894291699% of the nodes left
+query_dense_16_27.graph
+Running LDF...
+--- 1.0927629470825195 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_28.graph
+Running LDF...
+--- 1.1218771934509277 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_29.graph
+Running LDF...
+--- 1.1292800903320312 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_30.graph
+Running LDF...
+--- 1.0949959754943848 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_31.graph
+Running LDF...
+--- 1.0488169193267822 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_32.graph
+Running LDF...
+--- 1.0911569595336914 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_33.graph
+Running LDF...
+--- 1.0951480865478516 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_34.graph
+Running LDF...
+--- 1.1077001094818115 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_35.graph
+Running LDF...
+--- 1.091034173965454 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_36.graph
+Running LDF...
+--- 1.1295931339263916 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_37.graph
+Running LDF...
+--- 1.017117977142334 seconds ---, LDF Done
+LDF, 53.19506070029797% of the nodes left
+query_dense_16_38.graph
+Running LDF...
+--- 1.0603969097137451 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_39.graph
+Running LDF...
+--- 1.0626649856567383 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_40.graph
+Running LDF...
+--- 1.0814039707183838 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_41.graph
+Running LDF...
+--- 1.0747840404510498 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_42.graph
+Running LDF...
+--- 1.0916450023651123 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_43.graph
+Running LDF...
+--- 0.9339179992675781 seconds ---, LDF Done
+LDF, 50.36107894291699% of the nodes left
+query_dense_16_44.graph
+Running LDF...
+--- 1.1063392162322998 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_45.graph
+Running LDF...
+--- 1.1243839263916016 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_46.graph
+Running LDF...
+--- 1.1078238487243652 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_47.graph
+Running LDF...
+--- 1.1110730171203613 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_48.graph
+Running LDF...
+--- 1.088163137435913 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_49.graph
+Running LDF...
+--- 1.110177993774414 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_50.graph
+Running LDF...
+--- 1.0841472148895264 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_51.graph
+Running LDF...
+--- 1.0416557788848877 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_52.graph
+Running LDF...
+--- 1.0515878200531006 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_53.graph
+Running LDF...
+--- 1.054184913635254 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_54.graph
+Running LDF...
+--- 1.082392930984497 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_55.graph
+Running LDF...
+--- 1.082150936126709 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_56.graph
+Running LDF...
+--- 1.1138250827789307 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_57.graph
+Running LDF...
+--- 1.1063728332519531 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_58.graph
+Running LDF...
+--- 1.1152739524841309 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_59.graph
+Running LDF...
+--- 1.1058762073516846 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_60.graph
+Running LDF...
+--- 1.1627180576324463 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_61.graph
+Running LDF...
+--- 1.1449038982391357 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_62.graph
+Running LDF...
+--- 1.1302809715270996 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_63.graph
+Running LDF...
+--- 1.1069281101226807 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_64.graph
+Running LDF...
+--- 1.0963811874389648 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_65.graph
+Running LDF...
+--- 0.9943859577178955 seconds ---, LDF Done
+LDF, 87.89767478172615% of the nodes left
+query_dense_16_66.graph
+Running LDF...
+--- 1.1390268802642822 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_67.graph
+Running LDF...
+--- 1.0778517723083496 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_68.graph
+Running LDF...
+--- 1.1116077899932861 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_69.graph
+Running LDF...
+--- 1.0913798809051514 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_70.graph
+Running LDF...
+--- 1.0918779373168945 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_71.graph
+Running LDF...
+--- 1.087514877319336 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_72.graph
+Running LDF...
+--- 1.0929129123687744 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_73.graph
+Running LDF...
+--- 1.081787109375 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_74.graph
+Running LDF...
+--- 1.117828130722046 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_75.graph
+Running LDF...
+--- 1.093721866607666 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_76.graph
+Running LDF...
+--- 1.0923492908477783 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_77.graph
+Running LDF...
+--- 1.1212921142578125 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_78.graph
+Running LDF...
+--- 1.1066951751708984 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_79.graph
+Running LDF...
+--- 1.1013848781585693 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_80.graph
+Running LDF...
+--- 1.0948901176452637 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_81.graph
+Running LDF...
+--- 1.1039049625396729 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_82.graph
+Running LDF...
+--- 1.0136730670928955 seconds ---, LDF Done
+LDF, 50.36107894291699% of the nodes left
+query_dense_16_83.graph
+Running LDF...
+--- 1.079284906387329 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_84.graph
+Running LDF...
+--- 1.0742390155792236 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_85.graph
+Running LDF...
+--- 1.0413570404052734 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_86.graph
+Running LDF...
+--- 1.0165209770202637 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_87.graph
+Running LDF...
+--- 1.128633975982666 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_88.graph
+Running LDF...
+--- 1.1322276592254639 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_89.graph
+Running LDF...
+--- 1.085529088973999 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_90.graph
+Running LDF...
+--- 1.0800042152404785 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_91.graph
+Running LDF...
+--- 1.1161549091339111 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_92.graph
+Running LDF...
+--- 1.110144853591919 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_93.graph
+Running LDF...
+--- 1.106231927871704 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_94.graph
+Running LDF...
+--- 1.0763370990753174 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_95.graph
+Running LDF...
+--- 1.0135810375213623 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_96.graph
+Running LDF...
+--- 1.0886390209197998 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_97.graph
+Running LDF...
+--- 1.1258230209350586 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_98.graph
+Running LDF...
+--- 1.0739669799804688 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_99.graph
+Running LDF...
+--- 1.0575909614562988 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_100.graph
+Running LDF...
+--- 1.0251460075378418 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_101.graph
+Running LDF...
+--- 1.0767321586608887 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_102.graph
+Running LDF...
+--- 1.115875005722046 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_103.graph
+Running LDF...
+--- 1.0772640705108643 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_104.graph
+Running LDF...
+--- 1.3133997917175293 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_105.graph
+Running LDF...
+--- 1.060460090637207 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_106.graph
+Running LDF...
+--- 1.0029430389404297 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_107.graph
+Running LDF...
+--- 1.0434389114379883 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_108.graph
+Running LDF...
+--- 1.1062493324279785 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_109.graph
+Running LDF...
+--- 1.1076571941375732 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_110.graph
+Running LDF...
+--- 1.0868840217590332 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_111.graph
+Running LDF...
+--- 1.0736157894134521 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_112.graph
+Running LDF...
+--- 1.0847899913787842 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_113.graph
+Running LDF...
+--- 1.0994479656219482 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_114.graph
+Running LDF...
+--- 1.093398094177246 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_115.graph
+Running LDF...
+--- 1.095597743988037 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_116.graph
+Running LDF...
+--- 1.1022238731384277 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_117.graph
+Running LDF...
+--- 1.015260934829712 seconds ---, LDF Done
+LDF, 53.19506070029797% of the nodes left
+query_dense_16_118.graph
+Running LDF...
+--- 1.0891242027282715 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_119.graph
+Running LDF...
+--- 1.0862069129943848 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_120.graph
+Running LDF...
+--- 1.086298942565918 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_121.graph
+Running LDF...
+--- 1.077582836151123 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_122.graph
+Running LDF...
+--- 1.0703318119049072 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_123.graph
+Running LDF...
+--- 1.1158757209777832 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_124.graph
+Running LDF...
+--- 1.277146816253662 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_125.graph
+Running LDF...
+--- 1.1099152565002441 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_126.graph
+Running LDF...
+--- 1.2288250923156738 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_127.graph
+Running LDF...
+--- 1.1433508396148682 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_128.graph
+Running LDF...
+--- 1.2003581523895264 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_129.graph
+Running LDF...
+--- 0.924767017364502 seconds ---, LDF Done
+LDF, 50.36107894291699% of the nodes left
+query_dense_16_130.graph
+Running LDF...
+--- 1.1206889152526855 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_131.graph
+Running LDF...
+--- 1.053311824798584 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_132.graph
+Running LDF...
+--- 1.1483790874481201 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_133.graph
+Running LDF...
+--- 1.0756208896636963 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_134.graph
+Running LDF...
+--- 1.1164071559906006 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_135.graph
+Running LDF...
+--- 0.8611330986022949 seconds ---, LDF Done
+LDF, 55.84167176297608% of the nodes left
+query_dense_16_136.graph
+Running LDF...
+--- 1.1870388984680176 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_137.graph
+Running LDF...
+--- 1.0134360790252686 seconds ---, LDF Done
+LDF, 90.73165653910714% of the nodes left
+query_dense_16_138.graph
+Running LDF...
+--- 1.1185200214385986 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_139.graph
+Running LDF...
+--- 1.0855371952056885 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_140.graph
+Running LDF...
+--- 1.105531930923462 seconds ---, LDF Done
+LDF, 25.790795414622718% of the nodes left
+query_dense_16_141.graph
+Running LDF...
+--- 1.1908490657806396 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_142.graph
+Running LDF...
+--- 1.1978240013122559 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_143.graph
+Running LDF...
+--- 1.1617600917816162 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_144.graph
+Running LDF...
+--- 1.0684430599212646 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_145.graph
+Running LDF...
+--- 0.9721319675445557 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_146.graph
+Running LDF...
+--- 1.2885448932647705 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_147.graph
+Running LDF...
+--- 1.3129992485046387 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_148.graph
+Running LDF...
+--- 1.3352677822113037 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_149.graph
+Running LDF...
+--- 1.216200828552246 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_150.graph
+Running LDF...
+--- 1.1632721424102783 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_151.graph
+Running LDF...
+--- 1.3982200622558594 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_152.graph
+Running LDF...
+--- 1.2707750797271729 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_153.graph
+Running LDF...
+--- 1.1271510124206543 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_154.graph
+Running LDF...
+--- 1.0803472995758057 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_155.graph
+Running LDF...
+--- 0.9932608604431152 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_156.graph
+Running LDF...
+--- 1.2572731971740723 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_157.graph
+Running LDF...
+--- 1.073167085647583 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_158.graph
+Running LDF...
+--- 1.0893068313598633 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_159.graph
+Running LDF...
+--- 1.075981855392456 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_160.graph
+Running LDF...
+--- 1.0939040184020996 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_161.graph
+Running LDF...
+--- 1.1922481060028076 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_162.graph
+Running LDF...
+--- 1.0963618755340576 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_163.graph
+Running LDF...
+--- 1.0991621017456055 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_164.graph
+Running LDF...
+--- 1.071605920791626 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_165.graph
+Running LDF...
+--- 1.122757911682129 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_166.graph
+Running LDF...
+--- 1.1002109050750732 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_167.graph
+Running LDF...
+--- 1.0421888828277588 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_168.graph
+Running LDF...
+--- 1.093008041381836 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_169.graph
+Running LDF...
+--- 1.084481954574585 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_170.graph
+Running LDF...
+--- 1.0833446979522705 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_171.graph
+Running LDF...
+--- 1.003288984298706 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_172.graph
+Running LDF...
+--- 1.0959851741790771 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_173.graph
+Running LDF...
+--- 1.0408132076263428 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_174.graph
+Running LDF...
+--- 1.0541889667510986 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_175.graph
+Running LDF...
+--- 0.9198670387268066 seconds ---, LDF Done
+LDF, 50.36107894291699% of the nodes left
+query_dense_16_176.graph
+Running LDF...
+--- 0.9997398853302002 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_177.graph
+Running LDF...
+--- 0.9969141483306885 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_178.graph
+Running LDF...
+--- 1.0871059894561768 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_179.graph
+Running LDF...
+--- 1.0093998908996582 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_180.graph
+Running LDF...
+--- 1.010179042816162 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_181.graph
+Running LDF...
+--- 0.9978361129760742 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_182.graph
+Running LDF...
+--- 0.9741640090942383 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_183.graph
+Running LDF...
+--- 1.0481820106506348 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_184.graph
+Running LDF...
+--- 1.1121211051940918 seconds ---, LDF Done
+LDF, 87.89767478172615% of the nodes left
+query_dense_16_185.graph
+Running LDF...
+--- 1.2580668926239014 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_186.graph
+Running LDF...
+--- 1.0827698707580566 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_187.graph
+Running LDF...
+--- 1.043276071548462 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_188.graph
+Running LDF...
+--- 1.102139949798584 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_189.graph
+Running LDF...
+--- 1.074472188949585 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_190.graph
+Running LDF...
+--- 1.1248152256011963 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_191.graph
+Running LDF...
+--- 1.1187820434570312 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_192.graph
+Running LDF...
+--- 1.1151068210601807 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_193.graph
+Running LDF...
+--- 1.0758309364318848 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_194.graph
+Running LDF...
+--- 0.8440201282501221 seconds ---, LDF Done
+LDF, 50.36107894291699% of the nodes left
+query_dense_16_195.graph
+Running LDF...
+--- 1.0816693305969238 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_196.graph
+Running LDF...
+--- 1.1070430278778076 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_197.graph
+Running LDF...
+--- 1.1059391498565674 seconds ---, LDF Done
+LDF, 44.5655992609267% of the nodes left
+query_dense_16_198.graph
+Running LDF...
+--- 1.1740028858184814 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_199.graph
+Running LDF...
+--- 1.154114007949829 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left
+query_dense_16_200.graph
+Running LDF...
+--- 1.0956270694732666 seconds ---, LDF Done
+LDF, 82.10219509973587% of the nodes left

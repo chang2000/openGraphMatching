@@ -30,7 +30,6 @@ class BaseMatcher(abc.ABC):
 
     def ordering(self, q, candidates):
         res = list(q.nodes())
-        res.reverse()
         return res
     
     # @abc.abstractclassmethod
@@ -98,7 +97,7 @@ class BaseMatcher(abc.ABC):
             v_set.add(c[1]) 
         self.filter_rate = len(v_set) / len(self.G_nodes)
         print("--- %s seconds ---, LDF Done" % (time.time() - start_time))
-        print(f"After LDF, { self.filter_rate  * 100}% of the nodes left")
+        print(f"LDF, { self.filter_rate  * 100}% of the nodes left")
         return res
 
     def NLF(self, q, candidates):
@@ -149,7 +148,7 @@ class BaseMatcher(abc.ABC):
         for u, v in candidates:
             v_set.add(v)
         print("--- %s seconds ---, NLF Done" % (time.time() - start_time))
-        print(f"After the filtering, {len(v_set) / len(self.G_nodes)  * 100}% of the nodes left")
+        print(f"NLF, {len(v_set) / len(self.G_nodes)  * 100}% of the nodes left")
         self.filter_rate = len(v_set) / len(self.G_nodes)
         return candidates
 
