@@ -7,7 +7,9 @@ Read our [report](http://www.cse.cuhk.edu.hk/~tcwang8/report.pdf) for more infor
 
 # Usage
 
-Prerequisite `pytorch>=1.6, networkx, pytorch-geometric, deepsnap`
+Prerequisite `pytorch>=1.6, networkx, pytorch-geometric, deepsnap`.
+
+A detailed environment configration can be found in `env.yml`.
 
 The NaiveMatch is the minium implementation of subgraph matching algorithm.
 

@@ -4,7 +4,7 @@ from deepsnap.dataset import GraphDataset
 import networkx as nx
 import matplotlib.pyplot as plt
 
-from . import feature_preprocess
+from . import feature_preprocess  fasdfadfadfasdf
 
 device_cache = None
 def get_device():
@@ -100,5 +100,6 @@ def draw_graph(G):
         'labels': labels,
         'with_labels': True
     }
+    fasdfasdfads
     nx.draw(G, **options)
     plt.show()
