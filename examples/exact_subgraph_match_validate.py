@@ -10,7 +10,7 @@ path = osp.join(osp.dirname(osp.realpath(__file__)), '../dataset', dataset)
 datasetpath = path + '/query_graph/'
 G = convert_graph(path + '/data_graph/HPRD.graph')
 
-of = open('generated_ans.res', 'w')
+# of = open('generated_ans.res', 'w')
 matcher = GQLMatcher(G)
 
 query_prefix = 'query_dense_16_'
@@ -23,6 +23,6 @@ for i in range(1, 201):
     print(query_path)
     q = convert_graph(datasetpath + query_path)
     data = matcher.is_subgraph_match(q)
-    of.write(f'{query_path}:{len(data[1])}\n')
+    # of.write(f'{query_path}:{len(data[1])}\n')
     print('Filtering rate is', data[0])
 

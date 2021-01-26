@@ -17,7 +17,7 @@ query_prefix = 'query_dense_16_'
 # sample = random.sample(range(1,201), 20) 
 # print(sample)
 # for i in sample:
-for i in range(1, 2):
+for i in range(54, 55):
     query_name = query_prefix + str(i)
     query_path = query_name + '.graph'
     print(query_path)
