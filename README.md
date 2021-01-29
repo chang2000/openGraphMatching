@@ -50,4 +50,14 @@ m.is_subgraph_match(q) # Run the check match process
    2. Vertex data  `v v_id v_label v_degree`
 3. Edge data `e v_id v_id`
    
-   
+
+
+
+
+
+
+
+## Side word
+
+- Cannot handle yeast well even it has a smaller dataset size, since around 10% of nodes left for 3000 nodes.
+

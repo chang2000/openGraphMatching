@@ -4,6 +4,7 @@ import sys
 import time
 import copy
 import networkx as nx
+from . import filters as f
 
 class BaseMatcher(abc.ABC):
     def __init__(self, G):
@@ -20,12 +21,15 @@ class BaseMatcher(abc.ABC):
     def filtering(self, q):
         ''' Filter candidate vertices in the target graph
         '''
-        res = []
-        q_labels = nx.get_node_attributes(q, 'feat')
-        for u in q.nodes():
-            for v in self.G_nodes:
-                if self.G_labels[v] == q_labels[u]:
-                    res.append((u, v))
+        prefilter = f.Filter(self.G)
+        
+        res = prefilter.LDF(q)
+        # q_labels = nx.get_node_attributes(q, 'feat')
+        # for u in q.nodes():
+        #     for v in self.G_nodes:
+        #         if self.G_labels[v] == q_labels[u]:
+        #             res.append((u, v))
+        print(res)
         return res
 
     def ordering(self, q, candidates):
@@ -52,7 +56,7 @@ class BaseMatcher(abc.ABC):
         for c in lc:
             if c not in self.M and c[1] not in self.M.values():
                 self.M[c[0]] = c[1]
-                print(f"#{self.en_counter-1} round match {self.M}")
+                # print(f"#{self.en_counter-1} round match {self.M}")
                 self.enumerate(q, imd, order, i + 1)
                 del self.M[c[0]]
 
@@ -150,7 +154,7 @@ class BaseMatcher(abc.ABC):
 
         for u, v in candidates:
             v_set.add(v)
-        print("--- %s seconds ---, NLF Done" % (time.time() - start_time))
+        print("--- %s seconds ---, NLF Done" % (time.time() - start_time)) 
         print(f"NLF, {len(v_set) / len(self.G_nodes)  * 100}% of the nodes left")
         self.filter_rate = len(v_set) / len(self.G_nodes)
         return candidates
