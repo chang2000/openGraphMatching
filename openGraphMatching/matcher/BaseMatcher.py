@@ -22,8 +22,8 @@ class BaseMatcher(abc.ABC):
         ''' Filter candidate vertices in the target graph
         '''
         prefilter = f.Filter(self.G)
-        
         res = prefilter.LDF(q)
+        res = prefilter.NLF(q, res)
         # q_labels = nx.get_node_attributes(q, 'feat')
         # for u in q.nodes():
         #     for v in self.G_nodes:

@@ -3,7 +3,7 @@ import sys
 import copy
 import networkx as nx
 from . import BaseMatcher
-
+from . import filters as f
 class GQLMatcher(BaseMatcher):
     def __init__(self, G):
         super().__init__(G)
@@ -15,12 +15,8 @@ class GQLMatcher(BaseMatcher):
         self.en_counter = 1
 
     def filtering(self, q):
-        imd = self.LDF(q)
-        imd = self.NLF(q, imd)
-        imd = self.GQL_local_pruning(q, imd)
-        imd = self.GQL_global_refinement(q, imd)
-        return imd
-
+        prefilter = f.Filter(self.G)
+        return prefilter.gql_filtering(q)
 
     def ordering(self, q, candidates):
         print('Using GQL ordering...')
