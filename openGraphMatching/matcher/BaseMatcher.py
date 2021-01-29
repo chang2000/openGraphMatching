@@ -56,6 +56,9 @@ class BaseMatcher(abc.ABC):
                 self.enumerate(q, imd, order, i + 1)
                 del self.M[c[0]]
 
+
+    """ The core function will be used in different matchers.
+    """
     def is_subgraph_match(self, q):
         try:
             assert (isinstance(q, nx.classes.graph.Graph) and nx.is_connected(q))
@@ -67,7 +70,7 @@ class BaseMatcher(abc.ABC):
         order = self.ordering(q, imd)
         data = self.enumerate(q, imd, order, 1)
         print("--- %s seconds ---, Job done" % (time.time() - main_start_time)) 
-        print()
+
         output_data = [self.filter_rate, self.MatchingList]
         return output_data
 

@@ -37,10 +37,8 @@ class GQLMatcher(BaseMatcher):
     def enumerate(self, q, imd, order, i):
         self.en_counter += 1
         if i == len(order) + 1:
-            if self.M != None:
-                if len(self.M) == len(list(q.nodes())):
-                    M_copy = copy.deepcopy(self.M)
-                    self.MatchingList.append(M_copy)
+            if self.M != None and len(self.M) == len(list(q.nodes())):
+                self.MatchingList.append(copy.deepcopy(self.M))
             return self.M
         # v is a extenable vertex
         u = self.get_extenable_vertex(order, i)

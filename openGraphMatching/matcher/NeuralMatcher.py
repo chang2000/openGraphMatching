@@ -219,5 +219,3 @@ class NeuralMatcher(BaseMatcher):
         for n in neighbors:
             profile.add(self.G_labels[n])
         return profile
-
-

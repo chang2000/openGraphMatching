@@ -4,7 +4,7 @@ from deepsnap.dataset import GraphDataset
 import networkx as nx
 import matplotlib.pyplot as plt
 
-from . import feature_preprocess  fasdfadfadfasdf
+from . import feature_preprocess
 
 device_cache = None
 def get_device():
