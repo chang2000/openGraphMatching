@@ -5,6 +5,7 @@ import time
 import copy
 import networkx as nx
 from . import filters as f
+from . import orders as o
 
 class BaseMatcher(abc.ABC):
     def __init__(self, G):
@@ -22,19 +23,13 @@ class BaseMatcher(abc.ABC):
         ''' Filter candidate vertices in the target graph
         '''
         prefilter = f.Filter(self.G)
-        res = prefilter.LDF(q)
-        res = prefilter.NLF(q, res)
-        # q_labels = nx.get_node_attributes(q, 'feat')
-        # for u in q.nodes():
-        #     for v in self.G_nodes:
-        #         if self.G_labels[v] == q_labels[u]:
-        #             res.append((u, v))
-        print(res)
+        res = prefilter.ldf(q)
+        res = prefilter.nlf(q, res)
         return res
 
     def ordering(self, q, candidates):
-        res = list(q.nodes())
-        return res
+        orderer = o.Order(self.G)
+        return orderer.naive_order(q, None)
     
     # @abc.abstractclassmethod
     def find_subgraph_match(self, q, imd, order):

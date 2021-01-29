@@ -4,6 +4,7 @@ import copy
 import networkx as nx
 from . import BaseMatcher
 from . import filters as f
+from . import orders as o
 class GQLMatcher(BaseMatcher):
     def __init__(self, G):
         super().__init__(G)
@@ -19,16 +20,8 @@ class GQLMatcher(BaseMatcher):
         return prefilter.gql_filtering(q)
 
     def ordering(self, q, candidates):
-        print('Using GQL ordering...')
-        q_nodes = list(q.nodes())
-        res = [[i, 0] for i in q_nodes]
-        # Count C(u)
-        for c in candidates:
-            res[c[0]][1] += 1
-        res.sort(key = lambda x: x[1])
-        res.reverse()
-        res = [i[0] for i in res]
-        return res
+        orderer = o.Order(self.G)
+        return orderer.gql_order(q, candidates)
 
     def enumerate(self, q, imd, order, i):
         self.en_counter += 1
@@ -75,49 +68,6 @@ class GQLMatcher(BaseMatcher):
         output_data = [self.filter_rate, self.MatchingList]
         # print(output_data)
         return output_data
-
-    def GQL_local_pruning(self, q, candidates):
-        res = []
-        for c in candidates:
-            u, v = c[0], c[1]
-            u_profile = self.profile_of_query_node(u, q)
-            v_profile = self.profile_of_data_node(v)
-            if u_profile.issubset(v_profile):
-                res.append((u, v))
-        vset = set()
-        for c in res:
-            vset.add(c[1]) 
-        self.filter_rate = len(vset) / len(self.G_nodes)
-        print(f"After the GQL local pruning,  { self.filter_rate  * 100}% of the nodes left")
-        return res 
-
-    def GQL_global_refinement(self, q, candidates):
-        for c in candidates:
-            u, v = c[0], c[1]
-            n_u = list(q.neighbors(u))
-            v_u = list(self.G.neighbors(v))
-            for u_prime in n_u: # we want all the u_prime to be matched
-                u_prime_matched = False
-                for v_prime in v_u:
-                    # check if v_prime is u_prime's candidate
-                    # -> check (u_prime, v_prime) exists in candidates
-                    # if not, than it will not be a fully match
-                    # remove (u, v) from candidates
-                    match = (u_prime, v_prime)
-                    if match in candidates:
-                        u_prime_matched = True
-                        break
-                if u_prime_matched == False:
-                    # remove (u, v) from candidates
-                    candidates = [c for c in candidates if not (c[1] == v and c[0] == u)]
-                    # print(f'{(u, v)} is removed by gql global refinement')
-                    break
-        vset = set()
-        for c in candidates:
-            vset.add(c[1]) 
-        self.filter_rate = len(vset) / len(self.G_nodes)
-        print(f"After GQL global refinement, { self.filter_rate  * 100}% of the nodes left")
-        return candidates
 
     # GQL Compute LC
     def computeLC(self, q, C, order, u, i):

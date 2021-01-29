@@ -107,7 +107,6 @@ class Filter():
         # print(f"After the GQL local pruning,  { self.filter_rate  * 100}% of the nodes left")
         return res 
 
-    
     def gql_global_refinement(self, q, candidates):
         for c in candidates:
             u, v = c[0], c[1]
@@ -137,10 +136,10 @@ class Filter():
         return candidates
 
     def gql_filtering(self, q):
-        imd = self.LDF(q)
-        imd = self.NLF(q, imd)
-        imd = self.GQL_local_pruning(q, imd)
-        imd = self.GQL_global_refinement(q, imd)
+        imd = self.ldf(q)
+        imd = self.nlf(q, imd)
+        imd = self.gql_local_pruning(q, imd)
+        imd = self.gql_global_refinement(q, imd)
         return imd
 
     def profile_of_query_node(self, node_index, graph):
