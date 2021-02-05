@@ -41,7 +41,7 @@ class GQLMatcher(BaseMatcher):
 
     def is_subgraph_match(self, q):
         self.clear()
-        print("GQL is used...")
+        print("GQL Running")
         main_start_time = time.time()
         # init the current matching first
         self.filter_rate = 1
@@ -52,7 +52,7 @@ class GQLMatcher(BaseMatcher):
         except:
             print('Input query graph must be a single networkx instance.')
             sys.exit()
-        # Turn on / off the time
+        # Turn on / off the time -- verbose mode
         candidates = self.filtering(q)
         order = self.ordering(q, candidates)
 
@@ -64,9 +64,7 @@ class GQLMatcher(BaseMatcher):
         print("--- %s seconds ---, Job done" % (time.time() - main_start_time))
         print(f"Totally find {len(self.MatchingList)} matches.")
         print(' ')
-        print(' ')
         output_data = [self.filter_rate, self.MatchingList]
-        # print(output_data)
         return output_data
 
     # GQL Compute LC

@@ -3,6 +3,8 @@ import sys
 import copy
 import networkx as nx
 from . import BaseMatcher
+from . import filters as f
+from . import orders as o
 
 class CECIMatcher(BaseMatcher):
     def __init__(self, G):
@@ -79,9 +81,10 @@ class CECIMatcher(BaseMatcher):
         except:
             print('Input query graph must be a single networkx instance.')
             sys.exit()
-        
-        imd = self.LDF(q)
-        imd = self.NLF(q, imd)
+        # Normal filtering process
+        prefilter = f.Filter(self.G)
+        imd = prefilter.ldf(q)
+        imd = prefilter.nlf(q, imd)
         # print("imd is", imd)
         NLF_candidates = copy.deepcopy(imd)
         time1 = time.time()
