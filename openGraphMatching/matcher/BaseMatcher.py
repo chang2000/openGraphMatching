@@ -6,7 +6,7 @@ import copy
 import networkx as nx
 from . import filters as f
 from . import orders as o
-
+from . import enumeraters as e
 class BaseMatcher(abc.ABC):
     def __init__(self, G):
         self.G = G
@@ -24,7 +24,6 @@ class BaseMatcher(abc.ABC):
         '''
         prefilter = f.Filter(self.G)
         res = prefilter.ldf(q)
-        res = prefilter.nlf(q, res)
         return res
 
     def ordering(self, q, candidates):
@@ -35,26 +34,11 @@ class BaseMatcher(abc.ABC):
     def find_subgraph_match(self, q, imd, order):
         pass
 
-    
     def enumerate(self, q, imd, order, i):
-        self.en_counter += 1
-        if i == len(order) + 1:
-            if self.M != None:
-                if len(self.M) == len(list(q.nodes())):
-                    M_copy = copy.deepcopy(self.M)
-                    self.MatchingList.append(M_copy)
-            return self.M
-        # v is a extenable vertex
-        u = self.get_extenable_vertex(order, i)
-        lc = self.computeLC(q, imd, order, u, i)
-        # print(f'the local candidates for {u} is {lc}')
-        for c in lc:
-            if c not in self.M and c[1] not in self.M.values():
-                self.M[c[0]] = c[1]
-                # print(f"#{self.en_counter-1} round match {self.M}")
-                self.enumerate(q, imd, order, i + 1)
-                del self.M[c[0]]
-
+        enu = e.Enumerater(self.G)
+        enu.normal_enum(q, imd, order, i)
+        return enu.res_getter()
+    
     """ The core function will be used in different matchers.
     """
     def is_subgraph_match(self, q):
@@ -66,19 +50,9 @@ class BaseMatcher(abc.ABC):
         main_start_time = time.time()
         imd = self.filtering(q)
         order = self.ordering(q, imd)
-        data = self.enumerate(q, imd, order, 1)
+        match_list = self.enumerate(q, imd, order, 1)
         print("--- %s seconds ---, Job done" % (time.time() - main_start_time)) 
-
-        output_data = [self.filter_rate, self.MatchingList]
-        return output_data
-
-
-    def plain_candidates(self, q):
-        res = []
-        for u in q.nodes():
-            for v in self.G_nodes:
-                res.append((u, v))
-        return res
+        return match_list
 
     # Methods used in the enumration part
     def backward_neighbors(self, u, order, q):

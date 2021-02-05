@@ -11,6 +11,13 @@ class Filter():
         self.G_labels = nx.get_node_attributes(G, 'feat')
         self.G_degree = G.degree()
 
+    def naive_filter(self, q):
+        res = []
+        for u in q.nodes():
+            for v in self.G_nodes:
+                res.append((u, v))
+        return res
+
     def ldf(self, q):
         """
         This function takes in a query graph and a target graph
