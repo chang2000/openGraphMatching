@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="openGraphMatching",
-    version="0.1.7",
+    version="0.1.8",
     author="WANG Tianchang, LI Yuxiang",
     author_email="tianchang.wang.00@gmail.com",
     description="A subgraph matching programming library.",

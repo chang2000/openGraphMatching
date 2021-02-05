@@ -7,6 +7,7 @@ import networkx as nx
 from . import filters as f
 from . import orders as o
 from . import enumeraters as e
+
 class BaseMatcher(abc.ABC):
     def __init__(self, G):
         self.G = G
@@ -53,36 +54,3 @@ class BaseMatcher(abc.ABC):
         match_list = self.enumerate(q, imd, order, 1)
         print("--- %s seconds ---, Job done" % (time.time() - main_start_time)) 
         return match_list
-
-    # Methods used in the enumration part
-    def backward_neighbors(self, u, order, q):
-        res = set()
-        neighbors = list(q.neighbors(u))
-        ns = [n for n in neighbors if n in list(self.M.keys())]
-        res.update(ns)
-        return list(res)
-
-    def get_extenable_vertex(self, order, i):
-        return order[i - 1]
-
-    def computeLC(self, q, C, order, u, i):
-        if i == 1: # do not care the edge
-            return [c for c in C if c[0] == u]
-        lc = []
-        # examine the edge
-        flag = False
-        bn = self.backward_neighbors(u, order, q)
-        # print(f'bn for {u} is {bn}')
-        for v in C:
-            if v[0] == u:
-                flag = True
-                # for u_prime in self.backward_neighbors(u, order, q):
-                for u_prime in bn:
-                    edge = [v[1], self.M[u_prime]]
-                    edge.sort()
-                    if  tuple(edge) not in self.G_edges:
-                        flag = False
-                        break
-                if flag == True: # might have a sequence error
-                    lc.append(v)
-        return lc
