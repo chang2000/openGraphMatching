@@ -159,6 +159,8 @@ G.add_edges_from([
 
 
 # m = matcher.BaseMatcher(G)
+print(q.nodes)
+print(q.edges)
 m = matcher.GQLMatcher(G)
 # m = matcher.CECIMatcher(G)
 l = m.is_subgraph_match(q)

@@ -100,7 +100,6 @@ def draw_graph(G):
         'labels': labels,
         'with_labels': True
     }
-    fasdfasdfads
     nx.draw(G, **options)
     plt.show()
 

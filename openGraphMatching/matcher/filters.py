@@ -67,24 +67,27 @@ class Filter():
         start_time = time.time()
         q_labels = nx.get_node_attributes(q, 'feat')
         # generate L(N(u)), the whole is a list of sets
-        labels_of_neighbor = []
+        labels_of_neighbor = {}
         for u in q.nodes():
             neighbors = q.neighbors(u)
             s = set()
             for n in neighbors:
                 s.add(q_labels[n])
-            labels_of_neighbor.append([u, s])
+            labels_of_neighbor[u] =  s
         v_set = set()
         can_copy = copy.deepcopy(candidates)
         # How about generate them before
         # ALERT! SLOWNESS comes from here
-        u_neighbors_list = [list(q.neighbors(u)) for u in q.nodes()]
-        v_neighbors_list = [list(self.G.neighbors(v)) for v in self.G_nodes]
-
+        u_neighbors_dic = {}
+        v_neighbors_dic = {}
+        for u in q.nodes():
+            u_neighbors_dic[u] = list(q.neighbors(u))
+        for v in self.G_nodes:
+            v_neighbors_dic[v] = list(self.G.neighbors(v))
         for u, v in can_copy: 
-            q_feats = [q_labels[n] for n in u_neighbors_list[u]]
-            G_feats = [self.G_labels[n] for n in v_neighbors_list[v]]
-            for l in labels_of_neighbor[u][1]:
+            q_feats = [q_labels[n] for n in u_neighbors_dic[u]]
+            G_feats = [self.G_labels[n] for n in v_neighbors_dic[v]]
+            for l in labels_of_neighbor[u]:
                 # Compute N(u, l)
                 nul = q_feats.count(l)
                 # Compute N(v, l)

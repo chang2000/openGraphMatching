@@ -17,12 +17,13 @@ class Order():
     def gql_order(self, q, candidates):
         print('Using GQL ordering...')
         q_nodes = list(q.nodes())
-        res = [[i, 0] for i in q_nodes]
+        res = {}
+        for i in q_nodes:
+            res[i] = 0
         # Count C(u)
         for c in candidates:
-            res[c[0]][1] += 1
-        res.sort(key = lambda x: x[1])
-        res.reverse()
-        res = [i[0] for i in res]
-        return res
+            res[c[0]] += 1
+        newdic = sorted(res.items(), key=lambda x: x[1], reverse=True)
+        ans = [ele[0] for ele in newdic]
+        return ans
 

@@ -34,6 +34,8 @@ m.is_subgraph_match(q) # Run the check match process
 -  `pip install openGraphMatching` to install this package.
 - Go to `examples` and enjoy~
 
+(An `env.yml` file is provided for conda users)
+
 # Misc
 
 1. Validate the correctness of algorithm.
@@ -50,8 +52,6 @@ m.is_subgraph_match(q) # Run the check match process
    2. Vertex data  `v v_id v_label v_degree`
 3. Edge data `e v_id v_id`
    
-
-
 
 
 
