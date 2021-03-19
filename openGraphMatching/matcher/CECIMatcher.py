@@ -5,6 +5,7 @@ import networkx as nx
 from . import BaseMatcher
 from . import filters as f
 from . import orders as o
+from . import enumeraters as e
 
 class CECIMatcher(BaseMatcher):
     def __init__(self, G):
@@ -243,3 +244,13 @@ class CECIMatcher(BaseMatcher):
                 res.append((k, v))
         return res  
     # generate the data structure
+
+    def get_extenable_vertex(self, order, i):
+        return order[i - 1]
+
+    def backward_neighbors(self, u, order, q):
+        res = set()
+        neighbors = list(q.neighbors(u))
+        ns = [n for n in neighbors if n in list(self.M.keys())]
+        res.update(ns)
+        return list(res)

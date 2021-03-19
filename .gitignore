@@ -149,3 +149,9 @@ results/
 
 # Vim tmp file
 *.swp
+
+
+# Some testing files for this project
+single_validate.py
+exact_subgraph_match_validate.py
+test.py

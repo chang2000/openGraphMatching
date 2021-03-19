@@ -3,15 +3,13 @@
 
 A Python Graph/Subgraph Matching programming library. Based on openGraphMatching and the framework provided, you can develop and test different subgraph matching algorithms efficiently. What's more, since the codebase is Python-based, algorithms with neural networks can be integrated easily with traditional subgraph matching algorithms. 
 
-Read our [report](http://www.cse.cuhk.edu.hk/~tcwang8/report.pdf) for more information.(Not provided now)
-
 # Usage
 
 Prerequisite `pytorch>=1.6, networkx, pytorch-geometric, deepsnap`.
 
 A detailed environment configration can be found in `env.yml`.
 
-The NaiveMatch is the minium implementation of subgraph matching algorithm.
+The `BaseMatcher` is the minium implementation of subgraph matching algorithm.
 
 Here is the demo code for running GraphQL algorithm: 
 
@@ -34,7 +32,46 @@ m.is_subgraph_match(q) # Run the check match process
 -  `pip install openGraphMatching` to install this package.
 - Go to `examples` and enjoy~
 
-(An `env.yml` file is provided for conda users)
+
+
+For Conda users, the conda environment file `env.yml` is also provided.  This [link](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file) provides the method to install conda environment by a environment file. In short, use this commend `conda env create -f env.yml`. A conda environment named `ogm` will be created.
+
+## Internals
+
+Each matcher follows the `filtering->ordering->enumerating` design pattern. In the directory `matcher` there are three files: `filters.py`, `orders.py`,`enumeraters.py`, where each file contains the general algorithms. 
+
+For example, in the graphQL matcher, the code pipeline is like:
+
+```python
+from openGraphMatching import BaseMatcher
+from openGraphMatching import filters as f
+from openGraphMatching import orders as o
+from openGraphMatching import enumeraters as e
+
+class GQLMatcher(BaseMatcher):
+    def __init__(self, G):
+        super().__init__(G)
+
+    def filtering(self, q):
+        prefilter = f.Filter(self.G)
+        return prefilter.gql_filtering(q)
+
+    def ordering(self, q, candidates):
+        orderer = o.Order(self.G)
+        return orderer.gql_order(q, candidates)
+
+    def enumerate(self, q, imd, order, i):
+        enu = e.Enumerater(self.G)
+        enu.normal_enum(q, imd, order, i)
+        return enu.res_getter()
+
+    def is_subgraph_match(self, q):
+      	# Some verbose and statistics are skipped here
+        candidates = self.filtering(q)
+        order = self.ordering(q, candidates)
+        match_list = self.enumerate(q, candidates, order, 1)
+        return match_list
+```
 
 # Misc
 
@@ -52,8 +89,6 @@ m.is_subgraph_match(q) # Run the check match process
    2. Vertex data  `v v_id v_label v_degree`
 3. Edge data `e v_id v_id`
    
-
-
 
 
 
