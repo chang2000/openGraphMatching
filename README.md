@@ -29,14 +29,13 @@ m.is_subgraph_match(q) # Run the check match process
   - [`networkx`](https://networkx.org/)
   - [`pytorch-geometric`](https://github.com/rusty1s/pytorch_geometric)
   - [`deepsnap`](https://github.com/snap-stanford/deepsnap)
--  `pip install openGraphMatching` to install this package.
-- Go to `examples` and enjoy~
+  
+  > If you are using conda-like package manager, we provide the conda environment file `env.yml` for this package. You may refer to this [link](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file) to install a conda environment by a environment file. In short, use this command `conda env create -f env.yml`. Then a conda envrionment named `ogm` is created.
+  
+- `pip install openGraphMatching` to install this package.
+- Enter the `examples` folder, then run `python exact_subgraph_match_validate.py`to run the validation demo of this package.
 
-
-
-For Conda users, the conda environment file `env.yml` is also provided.  This [link](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file) provides the method to install conda environment by a environment file. In short, use this commend `conda env create -f env.yml`. A conda environment named `ogm` will be created.
-
-## Internals
+# Internals
 
 Each matcher follows the `filtering->ordering->enumerating` design pattern. In the directory `matcher` there are three files: `filters.py`, `orders.py`,`enumeraters.py`, where each file contains the general algorithms. 
 
@@ -87,12 +86,12 @@ class GQLMatcher(BaseMatcher):
    1. For each `.graph` file, the first line will always be `t x y` where `x` and `y` are two int indicates the number of nodes and edges
 
    2. Vertex data  `v v_id v_label v_degree`
-3. Edge data `e v_id v_id`
-   
+   3. Edge data `e v_id v_id`
 
 
 
 ## Side word
 
 - Cannot handle yeast well even it has a smaller dataset size, since around 10% of nodes left for 3000 nodes.
+- The observation above inspires us to combine the traditional subgraph matching methods and the neural methods together.
 
