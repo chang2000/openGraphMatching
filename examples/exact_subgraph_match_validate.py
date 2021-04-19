@@ -6,7 +6,7 @@ from openGraphMatching.utils import convert_graph, check_match_correctness, draw
 from openGraphMatching.matcher import GQLMatcher, CECIMatcher
 
 dataset = 'validate'
-path = osp.join(osp.dirname(osp.realpath(__file__)), './dataset', dataset) 
+path = osp.join(osp.dirname(osp.realpath(__file__)), '../dataset', dataset) 
 datasetpath = path + '/query_graph/'
 G = convert_graph(path + '/data_graph/HPRD.graph')
 
