@@ -150,6 +150,9 @@ results/
 # Vim tmp file
 *.swp
 
+# IDE/Editor Directory Config file
+.idea
+.vscode
 
 # Some testing files for this project
 single_validate.py
