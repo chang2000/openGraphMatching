@@ -1,10 +1,10 @@
-import torch
-from deepsnap.batch import Batch
-from deepsnap.dataset import GraphDataset
+# import torch
+# from deepsnap.batch import Batch
+# from deepsnap.dataset import GraphDataset
 import networkx as nx
 import matplotlib.pyplot as plt
 
-from . import feature_preprocess
+# from . import feature_preprocess
 
 device_cache = None
 def get_device():
@@ -60,7 +60,7 @@ def convert_graph(filepath):
     return g
 
 """
-This function is designed to check the correctness of a single matc
+This function is designed to check the correctness of a single match
 q: the query graph, should be a networkx instance
 
 G: the target graph, should be a networkx instance

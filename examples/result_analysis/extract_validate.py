@@ -4,7 +4,6 @@ f = open("validate_filtering.txt")
 
 for line in f:
     line_item = line.split(' ')
-    # print(line_item)
     if line_item[0] == 'LDF,':
         ldf_string = line_item[1] 
         ldf_string = ldf_string[:-1]
