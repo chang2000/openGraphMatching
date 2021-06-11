@@ -55,8 +55,9 @@ class Enumerater():
                 # for u_prime in self.backward_neighbors(u, order, q):
                 for u_prime in bn:
                     edge = [v[1], self.curr_match[u_prime]]
-                    edge.sort()
-                    if  tuple(edge) not in self.G_edges:
+                    # edge.sort()
+                    reversed_edge = edge[::-1]
+                    if  tuple(edge) not in self.G_edges and tuple(reversed_edge) not in self.G_edges:
                         flag = False
                         break
                 if flag == True: # might have a sequence error
